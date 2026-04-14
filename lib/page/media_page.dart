@@ -15,10 +15,10 @@ class _MediaPageState extends State<MediaPage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Padding(
-          padding: const EdgeInsets.all(12.0),
+        const Padding(
+          padding: EdgeInsets.all(12.0),
           child: Column(
-            children: const [
+            children: [
               Text(
                 'Contact Me',
                 style: TextStyle(fontWeight: FontWeight.bold, color: kColor3),

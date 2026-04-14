@@ -12,11 +12,11 @@ class HeaderView extends StatefulWidget {
 class _HeaderViewState extends State<HeaderView> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: const [
+    return const Column(
+      children: [
         ImagePicture(radius: 100),
         TextDescription(
-          text: ' ADARIKU USHIE EMMMANUEL',
+          text: ' ADARIKU USHIE EMMANUEL',
           write: 'Mobile Developer',
         ),
       ],

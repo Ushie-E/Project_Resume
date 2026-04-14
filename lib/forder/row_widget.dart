@@ -20,7 +20,7 @@ class _RowWidgetState extends State<RowWidget> {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        IconButton(color: kColor, onPressed: (() {}), icon: widget.icon),
+        IconButton(color: kColor, onPressed: () {}, icon: widget.icon),
         Text(
           widget.text,
           style: const TextStyle(fontSize: 18, color: kColor),

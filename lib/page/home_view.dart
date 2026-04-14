@@ -28,26 +28,26 @@ class _HomeViewState extends State<HomeView> {
         backgroundColor: kColor8,
         child: Column(
           children: [
-            SafeArea(
+            const SafeArea(
               child: Padding(
-                padding: const EdgeInsets.all(28.0),
+                padding: EdgeInsets.all(28.0),
                 child: Column(
                   children: [
                     Column(
                       mainAxisAlignment: MainAxisAlignment.start,
-                      children: const [
+                      children: [
                         ImagePicture(radius: 50),
                       ],
                     ),
-                    const TextDescription(
+                    TextDescription(
                       text: 'Contact',
                       write: 'info',
                     ),
-                    const RowWidget(
+                    RowWidget(
                       icon: Icon(Icons.mark_email_unread_outlined),
-                      text: 'AdarikUshie00@gmail',
+                      text: 'adarikushie00@gmail',
                     ),
-                    const RowWidget(
+                    RowWidget(
                       icon: Icon(Icons.phone),
                       text: '07011109498',
                     ),
@@ -80,7 +80,6 @@ _onBasicAlertPressed(context) {
     buttons: [
       DialogButton(
         onPressed: () => Navigator.pop(context),
-        color: kColor6,
         child: const Center(
           child: Text(
             "Cool",

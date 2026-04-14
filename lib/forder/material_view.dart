@@ -9,13 +9,13 @@ class MaterialView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.all(18.0),
+          padding: EdgeInsets.all(18.0),
           child: Column(
-            children: const [
+            children: [
               Text(
                 'Skill',
                 style: TextStyle(
@@ -30,7 +30,7 @@ class MaterialView extends StatelessWidget {
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 CardFile(
                   note: 'Interface Design',
                 ),
@@ -39,21 +39,21 @@ class MaterialView extends StatelessWidget {
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 CardFile(note: 'Mobile Creator'),
                 CardFile(note: 'Visual testing '),
               ],
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 CardFile(note: 'Mobile Texting'),
                 CardFile(note: 'Usability Testing'),
               ],
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: [
                 CardFile(note: 'Mobile frame'),
                 CardFile(note: 'Note Taking'),
               ],

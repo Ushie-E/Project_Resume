@@ -72,7 +72,6 @@ _onBasicAlertPressed(context) {
     buttons: [
       DialogButton(
         onPressed: () => Navigator.pop(context),
-        color: kColor10,
         radius: BorderRadius.circular(19.0),
         child: const Text(
           "HIre me",
