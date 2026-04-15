@@ -1,23 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:project/page/home_view.dart';
+import 'package:project/app/app.bottomsheets.dart';
+import 'package:project/app/app.dialogs.dart';
+import 'package:project/app/app.locator.dart';
+import 'package:project/app/app.router.dart';
+import 'package:stacked_services/stacked_services.dart';
 
-void main() {
-  runApp(const PageView());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await setupLocator();
+  setupDialogUi();
+  setupBottomSheetUi();
+  runApp(const MainApp());
 }
 
-class PageView extends StatefulWidget {
-  const PageView({Key? key}) : super(key: key);
+class MainApp extends StatelessWidget {
+  const MainApp({super.key});
 
-  @override
-  State<PageView> createState() => _PageViewState();
-}
-
-class _PageViewState extends State<PageView> {
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: HomeView(),
+    return MaterialApp(
+      initialRoute: Routes.startupView,
+      onGenerateRoute: StackedRouter().onGenerateRoute,
+      navigatorKey: StackedService.navigatorKey,
+      navigatorObservers: [StackedService.routeObserver],
     );
   }
 }
