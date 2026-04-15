@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../const.dart';
+import '../ui/common/const.dart';
 
 class MediaPage extends StatefulWidget {
   const MediaPage({Key? key}) : super(key: key);

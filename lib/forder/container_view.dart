@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:project/const.dart';
+import 'package:project/ui/common/const.dart';
 import 'package:project/page/media_page.dart';
 
-import '../widget/container_detail.dart';
+import '../ui/common/widget/container_detail.dart';
 import 'material_view.dart';
 
 class ContainerView extends StatefulWidget {

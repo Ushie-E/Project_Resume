@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../const.dart';
+import '../ui/common/const.dart';
 
 class RowWidget extends StatefulWidget {
   final String text;

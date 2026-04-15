@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:project/forder/row_widget.dart';
 import 'package:project/page/real_view/rest_view.dart';
-import 'package:project/widget/image_picture.dart';
-import 'package:project/widget/text_description.dart';
+import 'package:project/ui/common/widget/image_picture.dart';
+import 'package:project/ui/common/widget/text_description.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
-import '../const.dart';
+import '../ui/common/const.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({Key? key}) : super(key: key);

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:golden_toolkit/golden_toolkit.dart';
+import 'package:project/app/app.locator.dart';
 import 'package:project/page/home_view.dart';
 
 void main() {

@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:project/const.dart';
+import 'package:project/ui/common/const.dart';
 
 class TextDescription extends StatefulWidget {
   final String text;

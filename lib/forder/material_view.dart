@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:project/widget/card_file.dart';
+import 'package:project/ui/common/widget/card_file.dart';
 
-import '../const.dart';
+import '../ui/common/const.dart';
 
 class MaterialView extends StatelessWidget {
   const MaterialView({Key? key}) : super(key: key);

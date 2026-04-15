@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:project/widget/image_picture.dart';
-import 'package:project/widget/text_description.dart';
+import 'package:project/ui/common/widget/image_picture.dart';
+import 'package:project/ui/common/widget/text_description.dart';
 
 class HeaderView extends StatefulWidget {
   const HeaderView({Key? key}) : super(key: key);
