@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:project/ui/common/app_colors.dart';
-import 'package:project/ui/common/ui_helpers.dart';
+import 'package:project/forder/row_widget.dart';
+import 'package:project/page/real_view/rest_view.dart';
+import 'package:project/ui/common/const.dart';
+import 'package:project/ui/common/widget/image_picture.dart';
+import 'package:project/ui/common/widget/text_description.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:stacked/stacked.dart';
 
 import 'home_viewmodel.dart';
@@ -11,59 +15,53 @@ class HomeView extends StackedView<HomeViewModel> {
   @override
   Widget builder(BuildContext context, HomeViewModel viewModel, Widget? child) {
     return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 25.0),
-          child: Center(
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                verticalSpaceLarge,
-                Column(
+      backgroundColor: kColor6,
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: kColor6,
+      ),
+      body: const RealView(),
+      drawer: Drawer(
+        backgroundColor: kColor8,
+        child: Column(
+          children: [
+            const SafeArea(
+              child: Padding(
+                padding: EdgeInsets.all(28.0),
+                child: Column(
                   children: [
-                    const Text(
-                      'Hello, STACKED!',
-                      style: TextStyle(
-                        fontSize: 35,
-                        fontWeight: FontWeight.w900,
-                      ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        ImagePicture(radius: 50),
+                      ],
                     ),
-                    verticalSpaceMedium,
-                    MaterialButton(
-                      color: Colors.black,
-                      onPressed: viewModel.incrementCounter,
-                      child: Text(
-                        viewModel.counterLabel,
-                        style: const TextStyle(color: Colors.white),
-                      ),
+                    TextDescription(
+                      text: 'Contact',
+                      write: 'info',
+                    ),
+                    RowWidget(
+                      icon: Icon(Icons.mark_email_unread_outlined),
+                      text: 'adarikushie00@gmail',
+                    ),
+                    RowWidget(
+                      icon: Icon(Icons.phone),
+                      text: '07011109498',
                     ),
                   ],
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    MaterialButton(
-                      color: kcDarkGreyColor,
-                      onPressed: viewModel.showDialog,
-                      child: const Text(
-                        'Show Dialog',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
-                    MaterialButton(
-                      color: kcDarkGreyColor,
-                      onPressed: viewModel.showBottomSheet,
-                      child: const Text(
-                        'Show Bottom Sheet',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
+              ),
             ),
-          ),
+            TextButton(
+              onPressed: () {
+                _onBasicAlertPressed(context);
+              },
+              child: const Text(
+                'About Me',
+                style: TextStyle(fontSize: 20),
+              ),
+            )
+          ],
         ),
       ),
     );
@@ -71,4 +69,25 @@ class HomeView extends StackedView<HomeViewModel> {
 
   @override
   HomeViewModel viewModelBuilder(BuildContext context) => HomeViewModel();
+}
+
+_onBasicAlertPressed(context) {
+  Alert(
+    context: context,
+    title: "I'm a mobile Developer",
+    desc:
+        "Build awesome Application with Flutter by learning from great mind and working with real developer in the field",
+    buttons: [
+      DialogButton(
+        onPressed: () => Navigator.pop(context),
+        child: const Center(
+          child: Text(
+            "Cool",
+            textAlign: TextAlign.center,
+            style: TextStyle(color: kColor, fontSize: 20),
+          ),
+        ),
+      ),
+    ],
+  ).show();
 }

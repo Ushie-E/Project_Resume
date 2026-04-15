@@ -1,6 +1,6 @@
-import 'package:project/page/home_view.dart';
 import 'package:project/ui/bottom_sheets/notice/notice_sheet.dart';
 import 'package:project/ui/dialogs/info_alert/info_alert_dialog.dart';
+import 'package:project/ui/views/home/home_view.dart';
 import 'package:project/ui/views/startup/startup_view.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';

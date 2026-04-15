@@ -8,7 +8,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:flutter/material.dart' as _i4;
 import 'package:flutter/material.dart';
-import 'package:project/page/home_view.dart' as _i2;
+import 'package:project/ui/views/home/home_view.dart' as _i2;
 import 'package:project/ui/views/startup/startup_view.dart' as _i3;
 import 'package:stacked/stacked.dart' as _i1;
 import 'package:stacked_services/stacked_services.dart' as _i5;
@@ -16,7 +16,7 @@ import 'package:stacked_services/stacked_services.dart' as _i5;
 class Routes {
   static const homeView = '/home-view';
 
-  static const startupView = '/startup-view';
+  static const startupView = '/';
 
   static const all = <String>{
     homeView,
@@ -50,7 +50,7 @@ class StackedRouter extends _i1.RouterBase {
       final args = data.getArgs<StartupViewArguments>(
         orElse: () => const StartupViewArguments(),
       );
-      return _i4.MaterialPageRoute<dynamic>(
+      return _i1.buildAdaptivePageRoute<dynamic>(
         builder: (context) => _i3.StartupView(key: args.key),
         settings: data,
       );
