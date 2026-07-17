@@ -37,3 +37,19 @@ const kTextB = TextStyle(
   backgroundColor: kColor,
   fontSize: 25,
 );
+
+const TextStyle kOnboardingTitleStyle = TextStyle(
+  fontSize: 30,
+  fontWeight: FontWeight.bold,
+  color: Color(0xFF1F2937),
+  fontFamily: 'Google Sans',
+  height: 1.25,
+);
+
+const TextStyle kOnboardingSubtitleStyle = TextStyle(
+  fontSize: 15,
+  color: Color(0xFF4B5563),
+  fontFamily: 'Google Sans',
+  height: 1.4,
+);
+
