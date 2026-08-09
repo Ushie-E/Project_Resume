@@ -23,6 +23,25 @@ void main() {
       });
     });
 
+    group('Avatar Selection -', () {
+      test('When initialized, should have default avatar', () {
+        final model = getModel();
+        expect(model.selectedAvatar, 'images/user.png');
+      });
+
+      test('When setAvatar is called, should update selectedAvatar', () {
+        final model = getModel();
+        model.setAvatar('images/ushie.png');
+        expect(model.selectedAvatar, 'images/ushie.png');
+      });
+
+      test('When cycleAvatar is called, should rotate to next avatar', () {
+        final model = getModel();
+        model.cycleAvatar();
+        expect(model.selectedAvatar, 'images/ushie.png');
+      });
+    });
+
     group('Plan Selection -', () {
       test('When setPlan is called, should update selectedPlan', () {
         final model = getModel();
@@ -54,39 +73,50 @@ void main() {
     });
 
     group('Navigation Steps -', () {
-      test('When nextStep is called on step 1, currentStep should change to 4', () {
-        final model = getModel();
-        model.nextStep();
-        expect(model.currentStep, 4);
-      });
-
-      test('When prevStep is called on step 4, currentStep should change to 1', () {
-        final model = getModel();
-        model.nextStep(); // Goes to 4
-        expect(model.currentStep, 4);
-
-        model.prevStep(); // Goes to 1
-        expect(model.currentStep, 1);
-      });
-
-      test('When nextStep is called on step 4 with valid interests, should trigger dialog service', () {
+      test('Should navigate sequentially through all 5 onboarding steps', () {
         final dialogService = getAndRegisterDialogService();
         final model = getModel();
 
-        model.nextStep(); // Go to step 4
+        // Step 1 -> Step 2
+        expect(model.currentStep, 1);
+        model.nextStep();
+        expect(model.currentStep, 2);
+
+        // Step 2 -> Step 3
+        expect(model.isStep2Valid, isTrue);
+        model.nextStep();
+        expect(model.currentStep, 3);
+
+        // Step 3 -> Step 4
+        expect(model.isStep3Valid, isTrue);
+        model.nextStep();
+        expect(model.currentStep, 4);
+
+        // Step 4 -> Step 5
         model.toggleInterest('Design');
         model.toggleInterest('Technology');
         model.toggleInterest('Music');
+        expect(model.isInterestGridValid, isTrue);
+        model.nextStep();
+        expect(model.currentStep, 5);
 
-        model.nextStep(); // Tries to submit
-
+        // Step 5 -> Complete (Dialog)
+        model.nextStep();
         verify(dialogService.showCustomDialog(
           variant: DialogType.infoAlert,
           title: 'Profile Created!',
           description: anyNamed('description'),
         ));
       });
+
+      test('When prevStep is called, currentStep should decrement', () {
+        final model = getModel();
+        model.nextStep(); // Goes to 2
+        expect(model.currentStep, 2);
+
+        model.prevStep(); // Goes back to 1
+        expect(model.currentStep, 1);
+      });
     });
   });
 }
-

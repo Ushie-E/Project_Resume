@@ -11,9 +11,8 @@ void main() {
   testGoldens('HomeView - Step 1 Plan Selection', (tester) async {
     await loadAppFonts();
 
-    // Set device pixel ratio and size
     await tester.binding.setSurfaceSize(const Size(393, 852));
-    tester.binding.window.devicePixelRatioTestValue = 1.0;
+    tester.view.devicePixelRatio = 1.0;
 
     await tester.pumpWidget(
       const MediaQuery(
@@ -28,9 +27,8 @@ void main() {
   testGoldens('HomeView - Step 4 Interest Selection', (tester) async {
     await loadAppFonts();
 
-    // Set device pixel ratio and size
     await tester.binding.setSurfaceSize(const Size(393, 852));
-    tester.binding.window.devicePixelRatioTestValue = 1.0;
+    tester.view.devicePixelRatio = 1.0;
 
     await tester.pumpWidget(
       const MediaQuery(
@@ -39,16 +37,27 @@ void main() {
       ),
     );
 
-    // Scroll the 'Get Started' button into view so it is hit-testable
+    // Step 1 -> Step 2
     final getStartedFinder = find.text('Get Started');
     await tester.ensureVisible(getStartedFinder);
     await tester.pumpAndSettle();
-
-    // Tap the 'Get Started' button to go to Step 4
     await tester.tap(getStartedFinder);
+    await tester.pumpAndSettle();
+
+    // Step 2 -> Step 3
+    final step3Finder = find.text('Continue to Step 3');
+    await tester.ensureVisible(step3Finder);
+    await tester.pumpAndSettle();
+    await tester.tap(step3Finder);
+    await tester.pumpAndSettle();
+
+    // Step 3 -> Step 4
+    final step4Finder = find.text('Continue to Step 4');
+    await tester.ensureVisible(step4Finder);
+    await tester.pumpAndSettle();
+    await tester.tap(step4Finder);
     await tester.pumpAndSettle();
 
     await screenMatchesGolden(tester, 'home_view_step4');
   });
 }
-
