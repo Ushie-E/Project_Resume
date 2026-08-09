@@ -3,10 +3,10 @@ import 'package:project/main_common.dart';
 
 void main() {
   AppConfig.initialize(
-    appName: 'Resume (Dev)',
-    apiBaseUrl: 'https://dev-api.example.com',
-    environment: EnvironmentType.dev,
-    enableLogging: true,
+    appName: 'Resume',
+    apiBaseUrl: 'https://api.example.com',
+    environment: EnvironmentType.prod,
+    enableLogging: false,
   );
   mainCommon(AppConfig.instance);
 }
