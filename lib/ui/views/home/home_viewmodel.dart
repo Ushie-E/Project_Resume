@@ -12,6 +12,18 @@ class HomeViewModel extends BaseViewModel {
   bool _isOnboardingComplete = false;
   bool get isOnboardingComplete => _isOnboardingComplete;
 
+  // Bottom Navigation Tab Index: 0 = Explore, 1 = My Profile, 2 = Settings
+  int _selectedTabIndex = 1;
+  int get selectedTabIndex => _selectedTabIndex;
+
+  void setSelectedTabIndex(int index) {
+    _selectedTabIndex = index;
+    rebuildUi();
+  }
+
+  // ---------------------------------------------------------------------------
+  // PROFILE & AVATAR STATE
+  // ---------------------------------------------------------------------------
   String _selectedPlan = 'Personal';
   String get selectedPlan => _selectedPlan;
 
@@ -26,7 +38,6 @@ class HomeViewModel extends BaseViewModel {
   String _selectedAvatar = 'images/user.png';
   String get selectedAvatar => _selectedAvatar;
 
-  // Step 2 Profile Fields
   String _fullName = 'Ushie Emmanuel';
   String get fullName => _fullName;
 
@@ -39,7 +50,6 @@ class HomeViewModel extends BaseViewModel {
   String _location = 'Lagos, Nigeria';
   String get location => _location;
 
-  // Step 3 Skills Fields
   final List<String> availableSkills = const [
     'Flutter',
     'Dart',
@@ -55,10 +65,105 @@ class HomeViewModel extends BaseViewModel {
   final Set<String> _selectedSkills = {'Flutter', 'Dart', 'Stacked Architecture'};
   Set<String> get selectedSkills => _selectedSkills;
 
-  // Step 4 Interests
   final Set<String> _selectedInterests = {};
   Set<String> get selectedInterests => _selectedInterests;
 
+  // ---------------------------------------------------------------------------
+  // SETTINGS TAB STATE
+  // ---------------------------------------------------------------------------
+  bool _darkMode = false;
+  bool get darkMode => _darkMode;
+
+  bool _notificationsEnabled = true;
+  bool get notificationsEnabled => _notificationsEnabled;
+
+  bool _analyticsEnabled = true;
+  bool get analyticsEnabled => _analyticsEnabled;
+
+  void toggleDarkMode(bool value) {
+    _darkMode = value;
+    rebuildUi();
+  }
+
+  void toggleNotifications(bool value) {
+    _notificationsEnabled = value;
+    rebuildUi();
+  }
+
+  void toggleAnalytics(bool value) {
+    _analyticsEnabled = value;
+    rebuildUi();
+  }
+
+  // ---------------------------------------------------------------------------
+  // EXPLORE TAB STATE
+  // ---------------------------------------------------------------------------
+  String _searchQuery = '';
+  String get searchQuery => _searchQuery;
+
+  String _selectedCategoryFilter = 'All';
+  String get selectedCategoryFilter => _selectedCategoryFilter;
+
+  void setSearchQuery(String query) {
+    _searchQuery = query;
+    rebuildUi();
+  }
+
+  void setCategoryFilter(String filter) {
+    _selectedCategoryFilter = filter;
+    rebuildUi();
+  }
+
+  // Explore Project Data
+  final List<Map<String, dynamic>> exploreProjects = const [
+    {
+      'title': 'Elysian Resume Builder',
+      'category': 'Architecture',
+      'description': 'Multi-step interactive digital resume built with Stacked architecture & Flutter.',
+      'image': 'images/spacea.png',
+      'likes': 142,
+      'tags': ['Flutter', 'Stacked', 'UI/UX'],
+    },
+    {
+      'title': 'Quantum Portfolio Dashboard',
+      'category': 'Mobile',
+      'description': 'Real-time analytics dashboard with dynamic theme tokens and responsive layouts.',
+      'image': 'images/spacec.png',
+      'likes': 98,
+      'tags': ['Dart', 'REST APIs', 'Charts'],
+    },
+    {
+      'title': 'Stitch Design System',
+      'category': 'UI/UX',
+      'description': 'AI-assisted design system with high-contrast color palettes and Google Sans typography.',
+      'image': 'images/spaced.png',
+      'likes': 210,
+      'tags': ['Google Sans', 'Design System', 'Stitch'],
+    },
+    {
+      'title': 'Cloud CI/CD Pipeline Kit',
+      'category': 'DevOps',
+      'description': 'Automated golden snapshot generator and cross-platform build release pipeline.',
+      'image': 'images/spacee.png',
+      'likes': 76,
+      'tags': ['CI/CD', 'Golden Testing', 'DevOps'],
+    },
+  ];
+
+  List<Map<String, dynamic>> get filteredExploreProjects {
+    return exploreProjects.where((project) {
+      final matchesCategory = _selectedCategoryFilter == 'All' ||
+          project['category'] == _selectedCategoryFilter;
+      final matchesSearch = _searchQuery.isEmpty ||
+          (project['title'] as String).toLowerCase().contains(_searchQuery.toLowerCase()) ||
+          (project['description'] as String).toLowerCase().contains(_searchQuery.toLowerCase());
+      return matchesCategory && matchesSearch;
+    }).toList();
+  }
+
+  // ---------------------------------------------------------------------------
+  // SETTERS & METHODS
+  // ---------------------------------------------------------------------------
   void setAvatar(String avatarPath) {
     _selectedAvatar = avatarPath;
     rebuildUi();
@@ -161,12 +266,14 @@ class HomeViewModel extends BaseViewModel {
     if (step >= 1 && step <= 5) {
       _currentStep = step;
       _isOnboardingComplete = false;
+      _selectedTabIndex = 1;
       rebuildUi();
     }
   }
 
   void completeOnboarding() {
     _isOnboardingComplete = true;
+    _selectedTabIndex = 1;
     rebuildUi();
     showSuccessDialog();
   }
@@ -174,6 +281,7 @@ class HomeViewModel extends BaseViewModel {
   void restartOnboarding() {
     _currentStep = 1;
     _isOnboardingComplete = false;
+    _selectedTabIndex = 1;
     rebuildUi();
   }
 
