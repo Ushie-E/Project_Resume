@@ -20,6 +20,7 @@ void main() {
         expect(model.selectedPlan, 'Personal');
         expect(model.selectedInterests, isEmpty);
         expect(model.isInterestGridValid, isFalse);
+        expect(model.selectedTabIndex, 1);
       });
     });
 
@@ -107,6 +108,7 @@ void main() {
           title: 'Profile Created!',
           description: anyNamed('description'),
         ));
+        expect(model.isOnboardingComplete, isTrue);
       });
 
       test('When prevStep is called, currentStep should decrement', () {
@@ -116,6 +118,43 @@ void main() {
 
         model.prevStep(); // Goes back to 1
         expect(model.currentStep, 1);
+      });
+    });
+
+    group('Tab Navigation & Settings -', () {
+      test('When setSelectedTabIndex is called, should update selectedTabIndex', () {
+        final model = getModel();
+        model.setSelectedTabIndex(0); // Explore tab
+        expect(model.selectedTabIndex, 0);
+
+        model.setSelectedTabIndex(2); // Settings tab
+        expect(model.selectedTabIndex, 2);
+      });
+
+      test('When settings toggles are called, should update respective boolean states', () {
+        final model = getModel();
+        model.toggleDarkMode(true);
+        expect(model.darkMode, isTrue);
+
+        model.toggleNotifications(false);
+        expect(model.notificationsEnabled, isFalse);
+
+        model.toggleAnalytics(false);
+        expect(model.analyticsEnabled, isFalse);
+      });
+
+      test('When setSearchQuery & setCategoryFilter are called, filteredExploreProjects should update', () {
+        final model = getModel();
+        expect(model.filteredExploreProjects.length, 4);
+
+        model.setCategoryFilter('Mobile');
+        expect(model.filteredExploreProjects.length, 1);
+        expect(model.filteredExploreProjects.first['title'], 'Quantum Portfolio Dashboard');
+
+        model.setCategoryFilter('All');
+        model.setSearchQuery('Stitch');
+        expect(model.filteredExploreProjects.length, 1);
+        expect(model.filteredExploreProjects.first['title'], 'Stitch Design System');
       });
     });
   });
