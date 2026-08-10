@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:golden_toolkit/golden_toolkit.dart';
 import 'package:project/app/app.locator.dart';
+import 'package:project/ui/views/explore/explore_view.dart';
 import 'package:project/ui/views/home/home_view.dart';
 
 void main() {
@@ -64,5 +65,21 @@ void main() {
     await tester.pumpAndSettle();
 
     await screenMatchesGolden(tester, 'home_view_step4');
+  });
+
+  testGoldens('ExploreView - Project Showcase', (tester) async {
+    await loadAppFonts();
+
+    await tester.binding.setSurfaceSize(const Size(393, 852));
+    tester.view.devicePixelRatio = 1.0;
+
+    await tester.pumpWidget(
+      const MediaQuery(
+        data: MediaQueryData(size: Size(393, 852), devicePixelRatio: 1.0),
+        child: MaterialApp(debugShowCheckedModeBanner: false, home: ExploreView()),
+      ),
+    );
+
+    await screenMatchesGolden(tester, 'explore_view_showcase');
   });
 }
