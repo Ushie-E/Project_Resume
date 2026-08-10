@@ -71,6 +71,7 @@ class HomeView extends StackedView<HomeViewModel> {
       appBar: AppBar(
         backgroundColor: kcBackgroundColor,
         elevation: 0,
+        automaticallyImplyLeading: false,
         title: Text(
           isBusiness ? 'Company Profile' : 'My Profile',
           style: const TextStyle(
@@ -120,11 +121,17 @@ class HomeView extends StackedView<HomeViewModel> {
                   Stack(
                     alignment: Alignment.bottomRight,
                     children: [
-                      CircleAvatar(
-                        radius: 48,
-                        backgroundColor: Colors.white24,
-                        backgroundImage: AssetImage(viewModel.selectedAvatar),
-                      ),
+                      viewModel.selectedAvatar == 'images/empty_profile.png'
+                          ? const CircleAvatar(
+                              radius: 48,
+                              backgroundColor: Color(0xFFE2E8F0),
+                              child: Icon(Icons.person_outline, size: 52, color: Color(0xFF64748B)),
+                            )
+                          : CircleAvatar(
+                              radius: 48,
+                              backgroundColor: Colors.white24,
+                              backgroundImage: AssetImage(viewModel.selectedAvatar),
+                            ),
                       Container(
                         padding: const EdgeInsets.all(4),
                         decoration: const BoxDecoration(

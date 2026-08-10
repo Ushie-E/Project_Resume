@@ -28,6 +28,7 @@ class SettingsView extends StackedView<SettingsViewModel> {
       appBar: AppBar(
         backgroundColor: kcBackgroundColor,
         elevation: 0,
+        automaticallyImplyLeading: false,
         title: const Text(
           'Settings & Preferences',
           style: TextStyle(
@@ -60,10 +61,16 @@ class SettingsView extends StackedView<SettingsViewModel> {
               ),
               child: Row(
                 children: [
-                  CircleAvatar(
-                    radius: 30,
-                    backgroundImage: AssetImage(userAvatar),
-                  ),
+                userAvatar == 'images/empty_profile.png'
+                    ? const CircleAvatar(
+                        radius: 30,
+                        backgroundColor: Color(0xFFE2E8F0),
+                        child: Icon(Icons.person_outline, size: 32, color: Color(0xFF64748B)),
+                      )
+                    : CircleAvatar(
+                        radius: 30,
+                        backgroundImage: AssetImage(userAvatar),
+                      ),
                   const SizedBox(width: 16),
                   Expanded(
                     child: Column(

@@ -25,21 +25,21 @@ void main() {
     });
 
     group('Avatar Selection -', () {
-      test('When initialized, should have default avatar', () {
+      test('When initialized, should have default empty profile avatar', () {
         final model = getModel();
-        expect(model.selectedAvatar, 'images/user.png');
+        expect(model.selectedAvatar, 'images/empty_profile.png');
       });
 
       test('When setAvatar is called, should update selectedAvatar', () {
         final model = getModel();
-        model.setAvatar('images/ushie.png');
-        expect(model.selectedAvatar, 'images/ushie.png');
+        model.setAvatar('images/spacea.png');
+        expect(model.selectedAvatar, 'images/spacea.png');
       });
 
       test('When cycleAvatar is called, should rotate to next avatar', () {
         final model = getModel();
         model.cycleAvatar();
-        expect(model.selectedAvatar, 'images/ushie.png');
+        expect(model.selectedAvatar, 'images/spacea.png');
       });
     });
 

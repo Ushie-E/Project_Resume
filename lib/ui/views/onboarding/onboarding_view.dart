@@ -20,6 +20,7 @@ class OnboardingView extends StackedView<OnboardingViewModel> {
       appBar: AppBar(
         backgroundColor: kcBackgroundColor,
         elevation: 0,
+        automaticallyImplyLeading: false,
         leading: viewModel.currentStep > 1
             ? IconButton(
                 icon: const Icon(Icons.arrow_back, color: Colors.black),
@@ -77,8 +78,27 @@ class OnboardingView extends StackedView<OnboardingViewModel> {
     }
   }
 
+  Widget _buildAvatarWidget(String avatarPath, {double radius = 40}) {
+    if (avatarPath == 'images/empty_profile.png') {
+      return CircleAvatar(
+        radius: radius,
+        backgroundColor: const Color(0xFFE2E8F0),
+        child: Icon(
+          Icons.person_outline,
+          size: radius * 1.1,
+          color: const Color(0xFF64748B),
+        ),
+      );
+    }
+    return CircleAvatar(
+      radius: radius,
+      backgroundColor: Colors.white24,
+      backgroundImage: AssetImage(avatarPath),
+    );
+  }
+
   // ---------------------------------------------------------------------------
-  // STEP 1: WELCOME & PLAN SELECTION (WITH "I ALREADY HAVE AN ACCOUNT")
+  // STEP 1: WELCOME & PLAN SELECTION (WITH INTERACTIVE LOGIN SHEET)
   // ---------------------------------------------------------------------------
   Widget _buildStep1(BuildContext context, OnboardingViewModel viewModel) {
     return Column(
@@ -125,22 +145,7 @@ class OnboardingView extends StackedView<OnboardingViewModel> {
                                     ),
                                   ],
                                 ),
-                                child: ClipOval(
-                                  child: Image.asset(
-                                    viewModel.selectedAvatar,
-                                    fit: BoxFit.cover,
-                                    errorBuilder: (context, error, stackTrace) {
-                                      return Container(
-                                        color: Colors.white24,
-                                        child: const Icon(
-                                          Icons.person,
-                                          size: 70,
-                                          color: Colors.white,
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ),
+                                child: _buildAvatarWidget(viewModel.selectedAvatar, radius: 55),
                               ),
                               Positioned(
                                 right: 0,
@@ -260,22 +265,25 @@ class OnboardingView extends StackedView<OnboardingViewModel> {
                   ),
                 ),
                 const SizedBox(height: 16),
-                // RESTORED: I ALREADY HAVE AN ACCOUNT LINK
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'I already have an account.',
-                      style: TextStyle(
-                        color: Colors.grey[700],
-                        fontSize: 14,
-                        fontFamily: 'Google Sans',
-                      ),
-                    ),
-                    TextButton(
-                      onPressed: viewModel.showAlreadyHaveAccountDialog,
-                      child: const Text(
-                        'Log In',
+                Center(
+                  child: Tooltip(
+                    message: 'Log In to your account',
+                    preferBelow: false,
+                    triggerMode: TooltipTriggerMode.tap,
+                    child: TextButton.icon(
+                      onPressed: () {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('Log In to your account'),
+                            duration: Duration(seconds: 1),
+                            behavior: SnackBarBehavior.floating,
+                          ),
+                        );
+                        _showLoginSheet(context, viewModel);
+                      },
+                      icon: const Icon(Icons.login_outlined, size: 18, color: kcOnboardingBlue),
+                      label: const Text(
+                        'Already have an account?',
                         style: TextStyle(
                           color: kcOnboardingBlue,
                           fontWeight: FontWeight.bold,
@@ -284,7 +292,7 @@ class OnboardingView extends StackedView<OnboardingViewModel> {
                         ),
                       ),
                     ),
-                  ],
+                  ),
                 ),
                 const SizedBox(height: 20),
               ],
@@ -297,7 +305,7 @@ class OnboardingView extends StackedView<OnboardingViewModel> {
   }
 
   // ---------------------------------------------------------------------------
-  // STEP 2: PROFILE/COMPANY DETAILS FORM (STARTS BLANK WITH PLACEHOLDERS)
+  // STEP 2: PROFILE/COMPANY DETAILS FORM
   // ---------------------------------------------------------------------------
   Widget _buildStep2(BuildContext context, OnboardingViewModel viewModel) {
     return Column(
@@ -723,10 +731,7 @@ class OnboardingView extends StackedView<OnboardingViewModel> {
                   ),
                   child: Column(
                     children: [
-                      CircleAvatar(
-                        radius: 40,
-                        backgroundImage: AssetImage(viewModel.selectedAvatar),
-                      ),
+                      _buildAvatarWidget(viewModel.selectedAvatar, radius: 40),
                       const SizedBox(height: 12),
                       Text(
                         viewModel.displayName,
@@ -836,7 +841,6 @@ class OnboardingView extends StackedView<OnboardingViewModel> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Top Banner
                 Container(
                   width: double.infinity,
                   decoration: BoxDecoration(
@@ -907,7 +911,6 @@ class OnboardingView extends StackedView<OnboardingViewModel> {
                 ),
                 const SizedBox(height: 20),
 
-                // Card 1: Spatial Serenity
                 _buildAssetCard(
                   imagePath: 'images/spacea.png',
                   imageHeight: 160,
@@ -917,7 +920,6 @@ class OnboardingView extends StackedView<OnboardingViewModel> {
                 ),
                 const SizedBox(height: 20),
 
-                // Card 2: Identity Anchor
                 _buildAssetCard(
                   imagePath: viewModel.selectedAvatar,
                   imageHeight: 240,
@@ -927,7 +929,6 @@ class OnboardingView extends StackedView<OnboardingViewModel> {
                 ),
                 const SizedBox(height: 20),
 
-                // Card 3: Organic Rhythm
                 _buildAssetCard(
                   imagePath: 'images/spacec.png',
                   imageHeight: 200,
@@ -937,7 +938,6 @@ class OnboardingView extends StackedView<OnboardingViewModel> {
                 ),
                 const SizedBox(height: 20),
 
-                // Card 4: Structural Clarity
                 _buildAssetCard(
                   imagePath: 'images/spaced.png',
                   imageHeight: 160,
@@ -951,7 +951,6 @@ class OnboardingView extends StackedView<OnboardingViewModel> {
           ),
         ),
 
-        // Bottom Progress Indicator & Dual Buttons
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
           decoration: BoxDecoration(
@@ -1111,21 +1110,29 @@ class OnboardingView extends StackedView<OnboardingViewModel> {
         children: [
           ClipRRect(
             borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
-            child: Image.asset(
-              imagePath,
-              height: imageHeight,
-              width: double.infinity,
-              fit: BoxFit.cover,
-              errorBuilder: (context, error, stackTrace) {
-                return Container(
-                  height: imageHeight,
-                  color: kcOnboardingBlue,
-                  child: const Center(
-                    child: Icon(Icons.architecture_outlined, size: 60, color: Colors.white),
+            child: imagePath == 'images/empty_profile.png'
+                ? Container(
+                    height: imageHeight,
+                    color: const Color(0xFFE2E8F0),
+                    child: const Center(
+                      child: Icon(Icons.person_outline, size: 80, color: Color(0xFF64748B)),
+                    ),
+                  )
+                : Image.asset(
+                    imagePath,
+                    height: imageHeight,
+                    width: double.infinity,
+                    fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) {
+                      return Container(
+                        height: imageHeight,
+                        color: kcOnboardingBlue,
+                        child: const Center(
+                          child: Icon(Icons.architecture_outlined, size: 60, color: Colors.white),
+                        ),
+                      );
+                    },
                   ),
-                );
-              },
-            ),
           ),
           Padding(
             padding: const EdgeInsets.all(20.0),
@@ -1178,6 +1185,161 @@ class OnboardingView extends StackedView<OnboardingViewModel> {
           ),
         ],
       ),
+    );
+  }
+
+  // ---------------------------------------------------------------------------
+  // INTERACTIVE LOGIN MODAL SHEET
+  // ---------------------------------------------------------------------------
+  void _showLoginSheet(BuildContext context, OnboardingViewModel viewModel) {
+    final emailController = TextEditingController();
+    final passwordController = TextEditingController();
+
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+      ),
+      builder: (context) {
+        return Padding(
+          padding: EdgeInsets.only(
+            left: 24,
+            right: 24,
+            top: 24,
+            bottom: MediaQuery.of(context).viewInsets.bottom + 24,
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    'Log In to Your Account',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Google Sans',
+                    ),
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.close),
+                    onPressed: () => Navigator.pop(context),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 4),
+              Text(
+                'Select a registered profile below or enter credentials to sign in directly.',
+                style: TextStyle(fontSize: 13, color: Colors.grey[600]),
+              ),
+              const SizedBox(height: 20),
+              const Text(
+                'Sign In As Registered Account:',
+                style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold, color: Colors.grey),
+              ),
+              const SizedBox(height: 10),
+              ListTile(
+                tileColor: kcTealBackground,
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                leading: _buildAvatarWidget('images/spacea.png', radius: 20),
+                title: const Text('Ushie Emmanuel', style: TextStyle(fontWeight: FontWeight.bold)),
+                subtitle: const Text('Personal Account • Flutter Mobile Engineer'),
+                trailing: const Icon(Icons.arrow_forward_ios, size: 16, color: kcOnboardingBlue),
+                onTap: () {
+                  Navigator.pop(context);
+                  viewModel.loginAsPersonalAccount(onOnboardingComplete);
+                },
+              ),
+              const SizedBox(height: 8),
+              ListTile(
+                tileColor: kcPurpleBackground,
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                leading: _buildAvatarWidget('images/spacec.png', radius: 20),
+                title: const Text('Ushie Tech Labs', style: TextStyle(fontWeight: FontWeight.bold)),
+                subtitle: const Text('Business Account • Software & AI Solutions'),
+                trailing: const Icon(Icons.arrow_forward_ios, size: 16, color: kcPurpleIcon),
+                onTap: () {
+                  Navigator.pop(context);
+                  viewModel.loginAsBusinessAccount(onOnboardingComplete);
+                },
+              ),
+              const SizedBox(height: 20),
+              const Row(
+                children: [
+                  Expanded(child: Divider()),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 12),
+                    child: Text('OR ENTER CREDENTIALS', style: TextStyle(fontSize: 11, color: Colors.grey, fontWeight: FontWeight.bold)),
+                  ),
+                  Expanded(child: Divider()),
+                ],
+              ),
+              const SizedBox(height: 16),
+              TextField(
+                controller: emailController,
+                decoration: InputDecoration(
+                  labelText: 'Email Address',
+                  hintText: 'user@domain.com',
+                  prefixIcon: const Icon(Icons.email_outlined, color: kcOnboardingBlue),
+                  filled: true,
+                  fillColor: Colors.grey[100],
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide.none,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 12),
+              TextField(
+                controller: passwordController,
+                obscureText: true,
+                decoration: InputDecoration(
+                  labelText: 'Password',
+                  hintText: '••••••••',
+                  prefixIcon: const Icon(Icons.lock_outline, color: kcOnboardingBlue),
+                  filled: true,
+                  fillColor: Colors.grey[100],
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide.none,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 20),
+              GestureDetector(
+                onTap: () {
+                  Navigator.pop(context);
+                  viewModel.loginAsPersonalAccount(onOnboardingComplete);
+                },
+                child: Container(
+                  width: double.infinity,
+                  height: 50,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(25),
+                    gradient: const LinearGradient(
+                      colors: [Color(0xFF3F6AD8), Color(0xFF254EDB)],
+                    ),
+                  ),
+                  child: const Center(
+                    child: Text(
+                      'Log In to My Account',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        fontFamily: 'Google Sans',
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 
@@ -1389,7 +1551,7 @@ class OnboardingView extends StackedView<OnboardingViewModel> {
                 title: const Text('Choose from Gallery / Photos'),
                 onTap: () {
                   Navigator.pop(context);
-                  viewModel.setAvatar('images/ushie.png');
+                  viewModel.setAvatar('images/spacea.png');
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('Selected photo from device gallery')),
                   );
@@ -1400,7 +1562,7 @@ class OnboardingView extends StackedView<OnboardingViewModel> {
                 title: const Text('Take Photo with Camera'),
                 onTap: () {
                   Navigator.pop(context);
-                  viewModel.setAvatar('images/spacea.png');
+                  viewModel.setAvatar('images/spacec.png');
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('Captured profile photo with camera')),
                   );
@@ -1429,10 +1591,7 @@ class OnboardingView extends StackedView<OnboardingViewModel> {
                           width: 3,
                         ),
                       ),
-                      child: CircleAvatar(
-                        radius: 24,
-                        backgroundImage: AssetImage(avatarPath),
-                      ),
+                      child: _buildAvatarWidget(avatarPath, radius: 24),
                     ),
                   );
                 }).toList(),

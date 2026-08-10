@@ -44,6 +44,11 @@ void main() {
     await tester.tap(getStartedFinder);
     await tester.pumpAndSettle();
 
+    // Fill Step 2 Form to satisfy validation
+    await tester.enterText(find.byType(TextFormField).at(0), 'Ushie Emmanuel');
+    await tester.enterText(find.byType(TextFormField).at(1), 'Flutter Mobile Engineer');
+    await tester.pumpAndSettle();
+
     // Step 2 -> Step 3
     final step3Finder = find.text('Continue to Step 3');
     await tester.ensureVisible(step3Finder);

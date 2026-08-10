@@ -17,6 +17,7 @@ class ExploreView extends StackedView<ExploreViewModel> {
       appBar: AppBar(
         backgroundColor: kcBackgroundColor,
         elevation: 0,
+        automaticallyImplyLeading: false,
         title: const Text(
           'Explore Showcase',
           style: TextStyle(

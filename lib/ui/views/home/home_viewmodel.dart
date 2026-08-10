@@ -28,14 +28,15 @@ class HomeViewModel extends BaseViewModel {
   String get selectedPlan => _selectedPlan;
 
   final List<String> availableAvatars = const [
-    'images/user.png',
-    'images/ushie.png',
+    'images/empty_profile.png',
     'images/spacea.png',
     'images/spacec.png',
     'images/spaced.png',
+    'images/spacee.png',
+    'images/spaceg.png',
   ];
 
-  String _selectedAvatar = 'images/user.png';
+  String _selectedAvatar = 'images/empty_profile.png';
   String get selectedAvatar => _selectedAvatar;
 
   String _fullName = 'Ushie Emmanuel';

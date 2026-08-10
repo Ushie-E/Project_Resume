@@ -13,15 +13,17 @@ class OnboardingViewModel extends BaseViewModel {
   String get selectedPlan => _selectedPlan;
   bool get isBusinessPlan => _selectedPlan == 'Business';
 
+  // Available Avatars: Empty demo profile first, followed by spatial avatars
   final List<String> availableAvatars = const [
-    'images/user.png',
-    'images/ushie.png',
+    'images/empty_profile.png',
     'images/spacea.png',
     'images/spacec.png',
     'images/spaced.png',
+    'images/spacee.png',
+    'images/spaceg.png',
   ];
 
-  String _selectedAvatar = 'images/user.png';
+  String _selectedAvatar = 'images/empty_profile.png';
   String get selectedAvatar => _selectedAvatar;
 
   // ---------------------------------------------------------------------------
@@ -202,6 +204,31 @@ class OnboardingViewModel extends BaseViewModel {
     rebuildUi();
   }
 
+  // ---------------------------------------------------------------------------
+  // ACCOUNT LOGIN METHODS
+  // ---------------------------------------------------------------------------
+  void loginAsPersonalAccount(Function() onComplete) {
+    _selectedPlan = 'Personal';
+    _fullName = 'Ushie Emmanuel';
+    _jobTitle = 'Flutter Mobile Engineer';
+    _bio = 'Crafting high-performance cross-platform applications with Flutter & Stacked.';
+    _location = 'Lagos, Nigeria';
+    _selectedAvatar = 'images/spacea.png';
+    onComplete();
+  }
+
+  void loginAsBusinessAccount(Function() onComplete) {
+    _selectedPlan = 'Business';
+    _companyName = 'Ushie Tech Labs & Architecture';
+    _companySector = 'Software Development & AI Solutions';
+    _teamSize = '11-50 Employees';
+    _companyLocation = 'Lagos, Nigeria & Remote';
+    _companyOverview =
+        'Delivering enterprise cross-platform mobile products, cloud architectures, and digital design systems for global clients.';
+    _selectedAvatar = 'images/spacec.png';
+    onComplete();
+  }
+
   // Validation
   bool get isStep2Valid {
     if (isBusinessPlan) {
@@ -254,14 +281,6 @@ class OnboardingViewModel extends BaseViewModel {
       _currentStep--;
       rebuildUi();
     }
-  }
-
-  void showAlreadyHaveAccountDialog() {
-    _dialogService.showCustomDialog(
-      variant: DialogType.infoAlert,
-      title: 'Log In to Account',
-      description: 'Enter your account details or select sign-in credentials to access your profile.',
-    );
   }
 
   void showSuccessDialog() {
