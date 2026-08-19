@@ -1,18 +1,6 @@
-# Elysian Mobile Portfolio & Enterprise Showcase
+# Ushie Mobile Portfolio & Enterprise Showcase
 
 A premium, cross-platform mobile application and interactive digital resume built using **Flutter**, **Stacked Architecture (MVVM)**, and **Google Sans Design System**.
-
----
-
-## 📱 Main Application View
-
-Below is a preview of the main profile dashboard view of the application:
-
-<p align="center">
-  <img src="images/app_preview.png" alt="Elysian Main Profile Dashboard View" width="360" style="border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.15);" />
-</p>
-
----
 
 ## 🖼️ 4 Screen UI View Showcase
 
@@ -20,27 +8,64 @@ Here is a visual overview of the 4 core Flutter view screens featured in the app
 
 <table align="center">
   <tr>
+    <td align="center">
+      <img width="498" height="523" alt="image" src="https://github.com/user-attachments/assets/4fec4182-6737-4c36-a033-0a1d83a38cac" />
+    </td>
+    <td align="center">
+      <img width="485" height="882" alt="image" src="https://github.com/user-attachments/assets/a31a344a-14bc-423e-981a-1f8ee46c7f34" />
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img width="499" height="880" alt="image" src="https://github.com/user-attachments/assets/61504e6c-9199-49d8-8c0d-541c4b6b7f51" />
+    </td>
+    <td align="center">
+      <img width="484" height="880" alt="image" src="https://github.com/user-attachments/assets/5d302246-c122-43e8-a2cb-84b5e502cab1" />
+    </td>
+  </tr>
+</table>
+
+---
+
+Below is a preview of the main profile dashboard view of the application:
+
+<p align="center">
+ <img width="496" height="871" alt="image" src="https://github.com/user-attachments/assets/e28c8029-89a4-4aa6-b62a-b39586ebb62a" />
+</p>
+
+---
+
+---
+
+## 📱 Main Application View
+
+4-Screen Design Showcase
+
+Here is a visual overview of the 4 core workflow screens featured in the latest design architecture:
+
+<table align="center">
+  <tr>
     <td align="center" width="50%">
-      <img src="images/view_step1.png" alt="View 1: Onboarding Plan Selection (OnboardingView)" width="320" style="border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.12);" /><br/>
-      <b>View 1: Onboarding Plan Selection (<code>OnboardingView</code>)</b><br/>
-      <sub>Personal vs Business plan choice, empty demo avatar, and touch login prompt.</sub>
+      <img src="images/spacea.png" alt="Screen 1: Startup Splash Sequence" width="340" style="border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" /><br/>
+      <b>Screen 1: Startup Splash Sequence</b><br/>
+      <sub>Brand splash sequence with progressive loading & initialization.</sub>
     </td>
     <td align="center" width="50%">
-      <img src="images/view_step4.png" alt="View 2: Interest & Industry Matching (OnboardingView)" width="320" style="border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.12);" /><br/>
-      <b>View 2: Interest & Industry Matching (<code>OnboardingView</code>)</b><br/>
-      <sub>Interactive category grid for personal interests and business target markets.</sub>
+      <img src="images/spacec.png" alt="Screen 2: Interactive Onboarding & Login Sheet" width="340" style="border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" /><br/>
+      <b>Screen 2: Interactive Onboarding & Login Sheet</b><br/>
+      <sub>Personal vs. Business setup, empty demo avatar, and account login sheet.</sub>
     </td>
   </tr>
   <tr>
     <td align="center" width="50%">
-      <img src="images/view_explore.png" alt="View 3: Explore Showcase (ExploreView)" width="320" style="border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.12);" /><br/>
-      <b>View 3: Explore Showcase (<code>ExploreView</code>)</b><br/>
-      <sub>Real-time search query, category filter chips, and project cards.</sub>
+      <img src="images/spaced.png" alt="Screen 3: Visual Asset Directory (Business Step 5)" width="340" style="border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" /><br/>
+      <b>Screen 3: Visual Asset Directory</b><br/>
+      <sub>Elysian brand asset showcase, compliance indicator, and asset export actions.</sub>
     </td>
     <td align="center" width="50%">
-      <img src="images/view_dashboard.png" alt="View 4: Main Profile Dashboard (HomeView)" width="320" style="border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.12);" /><br/>
-      <b>View 4: Main Profile Dashboard (<code>HomeView</code>)</b><br/>
-      <sub>User avatar, skills summary, interest chips, and bottom navigation bar.</sub>
+      <img src="images/spacee.png" alt="Screen 4: Multi-Tab Dashboard & Explore View" width="340" style="border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" /><br/>
+      <b>Screen 4: Multi-Tab Dashboard</b><br/>
+      <sub>My Profile, Explore Showcase, category filtering, and Settings preferences.</sub>
     </td>
   </tr>
 </table>
