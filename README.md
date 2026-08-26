@@ -3,6 +3,7 @@
 [![Flutter Version](https://img.shields.io/badge/Flutter-3.29.x-02569B?logo=flutter)](https://flutter.dev)
 [![Architecture](https://img.shields.io/badge/Architecture-Stacked%20MVVM-42A5F5)](https://stacked.filledstacks.com)
 [![Backend](https://img.shields.io/badge/Backend-Supabase%202.17.2-3ECF8E?logo=supabase)](https://supabase.com)
+[![Domain](https://img.shields.io/badge/Domain-ushiedigitalresume.com-00C853)](https://ushiedigitalresume.com)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 **Ushie Digital Resume** is cross-platform mobile application and interactive digital and an all-in-one personal developer resume, executive consultancy showcase, and enterprise digital studio platform built with **Flutter**, **Stacked Architecture MVVM**, and **Google Sans Design System**//**Supabase**.
@@ -62,14 +63,38 @@ Below is the primary visual asset directory preview image provided for the appli
 
 ---
 
-## 🌟 Key Product Features
+## 🌐 Production Domain & Endpoints
 
-- **Personal Developer Resume**: Dynamic skills matrix, bio, project portfolio, and curated interests.
-- **Executive Consultancy & Agency Showcase**: Team size, company overview, target industry sectors, enterprise capabilities, and SLA support specs.
-- **Ushie Digital Brand Studio**: Asset cards (`SCREEN_14`, `SCREEN_2`, `SCREEN_10`, `SCREEN_9`), visual compliance indicator (75%), and brand asset export actions.
-- **1-Tap Account Login System**: Instant profile access for registered personal (`Ushie Emmanuel`) & business (`Ushie Tech Labs`) accounts.
-- **Live Supabase Backend (`qoioeymizjtlfoqmeaut`)**: Connected to live endpoint `https://qoioeymizjtlfoqmeaut.supabase.co`.
-- **Multi-Platform Native Support**: Configured for both **Android** and **iOS** builds.
+- **Web Domain**: [`https://ushiedigitalresume.com`](https://ushiedigitalresume.com)
+- **API Endpoint**: `https://api.ushiedigitalresume.com`
+- **Live Supabase Database**: `https://qoioeymizjtlfoqmeaut.supabase.co` (`eu-west-1`)
+
+---
+
+## 🔍 Detailed Application Views & Feature Breakdown
+
+| View Name | Primary Function | Features & User Interactions |
+| :--- | :--- | :--- |
+| **`StartupView`** | Boot & Splash | Initializing locator services, verifying local cache, and connecting Supabase SDK. |
+| **`OnboardingView` (Step 1)** | Welcome & Plan Choice | Interactive choice between Personal Developer Plan and Business Enterprise Plan. Features empty demo avatar selection, spatial 3D avatars, and 1-tap Account Login Sheet. |
+| **`OnboardingView` (Step 2)** | Profile / Firm Form | Personal: Full Name, Professional Title, Bio, Location.<br/>Business: Company Name, Industry Sector, Team Size, HQ Location, Overview. |
+| **`OnboardingView` (Step 3)** | Skills Matrix | Technical skills selection (Flutter, Dart, Stacked, APIs) vs. Enterprise Capabilities (Custom Software, Cloud Architecture, UI/UX Strategy, SLA 24/7). |
+| **`OnboardingView` (Step 4)** | Interests & Markets | Personal interest chips vs. Target Industry Sectors (Enterprise Tech, Architecture & Real Estate, FinTech, Healthcare). |
+| **`OnboardingView` (Step 5)** | Review & Directory | Personal summary review card vs. **Ushie Digital Visual Directory** (`SCREEN_14`, `SCREEN_2`, `SCREEN_10`, `SCREEN_9`), visual compliance indicator (75%), and asset export actions. |
+| **`ExploreView`** | Project Catalog | Search query bar, horizontal category filter chips (`All`, `Architecture`, `Mobile`, `UI/UX`, `DevOps`), project like counters, and tag badges. |
+| **`HomeView`** | Main Dashboard | Executive gradient banner, dynamic title (`My Profile` vs. `Company Profile`), interactive skills grid, interest badges, and edit setup trigger. |
+| **`SettingsView`** | Preferences & Flavors | Dark Mode toggle, Push Notifications toggle, Telemetry toggle, and Build Flavor Environment detection (`Dev` / `Staging` / `Prod`). |
+
+---
+
+## 🔄 User Process Flow & Product Pitch Architecture
+
+### User Flow Journey
+1. **Onboarding & Plan Selection**: Users select their plan (**Personal** or **Business**) or tap `"Already have an account?"` for instant login.
+2. **Tailored Data Collection**: Input blank profile forms, select skills/capabilities, and match target interests/markets.
+3. **Brand Directory Review**: Business users review visual assets (`SCREEN_14`, `SCREEN_2`, `SCREEN_10`, `SCREEN_9`) and export brand specifications.
+4. **Dashboard Access**: Access multi-tab dashboard with bottom navigation bar (My Profile, Explore Showcase, Settings).
+5. **Supabase Cloud Sync**: Authentication and user profiles synchronize with Supabase Cloud (`qoioeymizjtlfoqmeaut`).
 
 ---
 
