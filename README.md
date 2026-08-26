@@ -22,21 +22,48 @@ It combines dynamic personal developer resumes, executive consultancy portfolios
 
 ---
 
-## 📱 App Showcase & 4 UI View Screenshots
+## 📱 App Showcase & UI View Gallery
 
 ![Main App Preview](images/app_preview.png)
 
-### 4 Actual Flutter UI View Showcase (2x2 Grid)
-
-| Onboarding & Plan Selection | Target Markets & Interests |
-| :---: | :---: |
-| ![View 1: Onboarding Step 1](images/view_step1.png) | ![View 2: Onboarding Step 4](images/view_step4.png) |
-| **Step 1 Plan Choice & Login** | **Step 4 Target Market Matching** |
-
-| Explore Project Showcase | Main Profile Dashboard |
-| :---: | :---: |
-| ![View 3: Explore Showcase](images/view_explore.png) | ![View 4: Main Profile Dashboard](images/view_dashboard.png) |
-| **Tab 1: Explore Projects** | **Tab 2: My Profile & Company Dashboard** |
+<table width="100%">
+  <tr>
+    <td align="center" width="50%">
+      <img src="images/view_step1.png" alt="View 1: Onboarding Plan Selection (OnboardingView)" width="320" style="border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.12);" /><br/>
+      <b>View 1: Onboarding Plan Selection (<code>OnboardingView</code>)</b><br/>
+      <sub>Personal vs. Business setup, 1-Tap Login trigger, and floating paste tooltip.</sub><br/><br/>
+      <img src="images/spacea.png" alt="Screen 1: Spatial Serenity & Profile Header" width="340" style="border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" /><br/>
+      <b>Screen 1: Spatial Serenity & Profile Hero</b><br/>
+      <sub>Primary background asset and initial profile hero card.</sub>
+    </td>
+    <td align="center" width="50%">
+      <img src="images/view_step4.png" alt="View 2: Target Markets & Interests (OnboardingView)" width="320" style="border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.12);" /><br/>
+      <b>View 2: Target Markets & Interests (<code>OnboardingView</code>)</b><br/>
+      <sub>Curated interests grid for personal developers & target market selection for firms.</sub><br/><br/>
+      <img src="images/spacec.png" alt="Screen 2: Organic Rhythm & Business Setup" width="340" style="border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" /><br/>
+      <b>Screen 2: Organic Rhythm & Business Setup</b><br/>
+      <sub>Background layering component for onboarding focus areas.</sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="50%">
+      <img src="images/view_explore.png" alt="View 3: Explore Showcase (ExploreView)" width="320" style="border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.12);" /><br/>
+      <b>View 3: Explore Showcase (<code>ExploreView</code>)</b><br/>
+      <sub>Search query bar, horizontal category filter chips, and project cards.</sub><br/><br/>
+      <img src="images/spaced.png" alt="Screen 3: Structural Clarity & Finalization" width="340" style="border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" /><br/>
+      <b>Screen 3: Structural Clarity & Finalization</b><br/>
+      <sub>Header image component for the final review phase.</sub>
+    </td>
+    <td align="center" width="50%">
+      <img src="images/view_dashboard.png" alt="View 4: Main Profile Dashboard (HomeView)" width="320" style="border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.12);" /><br/>
+      <b>View 4: Main Profile Dashboard (<code>HomeView</code>)</b><br/>
+      <sub>User avatar, skills summary, interest chips, and bottom navigation bar.</sub><br/><br/>
+      <img src="images/spacee.png" alt="Screen 4: Multi-Tab Dashboard & Explore View" width="340" style="border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" /><br/>
+      <b>Screen 4: Multi-Tab Dashboard</b><br/>
+      <sub>My Profile, Explore Showcase, category filtering, and Settings preferences.</sub>
+    </td>
+  </tr>
+</table>
 
 ---
 
