@@ -5,18 +5,18 @@
 [![Backend](https://img.shields.io/badge/Backend-Supabase%202.17.2-3ECF8E?logo=supabase)](https://supabase.com)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-**Ushie Digital Resume** is an all-in-one personal developer resume, executive consultancy showcase, and enterprise digital studio platform built with **Flutter**, **Stacked MVVM**, and **Supabase**.
+**Ushie Digital Resume** is cross-platform mobile application and interactive digital and an all-in-one personal developer resume, executive consultancy showcase, and enterprise digital studio platform built with **Flutter**, **Stacked Architecture MVVM**, and **Google Sans Design System**//**Supabase**.
 
 ---
+A premium, built using **Flutter**, **Stacked  (MVVM)**, and **.
 
 ## 📱 Primary UI Design & Visual Asset Directory Preview
 
 Below is the primary visual asset directory preview image provided for the application:
 
 <p align="center">
-  <img src="images/app_preview.png" alt="Ushie Digital Resume Visual Directory Preview" width="380" style="border-radius: 20px; box-shadow: 0 8px 24px rgba(0,0,0,0.18);" />
+<img width="492" height="923" alt="image" src="https://github.com/user-attachments/assets/d8d0990a-bd51-4a8e-bbd8-4e0e3aae23c2" />
 </p>
-
 ---
 
 ## 🖼️ Application View & Screen Showcase Table
@@ -24,25 +24,25 @@ Below is the primary visual asset directory preview image provided for the appli
 <table width="100%">
   <tr>
     <td align="center" width="50%">
-      <img src="images/view_step1.png" alt="View 1: Onboarding Plan Selection (OnboardingView)" width="320" style="border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.12);" /><br/>
+      <img width="498" height="523" alt="image" src="https://github.com/user-attachments/assets/4fec4182-6737-4c36-a033-0a1d83a38cac" />
       <b>View 1: Onboarding Plan Selection (<code>OnboardingView</code>)</b><br/>
       <sub>Personal vs. Business setup, 1-Tap Login trigger, and floating paste tooltip.</sub><br/><br/>
-      <img src="images/spacea.png" alt="Screen 1: Spatial Serenity & Profile Header" width="340" style="border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" /><br/>
+      <img width="485" height="882" alt="image" src="https://github.com/user-attachments/assets/a31a344a-14bc-423e-981a-1f8ee46c7f34" />
       <b>Screen 1: Spatial Serenity & Profile Hero</b><br/>
       <sub>Primary background asset and initial profile hero card.</sub>
     </td>
     <td align="center" width="50%">
-      <img src="images/view_step4.png" alt="View 2: Target Markets & Interests (OnboardingView)" width="320" style="border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.12);" /><br/>
+     <img width="484" height="880" alt="image" src="https://github.com/user-attachments/assets/5d302246-c122-43e8-a2cb-84b5e502cab1" />
       <b>View 2: Target Markets & Interests (<code>OnboardingView</code>)</b><br/>
       <sub>Curated interests grid for personal developers & target market selection for firms.</sub><br/><br/>
-      <img src="images/spacec.png" alt="Screen 2: Organic Rhythm & Business Setup" width="340" style="border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" /><br/>
+       <img width="499" height="880" alt="image" src="https://github.com/user-attachments/assets/61504e6c-9199-49d8-8c0d-541c4b6b7f51" />
       <b>Screen 2: Organic Rhythm & Business Setup</b><br/>
       <sub>Background layering component for onboarding focus areas.</sub>
     </td>
   </tr>
   <tr>
     <td align="center" width="50%">
-      <img src="images/view_explore.png" alt="View 3: Explore Showcase (ExploreView)" width="320" style="border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.12);" /><br/>
+     <img width="487" height="872" alt="image" src="https://github.com/user-attachments/assets/513fd250-f00a-4eda-b0cd-d8d4bae379b0" />
       <b>View 3: Explore Showcase (<code>ExploreView</code>)</b><br/>
       <sub>Search query bar, horizontal category filter chips, and project cards.</sub><br/><br/>
       <img src="images/spaced.png" alt="Screen 3: Structural Clarity & Finalization" width="340" style="border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" /><br/>
@@ -50,7 +50,7 @@ Below is the primary visual asset directory preview image provided for the appli
       <sub>Header image component for the final review phase.</sub>
     </td>
     <td align="center" width="50%">
-      <img src="images/view_dashboard.png" alt="View 4: Main Profile Dashboard (HomeView)" width="320" style="border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.12);" /><br/>
+      <img width="487" height="872" alt="image" src="https://github.com/user-attachments/assets/6b435500-ebc1-46b8-bf43-8e74c8e0e1f2" />
       <b>View 4: Main Profile Dashboard (<code>HomeView</code>)</b><br/>
       <sub>User avatar, skills summary, interest chips, and bottom navigation bar.</sub><br/><br/>
       <img src="images/spacee.png" alt="Screen 4: Multi-Tab Dashboard & Explore View" width="340" style="border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" /><br/>
