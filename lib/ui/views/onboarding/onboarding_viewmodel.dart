@@ -3,6 +3,8 @@ import 'package:project/app/app.dialogs.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
+typedef OnboardingCompleteCallback = void Function(OnboardingViewModel viewModel);
+
 class OnboardingViewModel extends BaseViewModel {
   final _dialogService = locator<DialogService>();
 
@@ -31,11 +33,11 @@ class OnboardingViewModel extends BaseViewModel {
   // ---------------------------------------------------------------------------
   String _fullName = '';
   String get fullName => _fullName;
-  String get displayName => _fullName.trim().isEmpty ? 'Your Name' : _fullName;
+  String get displayName => _fullName.trim().isEmpty ? 'Ushie Emmanuel' : _fullName;
 
   String _jobTitle = '';
   String get jobTitle => _jobTitle;
-  String get displayJobTitle => _jobTitle.trim().isEmpty ? 'Your Title' : _jobTitle;
+  String get displayJobTitle => _jobTitle.trim().isEmpty ? 'Flutter Mobile Engineer' : _jobTitle;
 
   String _bio = '';
   String get bio => _bio;
@@ -55,10 +57,10 @@ class OnboardingViewModel extends BaseViewModel {
     'Golden Testing',
   ];
 
-  final Set<String> _selectedPersonalSkills = {'Flutter', 'Dart', 'Stacked Architecture'};
+  Set<String> _selectedPersonalSkills = {'Flutter', 'Dart', 'Stacked Architecture'};
   Set<String> get selectedPersonalSkills => _selectedPersonalSkills;
 
-  final Set<String> _selectedPersonalInterests = {};
+  Set<String> _selectedPersonalInterests = {};
   Set<String> get selectedPersonalInterests => _selectedPersonalInterests;
 
   // ---------------------------------------------------------------------------
@@ -66,11 +68,13 @@ class OnboardingViewModel extends BaseViewModel {
   // ---------------------------------------------------------------------------
   String _companyName = '';
   String get companyName => _companyName;
-  String get displayCompanyName => _companyName.trim().isEmpty ? 'Your Firm / Agency' : _companyName;
+  String get displayCompanyName =>
+      _companyName.trim().isEmpty ? 'Ushie Tech Labs & Architecture' : _companyName;
 
   String _companySector = '';
   String get companySector => _companySector;
-  String get displayCompanySector => _companySector.trim().isEmpty ? 'Software & Design Solutions' : _companySector;
+  String get displayCompanySector =>
+      _companySector.trim().isEmpty ? 'Software Development & AI Solutions' : _companySector;
 
   String _teamSize = '';
   String get teamSize => _teamSize;
@@ -91,14 +95,15 @@ class OnboardingViewModel extends BaseViewModel {
     'Agile Augmentation',
   ];
 
-  final Set<String> _selectedBusinessCapabilities = {
+  Set<String> _selectedBusinessCapabilities = {
     'Custom Software Dev',
     'Cloud Architecture',
-    'UI/UX Strategy'
+    'UI/UX Strategy',
+    'Enterprise Security'
   };
   Set<String> get selectedBusinessCapabilities => _selectedBusinessCapabilities;
 
-  final Set<String> _selectedTargetMarkets = {};
+  Set<String> _selectedTargetMarkets = {};
   Set<String> get selectedTargetMarkets => _selectedTargetMarkets;
 
   // ---------------------------------------------------------------------------
@@ -207,17 +212,19 @@ class OnboardingViewModel extends BaseViewModel {
   // ---------------------------------------------------------------------------
   // ACCOUNT LOGIN METHODS
   // ---------------------------------------------------------------------------
-  void loginAsPersonalAccount(Function() onComplete) {
+  void loginAsPersonalAccount(OnboardingCompleteCallback onComplete) {
     _selectedPlan = 'Personal';
     _fullName = 'Ushie Emmanuel';
     _jobTitle = 'Flutter Mobile Engineer';
     _bio = 'Crafting high-performance cross-platform applications with Flutter & Stacked.';
     _location = 'Lagos, Nigeria';
+    _selectedPersonalSkills = {'Flutter', 'Dart', 'Stacked Architecture'};
+    _selectedPersonalInterests = {'Technology', 'Design', 'Business'};
     _selectedAvatar = 'images/spacea.png';
-    onComplete();
+    onComplete(this);
   }
 
-  void loginAsBusinessAccount(Function() onComplete) {
+  void loginAsBusinessAccount(OnboardingCompleteCallback onComplete) {
     _selectedPlan = 'Business';
     _companyName = 'Ushie Tech Labs & Architecture';
     _companySector = 'Software Development & AI Solutions';
@@ -225,8 +232,15 @@ class OnboardingViewModel extends BaseViewModel {
     _companyLocation = 'Lagos, Nigeria & Remote';
     _companyOverview =
         'Delivering enterprise cross-platform mobile products, cloud architectures, and digital design systems for global clients.';
+    _selectedBusinessCapabilities = {
+      'Custom Software Dev',
+      'Cloud Architecture',
+      'UI/UX Strategy',
+      'Enterprise Security'
+    };
+    _selectedTargetMarkets = {'Enterprise Tech', 'Architecture & Real Estate', 'FinTech'};
     _selectedAvatar = 'images/spacec.png';
-    onComplete();
+    onComplete(this);
   }
 
   // Validation
@@ -251,7 +265,7 @@ class OnboardingViewModel extends BaseViewModel {
     return _selectedPersonalInterests.length >= 3;
   }
 
-  void nextStep(Function() onComplete) {
+  void nextStep(OnboardingCompleteCallback onComplete) {
     if (_currentStep == 1) {
       _currentStep = 2;
       rebuildUi();
@@ -272,7 +286,7 @@ class OnboardingViewModel extends BaseViewModel {
       }
     } else if (_currentStep == 5) {
       showSuccessDialog();
-      onComplete();
+      onComplete(this);
     }
   }
 
@@ -285,7 +299,7 @@ class OnboardingViewModel extends BaseViewModel {
 
   void showSuccessDialog() {
     final String title = isBusinessPlan ? 'Company Profile Configured!' : 'Profile Created!';
-    final String name = isBusinessPlan ? displayName : displayName;
+    final String name = isBusinessPlan ? displayCompanyName : displayName;
     final String desc = isBusinessPlan
         ? 'Congratulations! $name has been onboarded successfully for $_selectedPlan use with ${selectedBusinessCapabilities.length} enterprise capabilities.'
         : 'Congratulations $name! Your profile as $displayJobTitle has been created successfully for $_selectedPlan use.';

@@ -14,7 +14,7 @@ class HomeView extends StackedView<HomeViewModel> {
   Widget builder(BuildContext context, HomeViewModel viewModel, Widget? child) {
     if (!viewModel.isOnboardingComplete) {
       return OnboardingView(
-        onOnboardingComplete: viewModel.completeOnboarding,
+        onOnboardingComplete: viewModel.completeOnboardingWithData,
       );
     }
 

@@ -6,12 +6,15 @@ import 'package:stacked/stacked.dart';
 import 'onboarding_viewmodel.dart';
 
 class OnboardingView extends StackedView<OnboardingViewModel> {
-  final VoidCallback onOnboardingComplete;
+  final OnboardingCompleteCallback? onOnboardingComplete;
 
   const OnboardingView({
     super.key,
-    required this.onOnboardingComplete,
+    this.onOnboardingComplete,
   });
+
+  OnboardingCompleteCallback get _safeOnboardingComplete =>
+      onOnboardingComplete ?? (_) {};
 
   @override
   Widget builder(BuildContext context, OnboardingViewModel viewModel, Widget? child) {
@@ -98,7 +101,7 @@ class OnboardingView extends StackedView<OnboardingViewModel> {
   }
 
   // ---------------------------------------------------------------------------
-  // STEP 1: WELCOME & PLAN SELECTION (WITH INTERACTIVE LOGIN SHEET)
+  // STEP 1: WELCOME & PLAN SELECTION
   // ---------------------------------------------------------------------------
   Widget _buildStep1(BuildContext context, OnboardingViewModel viewModel) {
     return Column(
@@ -223,7 +226,7 @@ class OnboardingView extends StackedView<OnboardingViewModel> {
                 ),
                 const SizedBox(height: 32),
                 GestureDetector(
-                  onTap: () => viewModel.nextStep(onOnboardingComplete),
+                  onTap: () => viewModel.nextStep(_safeOnboardingComplete),
                   child: Container(
                     width: double.infinity,
                     height: 56,
@@ -795,7 +798,7 @@ class OnboardingView extends StackedView<OnboardingViewModel> {
                 ),
                 const SizedBox(height: 32),
                 GestureDetector(
-                  onTap: () => viewModel.nextStep(onOnboardingComplete),
+                  onTap: () => viewModel.nextStep(_safeOnboardingComplete),
                   child: Container(
                     width: double.infinity,
                     height: 56,
@@ -1042,7 +1045,7 @@ class OnboardingView extends StackedView<OnboardingViewModel> {
 
                   Expanded(
                     child: GestureDetector(
-                      onTap: () => viewModel.nextStep(onOnboardingComplete),
+                      onTap: () => viewModel.nextStep(_safeOnboardingComplete),
                       child: Container(
                         height: 50,
                         decoration: BoxDecoration(
@@ -1250,7 +1253,7 @@ class OnboardingView extends StackedView<OnboardingViewModel> {
                 trailing: const Icon(Icons.arrow_forward_ios, size: 16, color: kcOnboardingBlue),
                 onTap: () {
                   Navigator.pop(context);
-                  viewModel.loginAsPersonalAccount(onOnboardingComplete);
+                  viewModel.loginAsPersonalAccount(_safeOnboardingComplete);
                 },
               ),
               const SizedBox(height: 8),
@@ -1263,7 +1266,7 @@ class OnboardingView extends StackedView<OnboardingViewModel> {
                 trailing: const Icon(Icons.arrow_forward_ios, size: 16, color: kcPurpleIcon),
                 onTap: () {
                   Navigator.pop(context);
-                  viewModel.loginAsBusinessAccount(onOnboardingComplete);
+                  viewModel.loginAsBusinessAccount(_safeOnboardingComplete);
                 },
               ),
               const SizedBox(height: 20),
@@ -1312,7 +1315,7 @@ class OnboardingView extends StackedView<OnboardingViewModel> {
               GestureDetector(
                 onTap: () {
                   Navigator.pop(context);
-                  viewModel.loginAsPersonalAccount(onOnboardingComplete);
+                  viewModel.loginAsPersonalAccount(_safeOnboardingComplete);
                 },
                 child: Container(
                   width: double.infinity,
@@ -1474,7 +1477,7 @@ class OnboardingView extends StackedView<OnboardingViewModel> {
         const SizedBox(width: 8),
         Flexible(
           child: GestureDetector(
-            onTap: isValid ? () => viewModel.nextStep(onOnboardingComplete) : null,
+            onTap: isValid ? () => viewModel.nextStep(_safeOnboardingComplete) : null,
             child: Opacity(
               opacity: isValid ? 1.0 : 0.5,
               child: Container(

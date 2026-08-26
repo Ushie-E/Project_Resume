@@ -1,5 +1,6 @@
 import 'package:project/app/app.locator.dart';
 import 'package:project/app/app.dialogs.dart';
+import 'package:project/ui/views/onboarding/onboarding_viewmodel.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -63,10 +64,10 @@ class HomeViewModel extends BaseViewModel {
     'Golden Testing',
   ];
 
-  final Set<String> _selectedSkills = {'Flutter', 'Dart', 'Stacked Architecture'};
+  Set<String> _selectedSkills = {'Flutter', 'Dart', 'Stacked Architecture'};
   Set<String> get selectedSkills => _selectedSkills;
 
-  final Set<String> _selectedInterests = {};
+  Set<String> _selectedInterests = {};
   Set<String> get selectedInterests => _selectedInterests;
 
   // ---------------------------------------------------------------------------
@@ -279,6 +280,40 @@ class HomeViewModel extends BaseViewModel {
     showSuccessDialog();
   }
 
+  void completeOnboardingWithData(OnboardingViewModel onboardingVm) {
+    _selectedPlan = onboardingVm.selectedPlan;
+    _selectedAvatar = onboardingVm.selectedAvatar;
+
+    if (onboardingVm.isBusinessPlan) {
+      _fullName = onboardingVm.displayCompanyName;
+      _jobTitle = onboardingVm.displayCompanySector;
+      _bio = onboardingVm.companyOverview.isNotEmpty
+          ? onboardingVm.companyOverview
+          : 'Delivering enterprise cross-platform mobile products, cloud architectures, and digital design systems for global clients.';
+      _location = onboardingVm.companyLocation.isNotEmpty
+          ? onboardingVm.companyLocation
+          : 'Lagos, Nigeria & Remote';
+      _selectedSkills = Set.from(onboardingVm.selectedBusinessCapabilities);
+      _selectedInterests = Set.from(onboardingVm.selectedTargetMarkets.isNotEmpty
+          ? onboardingVm.selectedTargetMarkets
+          : {'Enterprise Tech', 'Architecture & Real Estate', 'FinTech'});
+    } else {
+      _fullName = onboardingVm.displayName;
+      _jobTitle = onboardingVm.displayJobTitle;
+      _bio = onboardingVm.bio.isNotEmpty
+          ? onboardingVm.bio
+          : 'Crafting high-performance cross-platform applications with Flutter & Stacked.';
+      _location = onboardingVm.location.isNotEmpty ? onboardingVm.location : 'Lagos, Nigeria';
+      _selectedSkills = Set.from(onboardingVm.selectedPersonalSkills);
+      _selectedInterests = Set.from(onboardingVm.selectedPersonalInterests);
+    }
+
+    _isOnboardingComplete = true;
+    _selectedTabIndex = 1;
+    rebuildUi();
+    showSuccessDialog();
+  }
+
   void restartOnboarding() {
     _currentStep = 1;
     _isOnboardingComplete = false;
@@ -289,9 +324,9 @@ class HomeViewModel extends BaseViewModel {
   void showSuccessDialog() {
     _dialogService.showCustomDialog(
       variant: DialogType.infoAlert,
-      title: 'Profile Created!',
+      title: _selectedPlan == 'Business' ? 'Company Profile Configured!' : 'Profile Created!',
       description:
-          'Congratulations $_fullName! Your profile as $_jobTitle has been created successfully for $_selectedPlan use with ${selectedSkills.length} skills and ${selectedInterests.length} interests.',
+          'Congratulations $_fullName! Your profile as $_jobTitle has been created successfully for $_selectedPlan use with ${selectedSkills.length} items.',
     );
   }
 }

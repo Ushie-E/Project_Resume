@@ -11,10 +11,11 @@ import 'package:flutter/material.dart';
 import 'package:project/ui/views/explore/explore_view.dart' as _i4;
 import 'package:project/ui/views/home/home_view.dart' as _i2;
 import 'package:project/ui/views/onboarding/onboarding_view.dart' as _i6;
+import 'package:project/ui/views/onboarding/onboarding_viewmodel.dart' as _i8;
 import 'package:project/ui/views/settings/settings_view.dart' as _i5;
 import 'package:project/ui/views/startup/startup_view.dart' as _i3;
 import 'package:stacked/stacked.dart' as _i1;
-import 'package:stacked_services/stacked_services.dart' as _i8;
+import 'package:stacked_services/stacked_services.dart' as _i9;
 
 class Routes {
   static const homeView = '/home-view';
@@ -104,7 +105,9 @@ class StackedRouter extends _i1.RouterBase {
       );
     },
     _i6.OnboardingView: (data) {
-      final args = data.getArgs<OnboardingViewArguments>(nullOk: false);
+      final args = data.getArgs<OnboardingViewArguments>(
+        orElse: () => const OnboardingViewArguments(),
+      );
       return _i7.MaterialPageRoute<dynamic>(
         builder: (context) => _i6.OnboardingView(
             key: args.key, onOnboardingComplete: args.onOnboardingComplete),
@@ -238,12 +241,12 @@ class SettingsViewArguments {
 class OnboardingViewArguments {
   const OnboardingViewArguments({
     this.key,
-    required this.onOnboardingComplete,
+    this.onOnboardingComplete,
   });
 
   final _i7.Key? key;
 
-  final void Function() onOnboardingComplete;
+  final void Function(_i8.OnboardingViewModel)? onOnboardingComplete;
 
   @override
   String toString() {
@@ -263,7 +266,7 @@ class OnboardingViewArguments {
   }
 }
 
-extension NavigatorStateExtension on _i8.NavigationService {
+extension NavigatorStateExtension on _i9.NavigationService {
   Future<dynamic> navigateToHomeView({
     _i7.Key? key,
     int? routerId,
@@ -341,7 +344,7 @@ extension NavigatorStateExtension on _i8.NavigationService {
 
   Future<dynamic> navigateToOnboardingView({
     _i7.Key? key,
-    required void Function() onOnboardingComplete,
+    void Function(_i8.OnboardingViewModel)? onOnboardingComplete,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -434,7 +437,7 @@ extension NavigatorStateExtension on _i8.NavigationService {
 
   Future<dynamic> replaceWithOnboardingView({
     _i7.Key? key,
-    required void Function() onOnboardingComplete,
+    void Function(_i8.OnboardingViewModel)? onOnboardingComplete,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
