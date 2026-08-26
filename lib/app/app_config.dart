@@ -22,8 +22,8 @@ class AppConfig {
   static void initialize({
     required String appName,
     required String apiBaseUrl,
-    String supabaseUrl = 'https://xyzcompany.supabase.co',
-    String supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.demo-anon-key',
+    String supabaseUrl = 'https://qoioeymizjtlfoqmeaut.supabase.co',
+    String supabaseAnonKey = 'sb_publishable_kGq5l-ubr1nZvVKsdQf7JQ_ad352yf6',
     required EnvironmentType environment,
     bool enableLogging = true,
   }) {
