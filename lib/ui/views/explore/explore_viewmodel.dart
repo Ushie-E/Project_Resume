@@ -19,7 +19,7 @@ class ExploreViewModel extends BaseViewModel {
 
   final List<Map<String, dynamic>> exploreProjects = const [
     {
-      'title': 'Elysian Resume Builder',
+      'title': 'Ushie Digital Resume Builder',
       'category': 'Architecture',
       'description': 'Multi-step interactive digital resume built with Stacked architecture & Flutter.',
       'image': 'images/spacea.png',

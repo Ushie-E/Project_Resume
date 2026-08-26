@@ -16,7 +16,7 @@ class SupabaseService {
       if (url.isNotEmpty && !url.contains('xyzcompany')) {
         await Supabase.initialize(
           url: url,
-          anonKey: anonKey,
+          publishableKey: anonKey,
         );
         _isInitialized = true;
         if (kDebugMode) {

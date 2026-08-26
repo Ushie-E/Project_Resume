@@ -44,7 +44,7 @@ class OnboardingView extends StackedView<OnboardingViewModel> {
             padding: const EdgeInsets.only(right: 16.0),
             child: Center(
               child: Text(
-                'Elysian',
+                'Ushie Digital',
                 style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w600,
@@ -887,7 +887,7 @@ class OnboardingView extends StackedView<OnboardingViewModel> {
                             ),
                             const SizedBox(height: 12),
                             const Text(
-                              'The Luminous\nAssets of\nElysian',
+                              'The Luminous\nAssets of\nUshie Digital',
                               style: TextStyle(
                                 color: Color(0xFF1E293B),
                                 fontSize: 24,

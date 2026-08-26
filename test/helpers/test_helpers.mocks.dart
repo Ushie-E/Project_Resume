@@ -9,6 +9,7 @@ import 'dart:ui' as _i6;
 import 'package:flutter/material.dart' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i3;
+import 'package:project/services/supabase_service.dart' as _i7;
 import 'package:stacked_services/stacked_services.dart' as _i2;
 
 // ignore_for_file: type=lint
@@ -683,4 +684,96 @@ class MockDialogService extends _i1.Mock implements _i2.DialogService {
         ),
         returnValueForMissingStub: null,
       );
+}
+
+/// A class which mocks [SupabaseService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockSupabaseService extends _i1.Mock implements _i7.SupabaseService {
+  @override
+  bool get isInitialized => (super.noSuchMethod(
+        Invocation.getter(#isInitialized),
+        returnValue: false,
+        returnValueForMissingStub: false,
+      ) as bool);
+
+  @override
+  _i5.Future<void> initSupabase() => (super.noSuchMethod(
+        Invocation.method(
+          #initSupabase,
+          [],
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
+
+  @override
+  _i5.Future<bool> signUpWithEmail({
+    required String? email,
+    required String? password,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #signUpWithEmail,
+          [],
+          {
+            #email: email,
+            #password: password,
+          },
+        ),
+        returnValue: _i5.Future<bool>.value(false),
+        returnValueForMissingStub: _i5.Future<bool>.value(false),
+      ) as _i5.Future<bool>);
+
+  @override
+  _i5.Future<bool> signInWithEmail({
+    required String? email,
+    required String? password,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #signInWithEmail,
+          [],
+          {
+            #email: email,
+            #password: password,
+          },
+        ),
+        returnValue: _i5.Future<bool>.value(false),
+        returnValueForMissingStub: _i5.Future<bool>.value(false),
+      ) as _i5.Future<bool>);
+
+  @override
+  _i5.Future<Map<String, dynamic>?> fetchProfile(String? userId) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #fetchProfile,
+          [userId],
+        ),
+        returnValue: _i5.Future<Map<String, dynamic>?>.value(),
+        returnValueForMissingStub: _i5.Future<Map<String, dynamic>?>.value(),
+      ) as _i5.Future<Map<String, dynamic>?>);
+
+  @override
+  _i5.Future<bool> upsertProfile(Map<String, dynamic>? profileData) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #upsertProfile,
+          [profileData],
+        ),
+        returnValue: _i5.Future<bool>.value(false),
+        returnValueForMissingStub: _i5.Future<bool>.value(false),
+      ) as _i5.Future<bool>);
+
+  @override
+  _i5.Future<List<Map<String, dynamic>>?> fetchExploreProjects() =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #fetchExploreProjects,
+          [],
+        ),
+        returnValue: _i5.Future<List<Map<String, dynamic>>?>.value(),
+        returnValueForMissingStub:
+            _i5.Future<List<Map<String, dynamic>>?>.value(),
+      ) as _i5.Future<List<Map<String, dynamic>>?>);
 }
