@@ -1,6 +1,7 @@
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:project/app/app.locator.dart';
+import 'package:project/services/supabase_service.dart';
 import 'package:stacked_services/stacked_services.dart';
 // @stacked-import
 
@@ -12,6 +13,7 @@ import 'test_helpers.mocks.dart';
     MockSpec<NavigationService>(onMissingStub: OnMissingStub.returnDefault),
     MockSpec<BottomSheetService>(onMissingStub: OnMissingStub.returnDefault),
     MockSpec<DialogService>(onMissingStub: OnMissingStub.returnDefault),
+    MockSpec<SupabaseService>(onMissingStub: OnMissingStub.returnDefault),
     // @stacked-mock-spec
   ],
 )
@@ -19,6 +21,7 @@ void registerServices() {
   getAndRegisterNavigationService();
   getAndRegisterBottomSheetService();
   getAndRegisterDialogService();
+  getAndRegisterSupabaseService();
   // @stacked-mock-register
 }
 
@@ -73,6 +76,14 @@ MockDialogService getAndRegisterDialogService() {
   _removeRegistrationIfExists<DialogService>();
   final service = MockDialogService();
   locator.registerSingleton<DialogService>(service);
+  return service;
+}
+
+MockSupabaseService getAndRegisterSupabaseService() {
+  _removeRegistrationIfExists<SupabaseService>();
+  final service = MockSupabaseService();
+  when(service.initSupabase()).thenAnswer((_) async {});
+  locator.registerSingleton<SupabaseService>(service);
   return service;
 }
 

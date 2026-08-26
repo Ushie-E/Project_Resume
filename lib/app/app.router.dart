@@ -6,16 +6,17 @@
 // **************************************************************************
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'package:flutter/foundation.dart' as _i8;
 import 'package:flutter/material.dart' as _i7;
 import 'package:flutter/material.dart';
 import 'package:project/ui/views/explore/explore_view.dart' as _i4;
 import 'package:project/ui/views/home/home_view.dart' as _i2;
 import 'package:project/ui/views/onboarding/onboarding_view.dart' as _i6;
-import 'package:project/ui/views/onboarding/onboarding_viewmodel.dart' as _i8;
+import 'package:project/ui/views/onboarding/onboarding_viewmodel.dart' as _i9;
 import 'package:project/ui/views/settings/settings_view.dart' as _i5;
 import 'package:project/ui/views/startup/startup_view.dart' as _i3;
 import 'package:stacked/stacked.dart' as _i1;
-import 'package:stacked_services/stacked_services.dart' as _i9;
+import 'package:stacked_services/stacked_services.dart' as _i10;
 
 class Routes {
   static const homeView = '/home-view';
@@ -126,7 +127,7 @@ class StackedRouter extends _i1.RouterBase {
 class HomeViewArguments {
   const HomeViewArguments({this.key});
 
-  final _i7.Key? key;
+  final _i8.Key? key;
 
   @override
   String toString() {
@@ -148,7 +149,7 @@ class HomeViewArguments {
 class StartupViewArguments {
   const StartupViewArguments({this.key});
 
-  final _i7.Key? key;
+  final _i8.Key? key;
 
   @override
   String toString() {
@@ -170,7 +171,7 @@ class StartupViewArguments {
 class ExploreViewArguments {
   const ExploreViewArguments({this.key});
 
-  final _i7.Key? key;
+  final _i8.Key? key;
 
   @override
   String toString() {
@@ -199,7 +200,7 @@ class SettingsViewArguments {
     this.planType = 'Personal',
   });
 
-  final _i7.Key? key;
+  final _i8.Key? key;
 
   final void Function()? onRestartOnboarding;
 
@@ -244,9 +245,9 @@ class OnboardingViewArguments {
     this.onOnboardingComplete,
   });
 
-  final _i7.Key? key;
+  final _i8.Key? key;
 
-  final void Function(_i8.OnboardingViewModel)? onOnboardingComplete;
+  final void Function(_i9.OnboardingViewModel)? onOnboardingComplete;
 
   @override
   String toString() {
@@ -266,9 +267,9 @@ class OnboardingViewArguments {
   }
 }
 
-extension NavigatorStateExtension on _i9.NavigationService {
+extension NavigatorStateExtension on _i10.NavigationService {
   Future<dynamic> navigateToHomeView({
-    _i7.Key? key,
+    _i8.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -284,7 +285,7 @@ extension NavigatorStateExtension on _i9.NavigationService {
   }
 
   Future<dynamic> navigateToStartupView({
-    _i7.Key? key,
+    _i8.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -300,7 +301,7 @@ extension NavigatorStateExtension on _i9.NavigationService {
   }
 
   Future<dynamic> navigateToExploreView({
-    _i7.Key? key,
+    _i8.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -316,7 +317,7 @@ extension NavigatorStateExtension on _i9.NavigationService {
   }
 
   Future<dynamic> navigateToSettingsView({
-    _i7.Key? key,
+    _i8.Key? key,
     void Function()? onRestartOnboarding,
     String userAvatar = 'images/user.png',
     String userName = 'Ushie Emmanuel',
@@ -343,8 +344,8 @@ extension NavigatorStateExtension on _i9.NavigationService {
   }
 
   Future<dynamic> navigateToOnboardingView({
-    _i7.Key? key,
-    void Function(_i8.OnboardingViewModel)? onOnboardingComplete,
+    _i8.Key? key,
+    void Function(_i9.OnboardingViewModel)? onOnboardingComplete,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -361,7 +362,7 @@ extension NavigatorStateExtension on _i9.NavigationService {
   }
 
   Future<dynamic> replaceWithHomeView({
-    _i7.Key? key,
+    _i8.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -377,7 +378,7 @@ extension NavigatorStateExtension on _i9.NavigationService {
   }
 
   Future<dynamic> replaceWithStartupView({
-    _i7.Key? key,
+    _i8.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -393,7 +394,7 @@ extension NavigatorStateExtension on _i9.NavigationService {
   }
 
   Future<dynamic> replaceWithExploreView({
-    _i7.Key? key,
+    _i8.Key? key,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -409,7 +410,7 @@ extension NavigatorStateExtension on _i9.NavigationService {
   }
 
   Future<dynamic> replaceWithSettingsView({
-    _i7.Key? key,
+    _i8.Key? key,
     void Function()? onRestartOnboarding,
     String userAvatar = 'images/user.png',
     String userName = 'Ushie Emmanuel',
@@ -436,8 +437,8 @@ extension NavigatorStateExtension on _i9.NavigationService {
   }
 
   Future<dynamic> replaceWithOnboardingView({
-    _i7.Key? key,
-    void Function(_i8.OnboardingViewModel)? onOnboardingComplete,
+    _i8.Key? key,
+    void Function(_i9.OnboardingViewModel)? onOnboardingComplete,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
