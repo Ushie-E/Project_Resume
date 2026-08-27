@@ -3,7 +3,7 @@
 [![Flutter Version](https://img.shields.io/badge/Flutter-3.29.x-02569B?logo=flutter)](https://flutter.dev)
 [![Architecture](https://img.shields.io/badge/Architecture-Stacked%20MVVM-42A5F5)](https://stacked.filledstacks.com)
 [![Backend](https://img.shields.io/badge/Backend-Supabase%202.17.2-3ECF8E?logo=supabase)](https://supabase.com)
-[![Domain](https://img.shields.io/badge/Domain-resume.us00.co-00C853)](https://resume.us00.co)
+[![Hosting](https://img.shields.io/badge/Hosting-Vercel-000000?logo=vercel)](https://ushie-digital-resume.vercel.app)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 **Ushie Digital Resume** is cross-platform mobile application and interactive digital and an all-in-one personal developer resume, executive consultancy showcase, and enterprise digital studio platform built with **Flutter**, **Stacked Architecture MVVM**, and **Google Sans Design System**//**Supabase**.
@@ -63,12 +63,11 @@ Below is the primary visual asset directory preview image provided for the appli
 
 ---
 
-## 🌐 Custom Web Domain & Supabase Cloud Endpoints
+## 🌐 Production Vercel Hosting & Live Endpoints
 
-- **Live Web Application Domain**: [`https://resume.us00.co`](https://resume.us00.co)
-- **Production API Endpoint**: `https://api.resume.us00.co`
-- **Free GitHub Pages Sub-Domain**: `https://YOUR_GITHUB_USERNAME.github.io/Project_Resume/`
-- **Live Supabase Database**: `https://qoioeymizjtlfoqmeaut.supabase.co` (`eu-west-1`)
+- **Primary Custom Web Domain**: [`https://ushie-digital-resume.vercel.app`](https://ushie-digital-resume.vercel.app)
+- **Active Vercel Live Deployment**: [`https://project-resume-p54ikq6pi-ushie-code.vercel.app`](https://project-resume-p54ikq6pi-ushie-code.vercel.app)
+- **Live Supabase API Endpoint**: `https://qoioeymizjtlfoqmeaut.supabase.co` (`eu-west-1`)
 
 ---
 
