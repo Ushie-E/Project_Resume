@@ -5,23 +5,30 @@ import 'package:stacked/stacked.dart';
 import 'explore_viewmodel.dart';
 
 class ExploreView extends StackedView<ExploreViewModel> {
-  const ExploreView({super.key});
+  final bool darkMode;
+
+  const ExploreView({super.key, this.darkMode = false});
 
   @override
   Widget builder(BuildContext context, ExploreViewModel viewModel, Widget? child) {
     final filters = ['All', 'Architecture', 'Mobile', 'UI/UX', 'DevOps'];
     final projects = viewModel.filteredExploreProjects;
 
+    final bgColor = darkMode ? const Color(0xFF0F172A) : kcBackgroundColor;
+    final cardBgColor = darkMode ? const Color(0xFF1E293B) : Colors.white;
+    final primaryTextColor = darkMode ? Colors.white : Colors.black;
+    final secondaryTextColor = darkMode ? Colors.white70 : Colors.grey[700];
+
     return Scaffold(
-      backgroundColor: kcBackgroundColor,
+      backgroundColor: bgColor,
       appBar: AppBar(
-        backgroundColor: kcBackgroundColor,
+        backgroundColor: bgColor,
         elevation: 0,
         automaticallyImplyLeading: false,
-        title: const Text(
+        title: Text(
           'Explore Showcase',
           style: TextStyle(
-            color: Colors.black,
+            color: primaryTextColor,
             fontWeight: FontWeight.bold,
             fontSize: 18,
             fontFamily: 'Google Sans',
@@ -37,17 +44,19 @@ class ExploreView extends StackedView<ExploreViewModel> {
             // Search Bar
             TextField(
               onChanged: viewModel.setSearchQuery,
+              style: TextStyle(color: primaryTextColor, fontFamily: 'Google Sans'),
               decoration: InputDecoration(
                 hintText: 'Search projects, enterprise solutions, tags...',
+                hintStyle: TextStyle(color: darkMode ? Colors.white54 : Colors.grey),
                 prefixIcon: const Icon(Icons.search, color: kcOnboardingBlue),
                 suffixIcon: viewModel.searchQuery.isNotEmpty
                     ? IconButton(
-                        icon: const Icon(Icons.clear),
+                        icon: Icon(Icons.clear, color: primaryTextColor),
                         onPressed: () => viewModel.setSearchQuery(''),
                       )
                     : null,
                 filled: true,
-                fillColor: Colors.white,
+                fillColor: cardBgColor,
                 contentPadding: const EdgeInsets.symmetric(vertical: 14),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(16),
@@ -68,12 +77,14 @@ class ExploreView extends StackedView<ExploreViewModel> {
                       selected: isSelected,
                       label: Text(filter),
                       labelStyle: TextStyle(
-                        color: isSelected ? Colors.white : Colors.black87,
+                        color: isSelected
+                            ? Colors.white
+                            : (darkMode ? Colors.white70 : Colors.black87),
                         fontWeight: FontWeight.bold,
                         fontFamily: 'Google Sans',
                       ),
                       selectedColor: kcOnboardingBlue,
-                      backgroundColor: Colors.white,
+                      backgroundColor: cardBgColor,
                       onSelected: (_) => viewModel.setCategoryFilter(filter),
                     ),
                   );
@@ -83,12 +94,16 @@ class ExploreView extends StackedView<ExploreViewModel> {
             const SizedBox(height: 24),
             // Project Cards List
             if (projects.isEmpty)
-              const Center(
+              Center(
                 child: Padding(
-                  padding: EdgeInsets.symmetric(vertical: 40),
+                  padding: const EdgeInsets.symmetric(vertical: 40),
                   child: Text(
                     'No projects found matching your search.',
-                    style: TextStyle(color: Colors.grey, fontSize: 16),
+                    style: TextStyle(
+                      color: darkMode ? Colors.white54 : Colors.grey,
+                      fontSize: 16,
+                      fontFamily: 'Google Sans',
+                    ),
                   ),
                 ),
               )
@@ -103,13 +118,13 @@ class ExploreView extends StackedView<ExploreViewModel> {
                   return Container(
                     margin: const EdgeInsets.only(bottom: 20),
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: cardBgColor,
                       borderRadius: BorderRadius.circular(20),
-                      boxShadow: const [
+                      boxShadow: [
                         BoxShadow(
-                          color: Colors.black12,
+                          color: darkMode ? Colors.black45 : Colors.black12,
                           blurRadius: 10,
-                          offset: Offset(0, 4),
+                          offset: const Offset(0, 4),
                         ),
                       ],
                     ),
@@ -191,8 +206,8 @@ class ExploreView extends StackedView<ExploreViewModel> {
                                       const SizedBox(width: 4),
                                       Text(
                                         '${p['likes']}',
-                                        style: const TextStyle(
-                                          color: Colors.grey,
+                                        style: TextStyle(
+                                          color: darkMode ? Colors.white70 : Colors.grey,
                                           fontWeight: FontWeight.bold,
                                         ),
                                       ),
@@ -203,9 +218,10 @@ class ExploreView extends StackedView<ExploreViewModel> {
                               const SizedBox(height: 12),
                               Text(
                                 p['title'] as String,
-                                style: const TextStyle(
+                                style: TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,
+                                  color: primaryTextColor,
                                   fontFamily: 'Google Sans',
                                 ),
                               ),
@@ -214,7 +230,7 @@ class ExploreView extends StackedView<ExploreViewModel> {
                                 p['description'] as String,
                                 style: TextStyle(
                                   fontSize: 14,
-                                  color: Colors.grey[700],
+                                  color: secondaryTextColor,
                                   height: 1.3,
                                   fontFamily: 'Google Sans',
                                 ),
@@ -224,8 +240,14 @@ class ExploreView extends StackedView<ExploreViewModel> {
                                 spacing: 6,
                                 children: (p['tags'] as List<String>).map((tag) {
                                   return Chip(
-                                    label: Text('#$tag', style: const TextStyle(fontSize: 11)),
-                                    backgroundColor: kcBackgroundColor,
+                                    label: Text(
+                                      '#$tag',
+                                      style: TextStyle(
+                                        fontSize: 11,
+                                        color: darkMode ? Colors.white70 : Colors.black87,
+                                      ),
+                                    ),
+                                    backgroundColor: bgColor,
                                     visualDensity: VisualDensity.compact,
                                   );
                                 }).toList(),

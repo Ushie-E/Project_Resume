@@ -11,6 +11,8 @@ class SettingsView extends StackedView<SettingsViewModel> {
   final String userName;
   final String userTitle;
   final String planType;
+  final bool darkMode;
+  final ValueChanged<bool>? onToggleDarkMode;
 
   const SettingsView({
     super.key,
@@ -19,20 +21,30 @@ class SettingsView extends StackedView<SettingsViewModel> {
     this.userName = 'Ushie Emmanuel',
     this.userTitle = 'Flutter Mobile Engineer',
     this.planType = 'Personal',
+    this.darkMode = false,
+    this.onToggleDarkMode,
   });
 
   @override
   Widget builder(BuildContext context, SettingsViewModel viewModel, Widget? child) {
+    final bool isDark = darkMode || viewModel.darkMode;
+
+    final bgColor = isDark ? const Color(0xFF0F172A) : kcBackgroundColor;
+    final cardBgColor = isDark ? const Color(0xFF1E293B) : Colors.white;
+    final primaryTextColor = isDark ? Colors.white : Colors.black;
+    final groupHeaderColor = isDark ? Colors.white70 : Colors.grey;
+    final subtitleColor = isDark ? Colors.white60 : Colors.grey[600];
+
     return Scaffold(
-      backgroundColor: kcBackgroundColor,
+      backgroundColor: bgColor,
       appBar: AppBar(
-        backgroundColor: kcBackgroundColor,
+        backgroundColor: bgColor,
         elevation: 0,
         automaticallyImplyLeading: false,
-        title: const Text(
+        title: Text(
           'Settings & Preferences',
           style: TextStyle(
-            color: Colors.black,
+            color: primaryTextColor,
             fontWeight: FontWeight.bold,
             fontSize: 18,
             fontFamily: 'Google Sans',
@@ -49,28 +61,28 @@ class SettingsView extends StackedView<SettingsViewModel> {
             Container(
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: cardBgColor,
                 borderRadius: BorderRadius.circular(20),
-                boxShadow: const [
+                boxShadow: [
                   BoxShadow(
-                    color: Colors.black12,
+                    color: isDark ? Colors.black45 : Colors.black12,
                     blurRadius: 8,
-                    offset: Offset(0, 3),
+                    offset: const Offset(0, 3),
                   ),
                 ],
               ),
               child: Row(
                 children: [
-                userAvatar == 'images/empty_profile.png'
-                    ? const CircleAvatar(
-                        radius: 30,
-                        backgroundColor: Color(0xFFE2E8F0),
-                        child: Icon(Icons.person_outline, size: 32, color: Color(0xFF64748B)),
-                      )
-                    : CircleAvatar(
-                        radius: 30,
-                        backgroundImage: AssetImage(userAvatar),
-                      ),
+                  userAvatar == 'images/empty_profile.png'
+                      ? const CircleAvatar(
+                          radius: 30,
+                          backgroundColor: Color(0xFFE2E8F0),
+                          child: Icon(Icons.person_outline, size: 32, color: Color(0xFF64748B)),
+                        )
+                      : CircleAvatar(
+                          radius: 30,
+                          backgroundImage: AssetImage(userAvatar),
+                        ),
                   const SizedBox(width: 16),
                   Expanded(
                     child: Column(
@@ -78,9 +90,10 @@ class SettingsView extends StackedView<SettingsViewModel> {
                       children: [
                         Text(
                           userName,
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
+                            color: primaryTextColor,
                             fontFamily: 'Google Sans',
                           ),
                         ),
@@ -106,43 +119,66 @@ class SettingsView extends StackedView<SettingsViewModel> {
             ),
             const SizedBox(height: 24),
             // Preferences Group
-            const Text(
+            Text(
               'Preferences',
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
-                color: Colors.grey,
+                color: groupHeaderColor,
                 fontFamily: 'Google Sans',
               ),
             ),
             const SizedBox(height: 12),
             Container(
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: cardBgColor,
                 borderRadius: BorderRadius.circular(16),
               ),
               child: Column(
                 children: [
                   SwitchListTile(
                     secondary: const Icon(Icons.dark_mode_outlined, color: kcOnboardingBlue),
-                    title: const Text('Dark Mode', style: TextStyle(fontWeight: FontWeight.w600)),
-                    subtitle: const Text('Enable high-contrast dark theme'),
-                    value: viewModel.darkMode,
-                    onChanged: viewModel.toggleDarkMode,
+                    title: Text(
+                      'Dark Mode',
+                      style: TextStyle(fontWeight: FontWeight.w600, color: primaryTextColor),
+                    ),
+                    subtitle: Text(
+                      'Enable high-contrast dark theme',
+                      style: TextStyle(color: subtitleColor),
+                    ),
+                    value: isDark,
+                    onChanged: (val) {
+                      viewModel.toggleDarkMode(val);
+                      if (onToggleDarkMode != null) {
+                        onToggleDarkMode!(val);
+                      }
+                    },
                   ),
                   const Divider(height: 1),
                   SwitchListTile(
                     secondary: const Icon(Icons.notifications_outlined, color: kcOnboardingBlue),
-                    title: const Text('Push Notifications', style: TextStyle(fontWeight: FontWeight.w600)),
-                    subtitle: const Text('Receive updates on profile & project highlights'),
+                    title: Text(
+                      'Push Notifications',
+                      style: TextStyle(fontWeight: FontWeight.w600, color: primaryTextColor),
+                    ),
+                    subtitle: Text(
+                      'Receive updates on profile & project highlights',
+                      style: TextStyle(color: subtitleColor),
+                    ),
                     value: viewModel.notificationsEnabled,
                     onChanged: viewModel.toggleNotifications,
                   ),
                   const Divider(height: 1),
                   SwitchListTile(
                     secondary: const Icon(Icons.analytics_outlined, color: kcOnboardingBlue),
-                    title: const Text('Analytics & Sync', style: TextStyle(fontWeight: FontWeight.w600)),
-                    subtitle: const Text('Share anonymous telemetry to improve experience'),
+                    title: Text(
+                      'Analytics & Sync',
+                      style: TextStyle(fontWeight: FontWeight.w600, color: primaryTextColor),
+                    ),
+                    subtitle: Text(
+                      'Share anonymous telemetry to improve experience',
+                      style: TextStyle(color: subtitleColor),
+                    ),
                     value: viewModel.analyticsEnabled,
                     onChanged: viewModel.toggleAnalytics,
                   ),
@@ -151,27 +187,33 @@ class SettingsView extends StackedView<SettingsViewModel> {
             ),
             const SizedBox(height: 24),
             // Environment & Build Info Group
-            const Text(
+            Text(
               'Environment & Build Info',
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
-                color: Colors.grey,
+                color: groupHeaderColor,
                 fontFamily: 'Google Sans',
               ),
             ),
             const SizedBox(height: 12),
             Container(
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: cardBgColor,
                 borderRadius: BorderRadius.circular(16),
               ),
               child: Column(
                 children: [
                   ListTile(
                     leading: const Icon(Icons.layers_outlined, color: kcOnboardingBlue),
-                    title: const Text('Build Flavor', style: TextStyle(fontWeight: FontWeight.w600)),
-                    subtitle: Text(AppConfig.instance.appName),
+                    title: Text(
+                      'Build Flavor',
+                      style: TextStyle(fontWeight: FontWeight.w600, color: primaryTextColor),
+                    ),
+                    subtitle: Text(
+                      AppConfig.instance.appName,
+                      style: TextStyle(color: subtitleColor),
+                    ),
                     trailing: Container(
                       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                       decoration: BoxDecoration(
@@ -191,14 +233,26 @@ class SettingsView extends StackedView<SettingsViewModel> {
                   const Divider(height: 1),
                   ListTile(
                     leading: const Icon(Icons.cloud_outlined, color: kcOnboardingBlue),
-                    title: const Text('API Endpoint', style: TextStyle(fontWeight: FontWeight.w600)),
-                    subtitle: Text(AppConfig.instance.apiBaseUrl),
+                    title: Text(
+                      'API Endpoint',
+                      style: TextStyle(fontWeight: FontWeight.w600, color: primaryTextColor),
+                    ),
+                    subtitle: Text(
+                      AppConfig.instance.apiBaseUrl,
+                      style: TextStyle(color: subtitleColor),
+                    ),
                   ),
                   const Divider(height: 1),
-                  const ListTile(
-                    leading: Icon(Icons.info_outline, color: kcOnboardingBlue),
-                    title: Text('App Version', style: TextStyle(fontWeight: FontWeight.w600)),
-                    subtitle: Text('1.0.0+1 (Flutter & Stacked Framework)'),
+                  ListTile(
+                    leading: const Icon(Icons.info_outline, color: kcOnboardingBlue),
+                    title: Text(
+                      'App Version',
+                      style: TextStyle(fontWeight: FontWeight.w600, color: primaryTextColor),
+                    ),
+                    subtitle: Text(
+                      '1.0.0+1 (Flutter & Stacked Framework)',
+                      style: TextStyle(color: subtitleColor),
+                    ),
                   ),
                 ],
               ),
@@ -212,7 +266,7 @@ class SettingsView extends StackedView<SettingsViewModel> {
                   height: 52,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(26),
-                    color: Colors.red[50],
+                    color: isDark ? const Color(0xFF331B1B) : Colors.red[50],
                     border: Border.all(color: Colors.redAccent, width: 1.5),
                   ),
                   child: const Row(

@@ -3,7 +3,7 @@
 [![Flutter Version](https://img.shields.io/badge/Flutter-3.29.x-02569B?logo=flutter)](https://flutter.dev)
 [![Architecture](https://img.shields.io/badge/Architecture-Stacked%20MVVM-42A5F5)](https://stacked.filledstacks.com)
 [![Backend](https://img.shields.io/badge/Backend-Supabase%202.17.2-3ECF8E?logo=supabase)](https://supabase.com)
-[![Domain](https://img.shields.io/badge/Domain-ushiedigitalresume.com-00C853)](https://ushiedigitalresume.com)
+[![Domain](https://img.shields.io/badge/Domain-resume.us00.co-00C853)](https://resume.us00.co)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 **Ushie Digital Resume** is cross-platform mobile application and interactive digital and an all-in-one personal developer resume, executive consultancy showcase, and enterprise digital studio platform built with **Flutter**, **Stacked Architecture MVVM**, and **Google Sans Design System**//**Supabase**.
@@ -63,10 +63,11 @@ Below is the primary visual asset directory preview image provided for the appli
 
 ---
 
-## 🌐 Production Domain & Endpoints
+## 🌐 Custom Web Domain & Supabase Cloud Endpoints
 
-- **Web Domain**: [`https://ushiedigitalresume.com`](https://ushiedigitalresume.com)
-- **API Endpoint**: `https://api.ushiedigitalresume.com`
+- **Live Web Application Domain**: [`https://resume.us00.co`](https://resume.us00.co)
+- **Production API Endpoint**: `https://api.resume.us00.co`
+- **Free GitHub Pages Sub-Domain**: `https://YOUR_GITHUB_USERNAME.github.io/Project_Resume/`
 - **Live Supabase Database**: `https://qoioeymizjtlfoqmeaut.supabase.co` (`eu-west-1`)
 
 ---
@@ -84,17 +85,6 @@ Below is the primary visual asset directory preview image provided for the appli
 | **`ExploreView`** | Project Catalog | Search query bar, horizontal category filter chips (`All`, `Architecture`, `Mobile`, `UI/UX`, `DevOps`), project like counters, and tag badges. |
 | **`HomeView`** | Main Dashboard | Executive gradient banner, dynamic title (`My Profile` vs. `Company Profile`), interactive skills grid, interest badges, and edit setup trigger. |
 | **`SettingsView`** | Preferences & Flavors | Dark Mode toggle, Push Notifications toggle, Telemetry toggle, and Build Flavor Environment detection (`Dev` / `Staging` / `Prod`). |
-
----
-
-## 🔄 User Process Flow & Product Pitch Architecture
-
-### User Flow Journey
-1. **Onboarding & Plan Selection**: Users select their plan (**Personal** or **Business**) or tap `"Already have an account?"` for instant login.
-2. **Tailored Data Collection**: Input blank profile forms, select skills/capabilities, and match target interests/markets.
-3. **Brand Directory Review**: Business users review visual assets (`SCREEN_14`, `SCREEN_2`, `SCREEN_10`, `SCREEN_9`) and export brand specifications.
-4. **Dashboard Access**: Access multi-tab dashboard with bottom navigation bar (My Profile, Explore Showcase, Settings).
-5. **Supabase Cloud Sync**: Authentication and user profiles synchronize with Supabase Cloud (`qoioeymizjtlfoqmeaut`).
 
 ---
 

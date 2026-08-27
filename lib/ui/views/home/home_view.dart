@@ -18,12 +18,17 @@ class HomeView extends StackedView<HomeViewModel> {
       );
     }
 
+    final isDark = viewModel.darkMode;
+    final bgColor = isDark ? const Color(0xFF0F172A) : kcBackgroundColor;
+    final bottomNavBg = isDark ? const Color(0xFF1E293B) : Colors.white;
+    final unselectedColor = isDark ? Colors.white54 : Colors.grey;
+
     return Scaffold(
-      backgroundColor: kcBackgroundColor,
+      backgroundColor: bgColor,
       body: IndexedStack(
         index: viewModel.selectedTabIndex,
         children: [
-          const ExploreView(),
+          ExploreView(darkMode: isDark),
           _buildMainDashboard(context, viewModel),
           SettingsView(
             onRestartOnboarding: viewModel.restartOnboarding,
@@ -31,13 +36,15 @@ class HomeView extends StackedView<HomeViewModel> {
             userName: viewModel.fullName,
             userTitle: viewModel.jobTitle,
             planType: viewModel.selectedPlan,
+            darkMode: isDark,
+            onToggleDarkMode: viewModel.toggleDarkMode,
           ),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.white,
+        backgroundColor: bottomNavBg,
         selectedItemColor: kcOnboardingBlue,
-        unselectedItemColor: Colors.grey,
+        unselectedItemColor: unselectedColor,
         currentIndex: viewModel.selectedTabIndex,
         onTap: viewModel.setSelectedTabIndex,
         showSelectedLabels: true,
@@ -65,17 +72,23 @@ class HomeView extends StackedView<HomeViewModel> {
   // ---------------------------------------------------------------------------
   Widget _buildMainDashboard(BuildContext context, HomeViewModel viewModel) {
     final bool isBusiness = viewModel.selectedPlan == 'Business';
+    final bool isDark = viewModel.darkMode;
+
+    final bgColor = isDark ? const Color(0xFF0F172A) : kcBackgroundColor;
+    final cardBgColor = isDark ? const Color(0xFF1E293B) : Colors.white;
+    final primaryTextColor = isDark ? Colors.white : Colors.black;
+    final secondaryTextColor = isDark ? Colors.white70 : Colors.grey[800];
 
     return Scaffold(
-      backgroundColor: kcBackgroundColor,
+      backgroundColor: bgColor,
       appBar: AppBar(
-        backgroundColor: kcBackgroundColor,
+        backgroundColor: bgColor,
         elevation: 0,
         automaticallyImplyLeading: false,
         title: Text(
           isBusiness ? 'Company Profile' : 'My Profile',
-          style: const TextStyle(
-            color: Colors.black,
+          style: TextStyle(
+            color: primaryTextColor,
             fontWeight: FontWeight.bold,
             fontSize: 18,
             fontFamily: 'Google Sans',
@@ -108,11 +121,11 @@ class HomeView extends StackedView<HomeViewModel> {
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                 ),
-                boxShadow: const [
+                boxShadow: [
                   BoxShadow(
-                    color: Colors.black26,
+                    color: isDark ? Colors.black45 : Colors.black26,
                     blurRadius: 15,
-                    offset: Offset(0, 6),
+                    offset: const Offset(0, 6),
                   ),
                 ],
               ),
@@ -208,13 +221,13 @@ class HomeView extends StackedView<HomeViewModel> {
               width: double.infinity,
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: cardBgColor,
                 borderRadius: BorderRadius.circular(16),
-                boxShadow: const [
+                boxShadow: [
                   BoxShadow(
-                    color: Colors.black12,
+                    color: isDark ? Colors.black45 : Colors.black12,
                     blurRadius: 8,
-                    offset: Offset(0, 3),
+                    offset: const Offset(0, 3),
                   ),
                 ],
               ),
@@ -235,7 +248,7 @@ class HomeView extends StackedView<HomeViewModel> {
                     viewModel.bio,
                     style: TextStyle(
                       fontSize: 14,
-                      color: Colors.grey[800],
+                      color: secondaryTextColor,
                       height: 1.4,
                       fontFamily: 'Google Sans',
                     ),
@@ -247,9 +260,10 @@ class HomeView extends StackedView<HomeViewModel> {
             // Skills Section
             Text(
               isBusiness ? 'Enterprise Capabilities' : 'Technical Expertise',
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
+                color: primaryTextColor,
                 fontFamily: 'Google Sans',
               ),
             ),
@@ -261,11 +275,12 @@ class HomeView extends StackedView<HomeViewModel> {
                 return Chip(
                   avatar: Icon(isBusiness ? Icons.business_center : Icons.code, size: 16, color: kcOnboardingBlue),
                   label: Text(skill),
-                  labelStyle: const TextStyle(
+                  labelStyle: TextStyle(
                     fontWeight: FontWeight.bold,
+                    color: isDark ? Colors.white : Colors.black87,
                     fontFamily: 'Google Sans',
                   ),
-                  backgroundColor: kcTealBackground,
+                  backgroundColor: isDark ? const Color(0xFF1E293B) : kcTealBackground,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
@@ -276,9 +291,10 @@ class HomeView extends StackedView<HomeViewModel> {
             // Interests Section
             Text(
               isBusiness ? 'Target Markets' : 'Curated Interests',
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
+                color: primaryTextColor,
                 fontFamily: 'Google Sans',
               ),
             ),
@@ -290,11 +306,12 @@ class HomeView extends StackedView<HomeViewModel> {
                 return Chip(
                   avatar: const Icon(Icons.star, size: 16, color: kcPurpleIcon),
                   label: Text(interest),
-                  labelStyle: const TextStyle(
+                  labelStyle: TextStyle(
                     fontWeight: FontWeight.bold,
+                    color: isDark ? Colors.white : Colors.black87,
                     fontFamily: 'Google Sans',
                   ),
-                  backgroundColor: kcPurpleBackground,
+                  backgroundColor: isDark ? const Color(0xFF1E293B) : kcPurpleBackground,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
@@ -310,7 +327,7 @@ class HomeView extends StackedView<HomeViewModel> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(26),
                   border: Border.all(color: kcOnboardingBlue, width: 2),
-                  color: Colors.white,
+                  color: cardBgColor,
                 ),
                 child: const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
