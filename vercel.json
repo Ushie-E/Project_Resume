@@ -1,23 +1,10 @@
 {
-  "version": 2,
-  "name": "ushie-digital-resume",
-  "cleanUrls": true,
+  "buildCommand": "flutter build web --release",
   "outputDirectory": "build/web",
   "rewrites": [
     {
       "source": "/(.*)",
       "destination": "/index.html"
-    }
-  ],
-  "headers": [
-    {
-      "source": "/(.*)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=3600, s-maxage=86400, stale-while-revalidate=604800"
-        }
-      ]
     }
   ]
 }
