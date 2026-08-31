@@ -3,6 +3,7 @@
 [![Flutter Version](https://img.shields.io/badge/Flutter-3.29.x-02569B?logo=flutter)](https://flutter.dev)
 [![Architecture](https://img.shields.io/badge/Architecture-Stacked%20MVVM-42A5F5)](https://stacked.filledstacks.com)
 [![Backend](https://img.shields.io/badge/Backend-Supabase%202.17.2-3ECF8E?logo=supabase)](https://supabase.com)
+[![Hosting](https://img.shields.io/badge/Hosting-Vercel-000000?logo=vercel)](https://ushie-digital-resume.vercel.app/#/home-view)
 [![Hosting](https://img.shields.io/badge/Hosting-Vercel-000000?logo=vercel)](https://ushie-digital-resume.vercel.app)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
@@ -63,11 +64,13 @@ Below is the primary visual asset directory preview image provided for the appli
 
 ---
 
-## 🌐 Production Vercel Hosting & Live Endpoints
+## 🌐 Live Web Application & Routes
 
-- **Primary Custom Web Domain**: [`https://ushie-digital-resume.vercel.app`](https://ushie-digital-resume.vercel.app)
-- **Active Vercel Live Deployment**: [`https://project-resume-p54ikq6pi-ushie-code.vercel.app`](https://project-resume-p54ikq6pi-ushie-code.vercel.app)
-- **Live Supabase API Endpoint**: `https://qoioeymizjtlfoqmeaut.supabase.co` (`eu-west-1`)
+- **Live Web App (Home View Direct Route)**: [`https://ushie-digital-resume.vercel.app/#/home-view`](https://ushie-digital-resume.vercel.app/#/home-view)
+- **Live Production Domain**: [`https://ushie-digital-resume.vercel.app`](https://ushie-digital-resume.vercel.app)
+- **Active Vercel App Deployment**: [`https://project-resume-p54ikq6pi-ushie-code.vercel.app`](https://project-resume-p54ikq6pi-ushie-code.vercel.app)
+- **Free GitHub Pages Web App**: `https://YOUR_GITHUB_USERNAME.github.io/Project_Resume/`
+- **Live Supabase Database**: `https://qoioeymizjtlfoqmeaut.supabase.co` (`eu-west-1`)
 
 ---
 
