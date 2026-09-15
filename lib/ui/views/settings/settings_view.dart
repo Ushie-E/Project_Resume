@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project/app/app_config.dart';
 import 'package:project/ui/common/app_colors.dart';
+import 'package:project/ui/common/responsive_layout.dart';
 import 'package:stacked/stacked.dart';
 
 import 'settings_viewmodel.dart';
@@ -24,6 +25,9 @@ class SettingsView extends StackedView<SettingsViewModel> {
     this.darkMode = false,
     this.onToggleDarkMode,
   });
+
+  @override
+  void onViewModelReady(SettingsViewModel viewModel) => viewModel.initialise();
 
   @override
   Widget builder(BuildContext context, SettingsViewModel viewModel, Widget? child) {
@@ -52,8 +56,9 @@ class SettingsView extends StackedView<SettingsViewModel> {
         ),
         centerTitle: false,
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(24.0),
+      body: ResponsiveContainer(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(24.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -290,8 +295,9 @@ class SettingsView extends StackedView<SettingsViewModel> {
           ],
         ),
       ),
-    );
-  }
+    ),
+  );
+}
 
   @override
   SettingsViewModel viewModelBuilder(BuildContext context) => SettingsViewModel();
