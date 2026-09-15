@@ -1,3 +1,4 @@
+import 'package:project/services/preferences_service.dart';
 import 'package:project/services/supabase_service.dart';
 import 'package:project/ui/bottom_sheets/notice/notice_sheet.dart';
 import 'package:project/ui/dialogs/info_alert/info_alert_dialog.dart';
@@ -24,6 +25,7 @@ import 'package:stacked_services/stacked_services.dart';
     LazySingleton(classType: DialogService),
     LazySingleton(classType: NavigationService),
     LazySingleton(classType: SupabaseService),
+    LazySingleton(classType: PreferencesService),
     // @stacked-service
   ],
   bottomsheets: [

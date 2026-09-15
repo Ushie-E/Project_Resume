@@ -86,7 +86,8 @@ class StackedRouter extends _i1.RouterBase {
         orElse: () => const ExploreViewArguments(),
       );
       return _i7.MaterialPageRoute<dynamic>(
-        builder: (context) => _i4.ExploreView(key: args.key),
+        builder: (context) =>
+            _i4.ExploreView(key: args.key, darkMode: args.darkMode),
         settings: data,
       );
     },
@@ -101,7 +102,9 @@ class StackedRouter extends _i1.RouterBase {
             userAvatar: args.userAvatar,
             userName: args.userName,
             userTitle: args.userTitle,
-            planType: args.planType),
+            planType: args.planType,
+            darkMode: args.darkMode,
+            onToggleDarkMode: args.onToggleDarkMode),
         settings: data,
       );
     },
@@ -169,24 +172,29 @@ class StartupViewArguments {
 }
 
 class ExploreViewArguments {
-  const ExploreViewArguments({this.key});
+  const ExploreViewArguments({
+    this.key,
+    this.darkMode = false,
+  });
 
   final _i8.Key? key;
 
+  final bool darkMode;
+
   @override
   String toString() {
-    return '{"key": "$key"}';
+    return '{"key": "$key", "darkMode": "$darkMode"}';
   }
 
   @override
   bool operator ==(covariant ExploreViewArguments other) {
     if (identical(this, other)) return true;
-    return other.key == key;
+    return other.key == key && other.darkMode == darkMode;
   }
 
   @override
   int get hashCode {
-    return key.hashCode;
+    return key.hashCode ^ darkMode.hashCode;
   }
 }
 
@@ -198,6 +206,8 @@ class SettingsViewArguments {
     this.userName = 'Ushie Emmanuel',
     this.userTitle = 'Flutter Mobile Engineer',
     this.planType = 'Personal',
+    this.darkMode = false,
+    this.onToggleDarkMode,
   });
 
   final _i8.Key? key;
@@ -212,9 +222,13 @@ class SettingsViewArguments {
 
   final String planType;
 
+  final bool darkMode;
+
+  final void Function(bool)? onToggleDarkMode;
+
   @override
   String toString() {
-    return '{"key": "$key", "onRestartOnboarding": "$onRestartOnboarding", "userAvatar": "$userAvatar", "userName": "$userName", "userTitle": "$userTitle", "planType": "$planType"}';
+    return '{"key": "$key", "onRestartOnboarding": "$onRestartOnboarding", "userAvatar": "$userAvatar", "userName": "$userName", "userTitle": "$userTitle", "planType": "$planType", "darkMode": "$darkMode", "onToggleDarkMode": "$onToggleDarkMode"}';
   }
 
   @override
@@ -225,7 +239,9 @@ class SettingsViewArguments {
         other.userAvatar == userAvatar &&
         other.userName == userName &&
         other.userTitle == userTitle &&
-        other.planType == planType;
+        other.planType == planType &&
+        other.darkMode == darkMode &&
+        other.onToggleDarkMode == onToggleDarkMode;
   }
 
   @override
@@ -235,7 +251,9 @@ class SettingsViewArguments {
         userAvatar.hashCode ^
         userName.hashCode ^
         userTitle.hashCode ^
-        planType.hashCode;
+        planType.hashCode ^
+        darkMode.hashCode ^
+        onToggleDarkMode.hashCode;
   }
 }
 
@@ -302,6 +320,7 @@ extension NavigatorStateExtension on _i10.NavigationService {
 
   Future<dynamic> navigateToExploreView({
     _i8.Key? key,
+    bool darkMode = false,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -309,7 +328,7 @@ extension NavigatorStateExtension on _i10.NavigationService {
         transition,
   }) async {
     return navigateTo<dynamic>(Routes.exploreView,
-        arguments: ExploreViewArguments(key: key),
+        arguments: ExploreViewArguments(key: key, darkMode: darkMode),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -323,6 +342,8 @@ extension NavigatorStateExtension on _i10.NavigationService {
     String userName = 'Ushie Emmanuel',
     String userTitle = 'Flutter Mobile Engineer',
     String planType = 'Personal',
+    bool darkMode = false,
+    void Function(bool)? onToggleDarkMode,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -336,7 +357,9 @@ extension NavigatorStateExtension on _i10.NavigationService {
             userAvatar: userAvatar,
             userName: userName,
             userTitle: userTitle,
-            planType: planType),
+            planType: planType,
+            darkMode: darkMode,
+            onToggleDarkMode: onToggleDarkMode),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -395,6 +418,7 @@ extension NavigatorStateExtension on _i10.NavigationService {
 
   Future<dynamic> replaceWithExploreView({
     _i8.Key? key,
+    bool darkMode = false,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -402,7 +426,7 @@ extension NavigatorStateExtension on _i10.NavigationService {
         transition,
   }) async {
     return replaceWith<dynamic>(Routes.exploreView,
-        arguments: ExploreViewArguments(key: key),
+        arguments: ExploreViewArguments(key: key, darkMode: darkMode),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -416,6 +440,8 @@ extension NavigatorStateExtension on _i10.NavigationService {
     String userName = 'Ushie Emmanuel',
     String userTitle = 'Flutter Mobile Engineer',
     String planType = 'Personal',
+    bool darkMode = false,
+    void Function(bool)? onToggleDarkMode,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -429,7 +455,9 @@ extension NavigatorStateExtension on _i10.NavigationService {
             userAvatar: userAvatar,
             userName: userName,
             userTitle: userTitle,
-            planType: planType),
+            planType: planType,
+            darkMode: darkMode,
+            onToggleDarkMode: onToggleDarkMode),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,

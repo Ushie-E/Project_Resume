@@ -4,6 +4,7 @@ import 'package:project/app/app.dialogs.dart';
 import 'package:project/app/app.locator.dart';
 import 'package:project/app/app.router.dart';
 import 'package:project/app/app_config.dart';
+import 'package:project/services/preferences_service.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 Future<void> mainCommon(AppConfig config) async {
@@ -11,6 +12,7 @@ Future<void> mainCommon(AppConfig config) async {
   await setupLocator();
   setupDialogUi();
   setupBottomSheetUi();
+  await locator<PreferencesService>().init();
   runApp(const MainApp());
 }
 
