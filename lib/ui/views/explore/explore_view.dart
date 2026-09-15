@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project/ui/common/app_colors.dart';
+import 'package:project/ui/common/responsive_layout.dart';
 import 'package:stacked/stacked.dart';
 
 import 'explore_viewmodel.dart';
@@ -10,6 +11,9 @@ class ExploreView extends StackedView<ExploreViewModel> {
   const ExploreView({super.key, this.darkMode = false});
 
   @override
+  void onViewModelReady(ExploreViewModel viewModel) => viewModel.initialise();
+
+  @override
   Widget builder(BuildContext context, ExploreViewModel viewModel, Widget? child) {
     final filters = ['All', 'Architecture', 'Mobile', 'UI/UX', 'DevOps'];
     final projects = viewModel.filteredExploreProjects;
@@ -18,6 +22,7 @@ class ExploreView extends StackedView<ExploreViewModel> {
     final cardBgColor = darkMode ? const Color(0xFF1E293B) : Colors.white;
     final primaryTextColor = darkMode ? Colors.white : Colors.black;
     final secondaryTextColor = darkMode ? Colors.white70 : Colors.grey[700];
+    final borderColor = darkMode ? Colors.white12 : Colors.black.withValues(alpha: 0.06);
 
     return Scaffold(
       backgroundColor: bgColor,
@@ -36,231 +41,274 @@ class ExploreView extends StackedView<ExploreViewModel> {
         ),
         centerTitle: false,
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(24.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Search Bar
-            TextField(
-              onChanged: viewModel.setSearchQuery,
-              style: TextStyle(color: primaryTextColor, fontFamily: 'Google Sans'),
-              decoration: InputDecoration(
-                hintText: 'Search projects, enterprise solutions, tags...',
-                hintStyle: TextStyle(color: darkMode ? Colors.white54 : Colors.grey),
-                prefixIcon: const Icon(Icons.search, color: kcOnboardingBlue),
-                suffixIcon: viewModel.searchQuery.isNotEmpty
-                    ? IconButton(
-                        icon: Icon(Icons.clear, color: primaryTextColor),
-                        onPressed: () => viewModel.setSearchQuery(''),
-                      )
-                    : null,
-                filled: true,
-                fillColor: cardBgColor,
-                contentPadding: const EdgeInsets.symmetric(vertical: 14),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(16),
-                  borderSide: BorderSide.none,
-                ),
-              ),
-            ),
-            const SizedBox(height: 16),
-            // Filter Chips
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: filters.map((filter) {
-                  final isSelected = viewModel.selectedCategoryFilter == filter;
-                  return Padding(
-                    padding: const EdgeInsets.only(right: 8.0),
-                    child: FilterChip(
-                      selected: isSelected,
-                      label: Text(filter),
-                      labelStyle: TextStyle(
-                        color: isSelected
-                            ? Colors.white
-                            : (darkMode ? Colors.white70 : Colors.black87),
-                        fontWeight: FontWeight.bold,
-                        fontFamily: 'Google Sans',
-                      ),
-                      selectedColor: kcOnboardingBlue,
-                      backgroundColor: cardBgColor,
-                      onSelected: (_) => viewModel.setCategoryFilter(filter),
-                    ),
-                  );
-                }).toList(),
-              ),
-            ),
-            const SizedBox(height: 24),
-            // Project Cards List
-            if (projects.isEmpty)
-              Center(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 40),
-                  child: Text(
-                    'No projects found matching your search.',
-                    style: TextStyle(
-                      color: darkMode ? Colors.white54 : Colors.grey,
-                      fontSize: 16,
-                      fontFamily: 'Google Sans',
-                    ),
+      body: ResponsiveContainer(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(24.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Search Bar
+              TextField(
+                onChanged: viewModel.setSearchQuery,
+                style: TextStyle(color: primaryTextColor, fontFamily: 'Google Sans'),
+                decoration: InputDecoration(
+                  hintText: 'Search projects, enterprise solutions, tags...',
+                  hintStyle: TextStyle(color: darkMode ? Colors.white54 : Colors.grey),
+                  prefixIcon: const Icon(Icons.search, color: kcOnboardingBlue),
+                  suffixIcon: viewModel.searchQuery.isNotEmpty
+                      ? IconButton(
+                          icon: Icon(Icons.clear, color: primaryTextColor),
+                          onPressed: () => viewModel.setSearchQuery(''),
+                        )
+                      : null,
+                  filled: true,
+                  fillColor: cardBgColor,
+                  contentPadding: const EdgeInsets.symmetric(vertical: 14),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(16),
+                    borderSide: BorderSide.none,
                   ),
                 ),
-              )
-            else
-              ListView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: projects.length,
-                itemBuilder: (context, index) {
-                  final p = projects[index];
-                  final bool isBusiness = p['isBusiness'] == true;
-                  return Container(
-                    margin: const EdgeInsets.only(bottom: 20),
-                    decoration: BoxDecoration(
-                      color: cardBgColor,
-                      borderRadius: BorderRadius.circular(20),
-                      boxShadow: [
-                        BoxShadow(
-                          color: darkMode ? Colors.black45 : Colors.black12,
-                          blurRadius: 10,
-                          offset: const Offset(0, 4),
+              ),
+              const SizedBox(height: 16),
+              // Filter Chips
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: filters.map((filter) {
+                    final isSelected = viewModel.selectedCategoryFilter == filter;
+                    return Padding(
+                      padding: const EdgeInsets.only(right: 8.0),
+                      child: FilterChip(
+                        selected: isSelected,
+                        label: Text(filter),
+                        labelStyle: TextStyle(
+                          color: isSelected
+                              ? Colors.white
+                              : (darkMode ? Colors.white70 : Colors.black87),
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'Google Sans',
+                        ),
+                        selectedColor: kcOnboardingBlue,
+                        backgroundColor: cardBgColor,
+                        onSelected: (_) => viewModel.setCategoryFilter(filter),
+                      ),
+                    );
+                  }).toList(),
+                ),
+              ),
+              const SizedBox(height: 24),
+              // Project Cards List
+              if (projects.isEmpty)
+                Center(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 48),
+                    child: Column(
+                      children: [
+                        Icon(
+                          Icons.search_off_rounded,
+                          size: 56,
+                          color: darkMode ? Colors.white38 : Colors.grey[400],
+                        ),
+                        const SizedBox(height: 12),
+                        Text(
+                          viewModel.searchQuery.isNotEmpty
+                              ? 'No projects matching "${viewModel.searchQuery}"'
+                              : 'No projects found in this category.',
+                          style: TextStyle(
+                            color: darkMode ? Colors.white70 : Colors.grey[700],
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                            fontFamily: 'Google Sans',
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        TextButton(
+                          onPressed: () {
+                            viewModel.setSearchQuery('');
+                            viewModel.setCategoryFilter('All');
+                          },
+                          child: const Text(
+                            'Reset Filters & Search',
+                            style: TextStyle(
+                              color: kcOnboardingBlue,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                         ),
                       ],
                     ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        ClipRRect(
-                          borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
-                          child: Image.asset(
-                            p['image'] as String,
-                            height: 160,
-                            width: double.infinity,
-                            fit: BoxFit.cover,
-                            errorBuilder: (context, error, stackTrace) {
-                              return Container(
-                                height: 160,
-                                color: kcOnboardingBlue,
-                                child: const Center(
-                                  child: Icon(Icons.palette_outlined, size: 60, color: Colors.white),
-                                ),
-                              );
-                            },
+                  ),
+                )
+              else
+                ListView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: projects.length,
+                  itemBuilder: (context, index) {
+                    final p = projects[index];
+                    final bool isBusiness = p['isBusiness'] == true;
+                    final bool isLiked = p['isLiked'] == true;
+
+                    return Container(
+                      margin: const EdgeInsets.only(bottom: 20),
+                      decoration: BoxDecoration(
+                        color: cardBgColor,
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(color: borderColor),
+                        boxShadow: [
+                          BoxShadow(
+                            color: darkMode ? Colors.black45 : Colors.black12,
+                            blurRadius: 10,
+                            offset: const Offset(0, 4),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(20.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Container(
-                                        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                                        decoration: BoxDecoration(
-                                          color: isBusiness ? kcPurpleBackground : kcTealBackground,
-                                          borderRadius: BorderRadius.circular(8),
-                                        ),
-                                        child: Text(
-                                          p['category'] as String,
-                                          style: TextStyle(
-                                            color: isBusiness ? kcPurpleIcon : kcTealIcon,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 12,
-                                          ),
-                                        ),
-                                      ),
-                                      if (isBusiness) ...[
-                                        const SizedBox(width: 8),
+                        ],
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          ClipRRect(
+                            borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
+                            child: Image.asset(
+                              p['image'] as String,
+                              height: 160,
+                              width: double.infinity,
+                              fit: BoxFit.cover,
+                              errorBuilder: (context, error, stackTrace) {
+                                return Container(
+                                  height: 160,
+                                  color: kcOnboardingBlue,
+                                  child: const Center(
+                                    child: Icon(Icons.palette_outlined, size: 60, color: Colors.white),
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(20.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Row(
+                                      children: [
                                         Container(
-                                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                                          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                                           decoration: BoxDecoration(
-                                            color: Colors.amber.shade100,
+                                            color: isBusiness ? kcPurpleBackground : kcTealBackground,
                                             borderRadius: BorderRadius.circular(8),
                                           ),
-                                          child: const Row(
-                                            children: [
-                                              Icon(Icons.business, size: 12, color: Colors.amber),
-                                              SizedBox(width: 4),
-                                              Text(
-                                                'Enterprise',
-                                                style: TextStyle(
-                                                  fontSize: 11,
-                                                  fontWeight: FontWeight.bold,
-                                                  color: Colors.brown,
-                                                ),
-                                              ),
-                                            ],
+                                          child: Text(
+                                            p['category'] as String,
+                                            style: TextStyle(
+                                              color: isBusiness ? kcPurpleIcon : kcTealIcon,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 12,
+                                            ),
                                           ),
                                         ),
+                                        if (isBusiness) ...[
+                                          const SizedBox(width: 8),
+                                          Container(
+                                            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                                            decoration: BoxDecoration(
+                                              color: Colors.amber.shade100,
+                                              borderRadius: BorderRadius.circular(8),
+                                            ),
+                                            child: const Row(
+                                              children: [
+                                                Icon(Icons.business, size: 12, color: Colors.amber),
+                                                SizedBox(width: 4),
+                                                Text(
+                                                  'Enterprise',
+                                                  style: TextStyle(
+                                                    fontSize: 11,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Colors.brown,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
                                       ],
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      const Icon(Icons.favorite, size: 16, color: Colors.redAccent),
-                                      const SizedBox(width: 4),
-                                      Text(
-                                        '${p['likes']}',
-                                        style: TextStyle(
-                                          color: darkMode ? Colors.white70 : Colors.grey,
-                                          fontWeight: FontWeight.bold,
+                                    ),
+                                    InkWell(
+                                      borderRadius: BorderRadius.circular(12),
+                                      onTap: () => viewModel.toggleProjectLike(p['title'] as String),
+                                      child: Padding(
+                                        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
+                                        child: Row(
+                                          children: [
+                                            Icon(
+                                              isLiked ? Icons.favorite : Icons.favorite_border,
+                                              size: 18,
+                                              color: isLiked ? Colors.redAccent : Colors.grey,
+                                            ),
+                                            const SizedBox(width: 4),
+                                            Text(
+                                              '${p['likes']}',
+                                              style: TextStyle(
+                                                color: darkMode ? Colors.white70 : Colors.grey[700],
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ],
                                         ),
                                       ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(height: 12),
-                              Text(
-                                p['title'] as String,
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                  color: primaryTextColor,
-                                  fontFamily: 'Google Sans',
-                                ),
-                              ),
-                              const SizedBox(height: 6),
-                              Text(
-                                p['description'] as String,
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  color: secondaryTextColor,
-                                  height: 1.3,
-                                  fontFamily: 'Google Sans',
-                                ),
-                              ),
-                              const SizedBox(height: 12),
-                              Wrap(
-                                spacing: 6,
-                                children: (p['tags'] as List<String>).map((tag) {
-                                  return Chip(
-                                    label: Text(
-                                      '#$tag',
-                                      style: TextStyle(
-                                        fontSize: 11,
-                                        color: darkMode ? Colors.white70 : Colors.black87,
-                                      ),
                                     ),
-                                    backgroundColor: bgColor,
-                                    visualDensity: VisualDensity.compact,
-                                  );
-                                }).toList(),
-                              ),
-                            ],
+                                  ],
+                                ),
+                                const SizedBox(height: 12),
+                                Text(
+                                  p['title'] as String,
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                    color: primaryTextColor,
+                                    fontFamily: 'Google Sans',
+                                  ),
+                                ),
+                                const SizedBox(height: 6),
+                                Text(
+                                  p['description'] as String,
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    color: secondaryTextColor,
+                                    height: 1.3,
+                                    fontFamily: 'Google Sans',
+                                  ),
+                                ),
+                                const SizedBox(height: 12),
+                                Wrap(
+                                  spacing: 6,
+                                  children: (p['tags'] as List<String>).map((tag) {
+                                    return Chip(
+                                      label: Text(
+                                        '#$tag',
+                                        style: TextStyle(
+                                          fontSize: 11,
+                                          color: darkMode ? Colors.white70 : Colors.black87,
+                                        ),
+                                      ),
+                                      backgroundColor: bgColor,
+                                      visualDensity: VisualDensity.compact,
+                                    );
+                                  }).toList(),
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                  );
-                },
-              ),
-          ],
+                        ],
+                      ),
+                    );
+                  },
+                ),
+            ],
+          ),
         ),
       ),
     );
