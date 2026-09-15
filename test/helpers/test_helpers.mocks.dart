@@ -9,6 +9,7 @@ import 'dart:ui' as _i6;
 import 'package:flutter/material.dart' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i3;
+import 'package:project/services/preferences_service.dart' as _i8;
 import 'package:project/services/supabase_service.dart' as _i7;
 import 'package:stacked_services/stacked_services.dart' as _i2;
 
@@ -776,4 +777,317 @@ class MockSupabaseService extends _i1.Mock implements _i7.SupabaseService {
         returnValueForMissingStub:
             _i5.Future<List<Map<String, dynamic>>?>.value(),
       ) as _i5.Future<List<Map<String, dynamic>>?>);
+}
+
+/// A class which mocks [PreferencesService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockPreferencesService extends _i1.Mock
+    implements _i8.PreferencesService {
+  @override
+  bool get isOnboardingComplete => (super.noSuchMethod(
+        Invocation.getter(#isOnboardingComplete),
+        returnValue: false,
+        returnValueForMissingStub: false,
+      ) as bool);
+
+  @override
+  String get selectedPlan => (super.noSuchMethod(
+        Invocation.getter(#selectedPlan),
+        returnValue: _i3.dummyValue<String>(
+          this,
+          Invocation.getter(#selectedPlan),
+        ),
+        returnValueForMissingStub: _i3.dummyValue<String>(
+          this,
+          Invocation.getter(#selectedPlan),
+        ),
+      ) as String);
+
+  @override
+  String get selectedAvatar => (super.noSuchMethod(
+        Invocation.getter(#selectedAvatar),
+        returnValue: _i3.dummyValue<String>(
+          this,
+          Invocation.getter(#selectedAvatar),
+        ),
+        returnValueForMissingStub: _i3.dummyValue<String>(
+          this,
+          Invocation.getter(#selectedAvatar),
+        ),
+      ) as String);
+
+  @override
+  String get fullName => (super.noSuchMethod(
+        Invocation.getter(#fullName),
+        returnValue: _i3.dummyValue<String>(
+          this,
+          Invocation.getter(#fullName),
+        ),
+        returnValueForMissingStub: _i3.dummyValue<String>(
+          this,
+          Invocation.getter(#fullName),
+        ),
+      ) as String);
+
+  @override
+  String get jobTitle => (super.noSuchMethod(
+        Invocation.getter(#jobTitle),
+        returnValue: _i3.dummyValue<String>(
+          this,
+          Invocation.getter(#jobTitle),
+        ),
+        returnValueForMissingStub: _i3.dummyValue<String>(
+          this,
+          Invocation.getter(#jobTitle),
+        ),
+      ) as String);
+
+  @override
+  String get bio => (super.noSuchMethod(
+        Invocation.getter(#bio),
+        returnValue: _i3.dummyValue<String>(
+          this,
+          Invocation.getter(#bio),
+        ),
+        returnValueForMissingStub: _i3.dummyValue<String>(
+          this,
+          Invocation.getter(#bio),
+        ),
+      ) as String);
+
+  @override
+  String get location => (super.noSuchMethod(
+        Invocation.getter(#location),
+        returnValue: _i3.dummyValue<String>(
+          this,
+          Invocation.getter(#location),
+        ),
+        returnValueForMissingStub: _i3.dummyValue<String>(
+          this,
+          Invocation.getter(#location),
+        ),
+      ) as String);
+
+  @override
+  List<String> get skills => (super.noSuchMethod(
+        Invocation.getter(#skills),
+        returnValue: <String>[],
+        returnValueForMissingStub: <String>[],
+      ) as List<String>);
+
+  @override
+  List<String> get interests => (super.noSuchMethod(
+        Invocation.getter(#interests),
+        returnValue: <String>[],
+        returnValueForMissingStub: <String>[],
+      ) as List<String>);
+
+  @override
+  bool get darkMode => (super.noSuchMethod(
+        Invocation.getter(#darkMode),
+        returnValue: false,
+        returnValueForMissingStub: false,
+      ) as bool);
+
+  @override
+  bool get notificationsEnabled => (super.noSuchMethod(
+        Invocation.getter(#notificationsEnabled),
+        returnValue: false,
+        returnValueForMissingStub: false,
+      ) as bool);
+
+  @override
+  bool get analyticsEnabled => (super.noSuchMethod(
+        Invocation.getter(#analyticsEnabled),
+        returnValue: false,
+        returnValueForMissingStub: false,
+      ) as bool);
+
+  @override
+  List<String> get likedProjects => (super.noSuchMethod(
+        Invocation.getter(#likedProjects),
+        returnValue: <String>[],
+        returnValueForMissingStub: <String>[],
+      ) as List<String>);
+
+  @override
+  _i5.Future<void> init() => (super.noSuchMethod(
+        Invocation.method(
+          #init,
+          [],
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
+
+  @override
+  _i5.Future<void> setOnboardingComplete(bool? value) => (super.noSuchMethod(
+        Invocation.method(
+          #setOnboardingComplete,
+          [value],
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
+
+  @override
+  _i5.Future<void> setSelectedPlan(String? value) => (super.noSuchMethod(
+        Invocation.method(
+          #setSelectedPlan,
+          [value],
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
+
+  @override
+  _i5.Future<void> setSelectedAvatar(String? value) => (super.noSuchMethod(
+        Invocation.method(
+          #setSelectedAvatar,
+          [value],
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
+
+  @override
+  _i5.Future<void> setFullName(String? value) => (super.noSuchMethod(
+        Invocation.method(
+          #setFullName,
+          [value],
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
+
+  @override
+  _i5.Future<void> setJobTitle(String? value) => (super.noSuchMethod(
+        Invocation.method(
+          #setJobTitle,
+          [value],
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
+
+  @override
+  _i5.Future<void> setBio(String? value) => (super.noSuchMethod(
+        Invocation.method(
+          #setBio,
+          [value],
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
+
+  @override
+  _i5.Future<void> setLocation(String? value) => (super.noSuchMethod(
+        Invocation.method(
+          #setLocation,
+          [value],
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
+
+  @override
+  _i5.Future<void> setSkills(List<String>? value) => (super.noSuchMethod(
+        Invocation.method(
+          #setSkills,
+          [value],
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
+
+  @override
+  _i5.Future<void> setInterests(List<String>? value) => (super.noSuchMethod(
+        Invocation.method(
+          #setInterests,
+          [value],
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
+
+  @override
+  _i5.Future<void> setDarkMode(bool? value) => (super.noSuchMethod(
+        Invocation.method(
+          #setDarkMode,
+          [value],
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
+
+  @override
+  _i5.Future<void> setNotificationsEnabled(bool? value) => (super.noSuchMethod(
+        Invocation.method(
+          #setNotificationsEnabled,
+          [value],
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
+
+  @override
+  _i5.Future<void> setAnalyticsEnabled(bool? value) => (super.noSuchMethod(
+        Invocation.method(
+          #setAnalyticsEnabled,
+          [value],
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
+
+  @override
+  _i5.Future<void> setLikedProjects(List<String>? value) => (super.noSuchMethod(
+        Invocation.method(
+          #setLikedProjects,
+          [value],
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
+
+  @override
+  _i5.Future<void> saveProfile({
+    required String? plan,
+    required String? avatar,
+    required String? name,
+    required String? title,
+    required String? bio,
+    required String? location,
+    required List<String>? skills,
+    required List<String>? interests,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #saveProfile,
+          [],
+          {
+            #plan: plan,
+            #avatar: avatar,
+            #name: name,
+            #title: title,
+            #bio: bio,
+            #location: location,
+            #skills: skills,
+            #interests: interests,
+          },
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
+
+  @override
+  _i5.Future<void> clear() => (super.noSuchMethod(
+        Invocation.method(
+          #clear,
+          [],
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
 }

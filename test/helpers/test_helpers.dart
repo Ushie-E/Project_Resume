@@ -1,6 +1,7 @@
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:project/app/app.locator.dart';
+import 'package:project/services/preferences_service.dart';
 import 'package:project/services/supabase_service.dart';
 import 'package:stacked_services/stacked_services.dart';
 // @stacked-import
@@ -14,6 +15,7 @@ import 'test_helpers.mocks.dart';
     MockSpec<BottomSheetService>(onMissingStub: OnMissingStub.returnDefault),
     MockSpec<DialogService>(onMissingStub: OnMissingStub.returnDefault),
     MockSpec<SupabaseService>(onMissingStub: OnMissingStub.returnDefault),
+    MockSpec<PreferencesService>(onMissingStub: OnMissingStub.returnDefault),
     // @stacked-mock-spec
   ],
 )
@@ -22,6 +24,7 @@ void registerServices() {
   getAndRegisterBottomSheetService();
   getAndRegisterDialogService();
   getAndRegisterSupabaseService();
+  getAndRegisterPreferencesService();
   // @stacked-mock-register
 }
 
@@ -84,6 +87,27 @@ MockSupabaseService getAndRegisterSupabaseService() {
   final service = MockSupabaseService();
   when(service.initSupabase()).thenAnswer((_) async {});
   locator.registerSingleton<SupabaseService>(service);
+  return service;
+}
+
+MockPreferencesService getAndRegisterPreferencesService() {
+  _removeRegistrationIfExists<PreferencesService>();
+  final service = MockPreferencesService();
+  when(service.init()).thenAnswer((_) async {});
+  when(service.isOnboardingComplete).thenReturn(false);
+  when(service.selectedPlan).thenReturn('Personal');
+  when(service.selectedAvatar).thenReturn('images/empty_profile.png');
+  when(service.fullName).thenReturn('Ushie Emmanuel');
+  when(service.jobTitle).thenReturn('Flutter Mobile Engineer');
+  when(service.bio).thenReturn('Crafting high-performance cross-platform applications with Flutter & Stacked.');
+  when(service.location).thenReturn('Lagos, Nigeria');
+  when(service.skills).thenReturn(['Flutter', 'Dart', 'Stacked Architecture']);
+  when(service.interests).thenReturn([]);
+  when(service.darkMode).thenReturn(false);
+  when(service.notificationsEnabled).thenReturn(true);
+  when(service.analyticsEnabled).thenReturn(true);
+  when(service.likedProjects).thenReturn([]);
+  locator.registerSingleton<PreferencesService>(service);
   return service;
 }
 
