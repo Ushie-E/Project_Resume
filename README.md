@@ -16,65 +16,113 @@ It supports a full **Dual-Persona System** (`Personal Developer` vs. `Business E
 
 Below are the pixel-perfect visual snapshots captured directly by the automated golden test suite:
 
-### Executive Dashboard Preview
-<p align="center">
-  <img src="images/view_dashboard.png" width="420" alt="Executive Resume Dashboard" style="border-radius: 18px; box-shadow: 0 8px 24px rgba(0,0,0,0.25);" />
-</p>
+### 1. Dual-Persona Executive Dashboard (Personal vs. Business)
+
+The platform provides two distinct, purpose-built profile experiences: **Personal Developer** (individual engineer & architect portfolio) and **Business Studio** (enterprise digital agency & consultancy showcase). Both personas feature native Light and Dark themes:
+
+<table width="100%">
+  <tr>
+    <th width="50%" align="center">👤 Personal Developer Persona</th>
+    <th width="50%" align="center">🏢 Business Studio / Enterprise Persona</th>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="images/view_dashboard.png" width="380" alt="Personal Resume Dashboard Light" style="border-radius: 14px; box-shadow: 0 4px 16px rgba(0,0,0,0.15);" /><br/><br/>
+      <b>Personal Dashboard — Light Mode</b><br/>
+      <sub>Individual bio, direct developer contact actions (GitHub, LinkedIn, Email), career achievements timeline, technical skills matrix, and printable A4 CV export.</sub>
+    </td>
+    <td align="center">
+      <img src="images/view_business_dashboard.png" width="380" alt="Business Resume Dashboard Light" style="border-radius: 14px; box-shadow: 0 4px 16px rgba(0,0,0,0.15);" /><br/><br/>
+      <b>Business Dashboard — Light Mode</b><br/>
+      <sub>Enterprise studio branding, corporate KPI counters (1.2M+ users, 99.99% SLA), capability statement download, ISO-27001 / AWS accreditations, and B2B engagement channels.</sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="images/view_dashboard_dark.png" width="380" alt="Personal Resume Dashboard Dark" style="border-radius: 14px; box-shadow: 0 4px 16px rgba(0,0,0,0.25);" /><br/><br/>
+      <b>Personal Dashboard — Dark Mode</b><br/>
+      <sub>Midnight navy canvas (<code>#0F172A</code>), high-contrast experience cards, and luminescent status indicators optimized for OLED displays.</sub>
+    </td>
+    <td align="center">
+      <img src="images/view_business_dashboard_dark.png" width="380" alt="Business Resume Dashboard Dark" style="border-radius: 14px; box-shadow: 0 4px 16px rgba(0,0,0,0.25);" /><br/><br/>
+      <b>Business Dashboard — Dark Mode</b><br/>
+      <sub>Executive dark palette highlighting enterprise telemetry milestones, corporate certifications, and high-assurance architecture highlights.</sub>
+    </td>
+  </tr>
+</table>
 
 ---
 
-### Core Application Views & Workflows
+### 2. Settings, Preferences & Reactive Theming
+
+The Settings view provides instant 1-click persona switching, real-time dark mode toggling, push notification controls, data JSON backup, and multi-flavor diagnostics:
+
+<table width="100%">
+  <tr>
+    <td align="center" width="33%">
+      <img src="images/view_settings.png" width="280" alt="Settings View Light Mode" style="border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.12);" /><br/><br/>
+      <b>Settings — Light Mode</b><br/>
+      <sub>Personal persona active, notification & telemetry toggles, and data export.</sub>
+    </td>
+    <td align="center" width="33%">
+      <img src="images/view_settings_dark.png" width="280" alt="Settings View Dark Mode" style="border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.22);" /><br/><br/>
+      <b>Settings — Dark Mode</b><br/>
+      <sub>Deep slate surface (<code>#1E293B</code>) elevation with instant dynamic re-theming.</sub>
+    </td>
+    <td align="center" width="33%">
+      <img src="images/view_settings_business.png" width="280" alt="Settings View Business Active" style="border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.12);" /><br/><br/>
+      <b>Settings — Business Active</b><br/>
+      <sub>1-click switch showing active Enterprise Studio plan and corporate profile state.</sub>
+    </td>
+  </tr>
+</table>
+
+---
+
+### 3. Onboarding & Interactive Project Catalog
 
 <table width="100%">
   <tr>
     <td align="center" width="50%">
       <img src="images/view_step1.png" width="380" alt="Onboarding Step 1 - Plan Selection" style="border-radius: 14px;" /><br/><br/>
-      <b>View 1: Onboarding Plan Selection (<code>OnboardingView</code>)</b><br/>
+      <b>Onboarding Step 1: Plan Selection</b><br/>
       <sub>Interactive dual-track choice between Personal Developer and Business Studio plans with 3D avatar carousel and 1-tap login sheet.</sub>
     </td>
     <td align="center" width="50%">
       <img src="images/view_step4.png" width="380" alt="Onboarding Step 4 - Interests & Markets" style="border-radius: 14px;" /><br/><br/>
-      <b>View 2: Target Markets & Interests (<code>OnboardingView</code>)</b><br/>
-      <sub>Specialized interest tags for developers (Mobile, Cloud, AI) and enterprise target sectors for consultancies.</sub>
+      <b>Onboarding Step 4: Markets & Focus</b><br/>
+      <sub>Specialized interest tags for developers (Mobile, Cloud, AI) and enterprise target verticals for digital consultancies.</sub>
     </td>
   </tr>
   <tr>
     <td align="center" width="50%">
       <img src="images/view_explore.png" width="380" alt="Explore View - Project Catalog" style="border-radius: 14px;" /><br/><br/>
-      <b>View 3: Project Showcase (<code>ExploreView</code>)</b><br/>
-      <sub>Categorized portfolio items, category chips, live interactive heart counters, and architecture detail modals.</sub>
-    </td>
-    <td align="center" width="50%">
-      <img src="images/view_dashboard.png" width="380" alt="Home Dashboard Light" style="border-radius: 14px;" /><br/><br/>
-      <b>View 4: Executive Resume Dashboard - Light Mode (<code>HomeView</code>)</b><br/>
-      <sub>Dual-persona header, Quick Contact action buttons, Experience timeline, Certifications, and A4/Markdown export.</sub>
-    </td>
-  </tr>
-  <tr>
-    <td align="center" width="50%">
-      <img src="images/view_settings.png" width="380" alt="Settings View Light Mode" style="border-radius: 14px;" /><br/><br/>
-      <b>View 5: Settings & Preferences - Light Mode (<code>SettingsView</code>)</b><br/>
-      <sub>Active persona switcher (Personal vs. Business), notification controls, data JSON exporter, and build flavor diagnostics.</sub>
-    </td>
-    <td align="center" width="50%">
-      <img src="images/view_settings_dark.png" width="380" alt="Settings View Dark Mode" style="border-radius: 14px;" /><br/><br/>
-      <b>View 6: Settings & Preferences - Dark Mode (<code>SettingsView</code>)</b><br/>
-      <sub>Full dark theme with high-contrast slate surfaces (<code>#1E293B</code>), active toggles, and instant persistence.</sub>
-    </td>
-  </tr>
-  <tr>
-    <td align="center" width="50%">
-      <img src="images/view_dashboard_dark.png" width="380" alt="Home Dashboard Dark Mode" style="border-radius: 14px;" /><br/><br/>
-      <b>View 7: Executive Dashboard - Dark Mode (<code>HomeView</code>)</b><br/>
-      <sub>Midnight theme rendering with contrast timeline cards, metric pills, and dark navigation bar.</sub>
+      <b>Interactive Project Showcase (<code>ExploreView</code>)</b><br/>
+      <sub>Categorized portfolio items, horizontal category chips, live interactive heart counters, and architecture inspection bottom sheets.</sub>
     </td>
     <td align="center" width="50%">
       <img src="images/app_preview.png" width="380" alt="App Preview Asset" style="border-radius: 14px;" /><br/><br/>
-      <b>View 8: Primary Hero Portfolio Snapshot</b><br/>
-      <sub>Full-fidelity visual baseline verified through golden rendering test suite.</sub>
+      <b>Primary Architecture Showcase</b><br/>
+      <sub>Production baseline verified through comprehensive automated golden rendering pipeline.</sub>
     </td>
   </tr>
 </table>
+
+---
+
+### 4. Dual-Persona Comparison Matrix
+
+| Feature / Dimension | 👤 Personal Developer Persona | 🏢 Business Studio Persona |
+| :--- | :--- | :--- |
+| **Target Audience** | Hiring managers, engineering leads, tech recruiters | Enterprise clients, procurement officers, CTOs |
+| **Profile Focus** | Individual software engineer / mobile architect | Digital agency, dev studio, or enterprise consultancy |
+| **Hero Title** | `Lead Flutter & Mobile Architect` | `Enterprise Mobile & AI Solutions` |
+| **Headline Metrics** | Years of Experience, Open Source Repos, Apps Shipped | Client SLA Uptime (99.99%), Active Users (1.2M+), ISO Standards |
+| **Primary Actions** | View Experience, Download CV, GitHub, LinkedIn | Download Capability Statement, Request Proposal, B2B Inquiries |
+| **Timeline Content** | Career positions, employment history, engineering impact | Flagship client deliverables, enterprise overhauls, case studies |
+| **Credentials** | Professional Certifications (Google Cloud, Meta) | Corporate Accreditations (ISO/IEC 27001, AWS Partner) |
+| **Active Avatar** | Space Cadet / Developer 3D Avatar (`spacea.png`) | Enterprise Studio Emblem (`spacec.png`) |
+| **Contact Channels** | Direct email, personal phone, GitHub, LinkedIn | Corporate business email, studio phone line, corporate LinkedIn |
 
 ---
 
@@ -218,12 +266,18 @@ flutter analyze
 flutter test
 ```
 
-### Verified Test Suite
+### Verified Test Suite (10 Golden Snapshots + 12 Unit Tests)
 - `OnboardingView - Step 1 Plan Selection` (Golden) — **PASSED**
 - `OnboardingView - Step 4 Interest Selection` (Golden) — **PASSED**
 - `ExploreView - Project Showcase` (Golden) — **PASSED**
-- `HomeView - Executive Resume Dashboard` (Golden) — **PASSED**
-- `ExploreViewModelTest` (Unit Tests) — **PASSED**
-- `HomeViewModelTest` (Unit Tests) — **PASSED**
-- `NoticeSheetModelTest` (Unit Tests) — **PASSED**
-- `InfoAlertDialogModelTest` (Unit Tests) — **PASSED**
+- `HomeView - Personal Developer Dashboard (Light Mode)` (Golden) — **PASSED**
+- `HomeView - Personal Developer Dashboard (Dark Mode)` (Golden) — **PASSED**
+- `HomeView - Business Enterprise Dashboard (Light Mode)` (Golden) — **PASSED**
+- `HomeView - Business Enterprise Dashboard (Dark Mode)` (Golden) — **PASSED**
+- `SettingsView - Light Mode Preferences` (Golden) — **PASSED**
+- `SettingsView - Dark Mode Preferences` (Golden) — **PASSED**
+- `SettingsView - Business Persona Active` (Golden) — **PASSED**
+- `ExploreViewModelTest` (5 Unit Tests) — **PASSED**
+- `HomeViewModelTest` (4 Unit Tests) — **PASSED**
+- `NoticeSheetModelTest` (2 Unit Tests) — **PASSED**
+- `InfoAlertDialogModelTest` (1 Unit Test) — **PASSED**

@@ -359,4 +359,200 @@ void main() {
 
     await screenMatchesGolden(tester, 'settings_view_dark');
   }, skip: isCI);
+
+  testGoldens('HomeView - Business Enterprise Dashboard', (tester) async {
+    final prefs = locator<PreferencesService>() as MockPreferencesService;
+    when(prefs.isOnboardingComplete).thenReturn(true);
+    when(prefs.selectedPlan).thenReturn('Business');
+    when(prefs.selectedAvatar).thenReturn('images/spacec.png');
+    when(prefs.fullName).thenReturn('Ushie Tech Labs & Studio');
+    when(prefs.jobTitle).thenReturn('Enterprise Mobile & AI Solutions');
+    when(prefs.bio).thenReturn(
+        'Global digital consultancy engineering high-assurance mobile platforms, bespoke design systems, and cloud infrastructure.');
+    when(prefs.location).thenReturn('Lagos, Nigeria & London, UK');
+    when(prefs.contactEmail).thenReturn('contact@ushietechlabs.io');
+    when(prefs.contactPhone).thenReturn('+234 800 USHIE LABS');
+    when(prefs.githubUrl).thenReturn('https://github.com/Ushie-E');
+    when(prefs.linkedinUrl)
+        .thenReturn('https://linkedin.com/company/ushie-tech-labs');
+    when(prefs.websiteUrl)
+        .thenReturn('https://ushie-digital-resume.vercel.app');
+    when(prefs.skills).thenReturn([
+      'Custom Enterprise Software',
+      'Cloud Architecture & DevOps',
+      'UI/UX Strategy & Design Systems',
+      'FinTech & High Assurance',
+      'Microservices & APIs',
+    ]);
+    when(prefs.experiences).thenReturn([
+      const ExperienceItem(
+        company: 'Finovate Global Banking',
+        role: 'Enterprise Mobile Overhaul',
+        period: '2023 - 2024',
+        description:
+            'Delivered next-generation banking Flutter suite with biometric auth, sub-50ms render latency, and ISO-27001 compliance.',
+        highlights: [
+          'Engineered micro-frontend Flutter module integrating with legacy mainframe',
+          'Achieved 99.99% crash-free rate across 1.2M active accounts',
+        ],
+      ),
+      const ExperienceItem(
+        company: 'AeroLogistics International',
+        role: 'Fleet Tracking & Telemetry',
+        period: '2022 - 2023',
+        description:
+            'Built real-time telemetry dashboard and driver suite handling 10M+ daily events.',
+        highlights: [
+          'Implemented offline-first SQLite sync engine for transit zones',
+        ],
+      ),
+    ]);
+    when(prefs.certifications).thenReturn([
+      const CertificationItem(
+        title: 'ISO/IEC 27001 Information Security Management',
+        issuer: 'BSI Standards Authority',
+        year: '2023',
+        credentialUrl: 'https://bsigroup.com',
+      ),
+      const CertificationItem(
+        title: 'AWS Advanced Tier Services Partner',
+        issuer: 'Amazon Web Services',
+        year: '2022',
+        credentialUrl: 'https://aws.amazon.com',
+      ),
+    ]);
+    when(prefs.hobbies).thenReturn([
+      'Enterprise Mobile Apps',
+      'AI & ML Integration',
+      'Cloud Migration & Infra',
+    ]);
+    when(prefs.darkMode).thenReturn(false);
+
+    await tester.binding.setSurfaceSize(const Size(393, 852));
+    tester.view.devicePixelRatio = 1.0;
+
+    await tester.pumpWidget(
+      MediaQuery(
+        data: const MediaQueryData(size: Size(393, 852), devicePixelRatio: 1.0),
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(fontFamily: 'Google Sans'),
+          home: const HomeView(),
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    await screenMatchesGolden(tester, 'home_view_business_dashboard');
+  }, skip: isCI);
+
+  testGoldens('HomeView - Business Enterprise Dashboard (Dark Mode)', (tester) async {
+    final prefs = locator<PreferencesService>() as MockPreferencesService;
+    when(prefs.isOnboardingComplete).thenReturn(true);
+    when(prefs.selectedPlan).thenReturn('Business');
+    when(prefs.selectedAvatar).thenReturn('images/spacec.png');
+    when(prefs.fullName).thenReturn('Ushie Tech Labs & Studio');
+    when(prefs.jobTitle).thenReturn('Enterprise Mobile & AI Solutions');
+    when(prefs.bio).thenReturn(
+        'Global digital consultancy engineering high-assurance mobile platforms, bespoke design systems, and cloud infrastructure.');
+    when(prefs.location).thenReturn('Lagos, Nigeria & London, UK');
+    when(prefs.contactEmail).thenReturn('contact@ushietechlabs.io');
+    when(prefs.contactPhone).thenReturn('+234 800 USHIE LABS');
+    when(prefs.githubUrl).thenReturn('https://github.com/Ushie-E');
+    when(prefs.linkedinUrl)
+        .thenReturn('https://linkedin.com/company/ushie-tech-labs');
+    when(prefs.websiteUrl)
+        .thenReturn('https://ushie-digital-resume.vercel.app');
+    when(prefs.skills).thenReturn([
+      'Custom Enterprise Software',
+      'Cloud Architecture & DevOps',
+      'UI/UX Strategy & Design Systems',
+      'FinTech & High Assurance',
+      'Microservices & APIs',
+    ]);
+    when(prefs.experiences).thenReturn([
+      const ExperienceItem(
+        company: 'Finovate Global Banking',
+        role: 'Enterprise Mobile Overhaul',
+        period: '2023 - 2024',
+        description:
+            'Delivered next-generation banking Flutter suite with biometric auth, sub-50ms render latency, and ISO-27001 compliance.',
+        highlights: [
+          'Engineered micro-frontend Flutter module integrating with legacy mainframe',
+          'Achieved 99.99% crash-free rate across 1.2M active accounts',
+        ],
+      ),
+    ]);
+    when(prefs.certifications).thenReturn([
+      const CertificationItem(
+        title: 'ISO/IEC 27001 Information Security Management',
+        issuer: 'BSI Standards Authority',
+        year: '2023',
+        credentialUrl: 'https://bsigroup.com',
+      ),
+    ]);
+    when(prefs.hobbies).thenReturn([
+      'Enterprise Mobile Apps',
+      'AI & ML Integration',
+      'Cloud Migration & Infra',
+    ]);
+    when(prefs.darkMode).thenReturn(true);
+
+    await tester.binding.setSurfaceSize(const Size(393, 852));
+    tester.view.devicePixelRatio = 1.0;
+
+    await tester.pumpWidget(
+      MediaQuery(
+        data: const MediaQueryData(size: Size(393, 852), devicePixelRatio: 1.0),
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            fontFamily: 'Google Sans',
+            brightness: Brightness.dark,
+          ),
+          home: const HomeView(),
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    await screenMatchesGolden(tester, 'home_view_business_dashboard_dark');
+  }, skip: isCI);
+
+  testGoldens('SettingsView - Business Persona Active', (tester) async {
+    final prefs = locator<PreferencesService>() as MockPreferencesService;
+    when(prefs.selectedPlan).thenReturn('Business');
+    when(prefs.darkMode).thenReturn(false);
+    when(prefs.notificationsEnabled).thenReturn(true);
+    when(prefs.analyticsEnabled).thenReturn(true);
+    when(prefs.fullName).thenReturn('Ushie Tech Labs & Studio');
+    when(prefs.jobTitle).thenReturn('Enterprise Mobile & AI Solutions');
+    when(prefs.selectedAvatar).thenReturn('images/spacec.png');
+
+    await tester.binding.setSurfaceSize(const Size(393, 852));
+    tester.view.devicePixelRatio = 1.0;
+
+    await tester.pumpWidget(
+      MediaQuery(
+        data: const MediaQueryData(size: Size(393, 852), devicePixelRatio: 1.0),
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            fontFamily: 'Google Sans',
+            brightness: Brightness.light,
+          ),
+          home: const SettingsView(
+            userName: 'Ushie Tech Labs & Studio',
+            userTitle: 'Enterprise Mobile & AI Solutions',
+            userAvatar: 'images/spacec.png',
+            planType: 'Business',
+            darkMode: false,
+          ),
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    await screenMatchesGolden(tester, 'settings_view_business');
+  }, skip: isCI);
 }
