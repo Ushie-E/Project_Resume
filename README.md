@@ -45,12 +45,51 @@ Below are the pixel-perfect visual snapshots captured directly by the automated 
       <sub>Categorized portfolio items, category chips, live interactive heart counters, and architecture detail modals.</sub>
     </td>
     <td align="center" width="50%">
-      <img src="images/view_dashboard.png" width="380" alt="Home Dashboard" style="border-radius: 14px;" /><br/><br/>
-      <b>View 4: Executive Resume Dashboard (<code>HomeView</code>)</b><br/>
+      <img src="images/view_dashboard.png" width="380" alt="Home Dashboard Light" style="border-radius: 14px;" /><br/><br/>
+      <b>View 4: Executive Resume Dashboard - Light Mode (<code>HomeView</code>)</b><br/>
       <sub>Dual-persona header, Quick Contact action buttons, Experience timeline, Certifications, and A4/Markdown export.</sub>
     </td>
   </tr>
+  <tr>
+    <td align="center" width="50%">
+      <img src="images/view_settings.png" width="380" alt="Settings View Light Mode" style="border-radius: 14px;" /><br/><br/>
+      <b>View 5: Settings & Preferences - Light Mode (<code>SettingsView</code>)</b><br/>
+      <sub>Active persona switcher (Personal vs. Business), notification controls, data JSON exporter, and build flavor diagnostics.</sub>
+    </td>
+    <td align="center" width="50%">
+      <img src="images/view_settings_dark.png" width="380" alt="Settings View Dark Mode" style="border-radius: 14px;" /><br/><br/>
+      <b>View 6: Settings & Preferences - Dark Mode (<code>SettingsView</code>)</b><br/>
+      <sub>Full dark theme with high-contrast slate surfaces (<code>#1E293B</code>), active toggles, and instant persistence.</sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="50%">
+      <img src="images/view_dashboard_dark.png" width="380" alt="Home Dashboard Dark Mode" style="border-radius: 14px;" /><br/><br/>
+      <b>View 7: Executive Dashboard - Dark Mode (<code>HomeView</code>)</b><br/>
+      <sub>Midnight theme rendering with contrast timeline cards, metric pills, and dark navigation bar.</sub>
+    </td>
+    <td align="center" width="50%">
+      <img src="images/app_preview.png" width="380" alt="App Preview Asset" style="border-radius: 14px;" /><br/><br/>
+      <b>View 8: Primary Hero Portfolio Snapshot</b><br/>
+      <sub>Full-fidelity visual baseline verified through golden rendering test suite.</sub>
+    </td>
+  </tr>
 </table>
+
+---
+
+## 🌙 Dark Mode & Dynamic Theming System
+
+The application features a fully reactive, persistent **Dark Mode Engine**:
+
+- **Reactive State Management**: Powered by `PreferencesService.darkModeListenable` connected directly to `MainApp` via `ValueListenableBuilder<bool>`.
+- **Instant Global Updates**: Toggling Dark Mode in `SettingsView` immediately re-themes the entire application (`HomeView`, `ExploreView`, `SettingsView`, AppBars, BottomBars, BottomSheets, and Dialogs) without restarting or rebuilding the widget stack.
+- **Persistent Cache**: Dark mode state is saved to `SharedPreferences` (`dark_mode` key) so returning users always boot into their preferred theme.
+- **Carefully Crafted Palettes**:
+  - **Dark Canvas**: Midnight navy slate (`#0F172A`)
+  - **Surface Elevation**: Deep slate cards (`#1E293B`)
+  - **Text Contrast**: Crisp `#FFFFFF` headers and `#E2E8F0` / `#94A3B8` body copy conforming to WCAG AA accessibility contrast guidelines.
+  - **Interactive Elements**: Radiant accent blue (`#3562D7`) maintaining high legibility against dark backgrounds.
 
 ---
 

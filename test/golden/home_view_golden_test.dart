@@ -11,6 +11,7 @@ import 'package:project/services/preferences_service.dart';
 import 'package:project/ui/views/explore/explore_view.dart';
 import 'package:project/ui/views/home/home_view.dart';
 import 'package:project/ui/views/onboarding/onboarding_view.dart';
+import 'package:project/ui/views/settings/settings_view.dart';
 
 import '../helpers/test_helpers.dart';
 import '../helpers/test_helpers.mocks.dart';
@@ -218,5 +219,144 @@ void main() {
     await tester.pumpAndSettle();
 
     await screenMatchesGolden(tester, 'home_view_dashboard');
+  }, skip: isCI);
+
+  testGoldens('HomeView - Executive Resume Dashboard (Dark Mode)', (tester) async {
+    final prefs = locator<PreferencesService>() as MockPreferencesService;
+    when(prefs.isOnboardingComplete).thenReturn(true);
+    when(prefs.selectedPlan).thenReturn('Personal');
+    when(prefs.selectedAvatar).thenReturn('images/spacea.png');
+    when(prefs.fullName).thenReturn('Ushie Emmanuel');
+    when(prefs.jobTitle).thenReturn('Lead Flutter & Mobile Architect');
+    when(prefs.bio).thenReturn(
+        'Crafting high-performance cross-platform applications with Flutter & Stacked.');
+    when(prefs.location).thenReturn('Lagos, Nigeria');
+    when(prefs.contactEmail).thenReturn('ushie.code@gmail.com');
+    when(prefs.contactPhone).thenReturn('+234 810 000 0000');
+    when(prefs.githubUrl).thenReturn('https://github.com/Ushie-E');
+    when(prefs.linkedinUrl)
+        .thenReturn('https://linkedin.com/in/ushie-emmanuel');
+    when(prefs.websiteUrl)
+        .thenReturn('https://ushie-digital-resume.vercel.app');
+    when(prefs.skills)
+        .thenReturn(['Flutter', 'Dart', 'Stacked Architecture', 'Supabase']);
+    when(prefs.experiences).thenReturn([
+      const ExperienceItem(
+        company: 'Vertex Mobile Solutions',
+        role: 'Lead Flutter Architect',
+        period: '2023 - Present',
+        description:
+            'Architecting enterprise fintech and logistics apps with Stacked architecture, automated CI/CD, and 99.9% crash-free sessions.',
+        highlights: [
+          'Modularized multi-package Dart codebase reducing build times by 40%',
+          'Established golden testing pipeline eliminating visual regression across Web & Mobile',
+        ],
+      ),
+    ]);
+    when(prefs.certifications).thenReturn([
+      const CertificationItem(
+        title: 'Google Certified Associate Cloud Engineer',
+        issuer: 'Google Cloud',
+        year: '2023',
+        credentialUrl: 'https://cloud.google.com/certification',
+      ),
+    ]);
+    when(prefs.hobbies)
+        .thenReturn(['Mobile Architecture', 'Open Source', 'Chess']);
+    when(prefs.darkMode).thenReturn(true);
+
+    await tester.binding.setSurfaceSize(const Size(393, 852));
+    tester.view.devicePixelRatio = 1.0;
+
+    await tester.pumpWidget(
+      MediaQuery(
+        data: const MediaQueryData(size: Size(393, 852), devicePixelRatio: 1.0),
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            fontFamily: 'Google Sans',
+            brightness: Brightness.dark,
+          ),
+          home: const HomeView(),
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    await screenMatchesGolden(tester, 'home_view_dashboard_dark');
+  }, skip: isCI);
+
+  testGoldens('SettingsView - Light Mode Preferences', (tester) async {
+    final prefs = locator<PreferencesService>() as MockPreferencesService;
+    when(prefs.selectedPlan).thenReturn('Personal');
+    when(prefs.darkMode).thenReturn(false);
+    when(prefs.notificationsEnabled).thenReturn(true);
+    when(prefs.analyticsEnabled).thenReturn(true);
+    when(prefs.fullName).thenReturn('Ushie Emmanuel');
+    when(prefs.jobTitle).thenReturn('Lead Flutter & Mobile Architect');
+    when(prefs.selectedAvatar).thenReturn('images/spacea.png');
+
+    await tester.binding.setSurfaceSize(const Size(393, 852));
+    tester.view.devicePixelRatio = 1.0;
+
+    await tester.pumpWidget(
+      MediaQuery(
+        data: const MediaQueryData(size: Size(393, 852), devicePixelRatio: 1.0),
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            fontFamily: 'Google Sans',
+            brightness: Brightness.light,
+          ),
+          home: const SettingsView(
+            userName: 'Ushie Emmanuel',
+            userTitle: 'Lead Flutter & Mobile Architect',
+            userAvatar: 'images/spacea.png',
+            planType: 'Personal',
+            darkMode: false,
+          ),
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    await screenMatchesGolden(tester, 'settings_view_light');
+  }, skip: isCI);
+
+  testGoldens('SettingsView - Dark Mode Preferences', (tester) async {
+    final prefs = locator<PreferencesService>() as MockPreferencesService;
+    when(prefs.selectedPlan).thenReturn('Personal');
+    when(prefs.darkMode).thenReturn(true);
+    when(prefs.notificationsEnabled).thenReturn(true);
+    when(prefs.analyticsEnabled).thenReturn(true);
+    when(prefs.fullName).thenReturn('Ushie Emmanuel');
+    when(prefs.jobTitle).thenReturn('Lead Flutter & Mobile Architect');
+    when(prefs.selectedAvatar).thenReturn('images/spacea.png');
+
+    await tester.binding.setSurfaceSize(const Size(393, 852));
+    tester.view.devicePixelRatio = 1.0;
+
+    await tester.pumpWidget(
+      MediaQuery(
+        data: const MediaQueryData(size: Size(393, 852), devicePixelRatio: 1.0),
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            fontFamily: 'Google Sans',
+            brightness: Brightness.dark,
+          ),
+          home: const SettingsView(
+            userName: 'Ushie Emmanuel',
+            userTitle: 'Lead Flutter & Mobile Architect',
+            userAvatar: 'images/spacea.png',
+            planType: 'Personal',
+            darkMode: true,
+          ),
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    await screenMatchesGolden(tester, 'settings_view_dark');
   }, skip: isCI);
 }
