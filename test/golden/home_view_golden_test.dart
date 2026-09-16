@@ -5,6 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:golden_toolkit/golden_toolkit.dart';
 import 'package:mockito/mockito.dart';
 import 'package:project/app/app.locator.dart';
+import 'package:project/app/app_config.dart';
 import 'package:project/models/resume_models.dart';
 import 'package:project/services/preferences_service.dart';
 import 'package:project/ui/views/explore/explore_view.dart';
@@ -12,10 +13,7 @@ import 'package:project/ui/views/home/home_view.dart';
 import 'package:project/ui/views/onboarding/onboarding_view.dart';
 
 import '../helpers/test_helpers.dart';
-<<<<<<< Updated upstream
 import '../helpers/test_helpers.mocks.dart';
-=======
->>>>>>> Stashed changes
 
 class TolerantFileComparator extends LocalFileComparator {
   final double maxDiffPercent;
@@ -48,6 +46,11 @@ void main() {
   });
 
   setUpAll(() async {
+    AppConfig.initialize(
+      appName: 'Ushie Digital Resume (Test)',
+      apiBaseUrl: 'http://localhost:8080',
+      environment: EnvironmentType.dev,
+    );
     await loadAppFonts();
     goldenFileComparator = TolerantFileComparator(
       Uri.parse('test/golden/home_view_golden_test.dart'),
@@ -120,7 +123,6 @@ void main() {
   }, skip: isCI);
 
   testGoldens('ExploreView - Project Showcase', (tester) async {
-<<<<<<< Updated upstream
     await tester.binding.setSurfaceSize(const Size(393, 852));
     tester.view.devicePixelRatio = 1.0;
 
@@ -191,31 +193,6 @@ void main() {
     ]);
     when(prefs.hobbies).thenReturn(['Mobile Architecture', 'Open Source', 'Chess']);
 
-=======
->>>>>>> Stashed changes
-    await tester.binding.setSurfaceSize(const Size(393, 852));
-    tester.view.devicePixelRatio = 1.0;
-
-    await tester.pumpWidget(
-      MediaQuery(
-        data: const MediaQueryData(size: Size(393, 852), devicePixelRatio: 1.0),
-        child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          theme: ThemeData(fontFamily: 'Google Sans'),
-<<<<<<< Updated upstream
-          home: const HomeView(),
-=======
-          home: const ExploreView(),
->>>>>>> Stashed changes
-        ),
-      ),
-    );
-    await tester.pumpAndSettle();
-
-    await screenMatchesGolden(tester, 'home_view_dashboard');
-  }, skip: isCI);
-
-  testGoldens('HomeView - Executive Resume Dashboard', (tester) async {
     await tester.binding.setSurfaceSize(const Size(393, 852));
     tester.view.devicePixelRatio = 1.0;
 
