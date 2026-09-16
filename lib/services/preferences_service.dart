@@ -26,11 +26,13 @@ class PreferencesService {
   static const String _keyAnalytics = 'analytics_enabled';
   static const String _keyLikedProjects = 'liked_project_titles';
 
+  final ValueNotifier<bool> darkModeListenable = ValueNotifier<bool>(false);
   SharedPreferences? _prefs;
 
   Future<void> init() async {
     try {
       _prefs ??= await SharedPreferences.getInstance();
+      darkModeListenable.value = darkMode;
     } catch (e) {
       if (kDebugMode) {
         print('PreferencesService init error: $e');
@@ -359,6 +361,7 @@ class PreferencesService {
   bool get darkMode => _prefs?.getBool(_keyDarkMode) ?? false;
   Future<void> setDarkMode(bool value) async {
     await _prefs?.setBool(_keyDarkMode, value);
+    darkModeListenable.value = value;
   }
 
   bool get notificationsEnabled =>

@@ -1,0 +1,30 @@
+#!/bin/sh
+# Pre-push hook to prevent direct pushes to protected branches (main, prod)
+
+protected_branches="main prod"
+
+while read local_ref local_sha remote_ref remote_sha
+do
+    for branch in $protected_branches; do
+        if [ "$remote_ref" = "refs/heads/$branch" ]; then
+            echo ""
+            echo "================================================================"
+            echo "  DIRECT PUSH TO '$branch' IS BLOCKED BY REPOSITORY POLICY! "
+            echo "================================================================"
+            echo ""
+            echo " Direct pushes to '$branch' are forbidden to protect production integrity."
+            echo " Please follow the standard branching workflow:"
+            echo ""
+            echo "   1. Create and switch to a feature branch:"
+            echo "        git checkout -b feature/your-feature-name"
+            echo "   2. Push your feature branch:"
+            echo "        git push origin feature/your-feature-name"
+            echo "   3. Open a Pull Request on GitHub to merge into '$branch'."
+            echo ""
+            echo "================================================================"
+            exit 1
+        fi
+    done
+done
+
+exit 0
