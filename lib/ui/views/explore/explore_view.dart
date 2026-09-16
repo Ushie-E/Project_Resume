@@ -52,7 +52,7 @@ class ExploreView extends StackedView<ExploreViewModel> {
                 onChanged: viewModel.setSearchQuery,
                 style: TextStyle(color: primaryTextColor, fontFamily: 'Google Sans'),
                 decoration: InputDecoration(
-                  hintText: 'Search projects, enterprise solutions, tags...',
+                  hintText: 'Search projects, architecture, tags...',
                   hintStyle: TextStyle(color: darkMode ? Colors.white54 : Colors.grey),
                   prefixIcon: const Icon(Icons.search, color: kcOnboardingBlue),
                   suffixIcon: viewModel.searchQuery.isNotEmpty
@@ -150,159 +150,182 @@ class ExploreView extends StackedView<ExploreViewModel> {
                     final bool isBusiness = p['isBusiness'] == true;
                     final bool isLiked = p['isLiked'] == true;
 
-                    return Container(
-                      margin: const EdgeInsets.only(bottom: 20),
-                      decoration: BoxDecoration(
-                        color: cardBgColor,
-                        borderRadius: BorderRadius.circular(20),
-                        border: Border.all(color: borderColor),
-                        boxShadow: [
-                          BoxShadow(
-                            color: darkMode ? Colors.black45 : Colors.black12,
-                            blurRadius: 10,
-                            offset: const Offset(0, 4),
-                          ),
-                        ],
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          ClipRRect(
-                            borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
-                            child: Image.asset(
-                              p['image'] as String,
-                              height: 160,
-                              width: double.infinity,
-                              fit: BoxFit.cover,
-                              errorBuilder: (context, error, stackTrace) {
-                                return Container(
-                                  height: 160,
-                                  color: kcOnboardingBlue,
-                                  child: const Center(
-                                    child: Icon(Icons.palette_outlined, size: 60, color: Colors.white),
-                                  ),
-                                );
-                              },
+                    return GestureDetector(
+                      onTap: () => viewModel.showProjectDetailsModal(context, p, darkMode),
+                      child: Container(
+                        margin: const EdgeInsets.only(bottom: 20),
+                        decoration: BoxDecoration(
+                          color: cardBgColor,
+                          borderRadius: BorderRadius.circular(20),
+                          border: Border.all(color: borderColor),
+                          boxShadow: [
+                            BoxShadow(
+                              color: darkMode ? Colors.black45 : Colors.black12,
+                              blurRadius: 10,
+                              offset: const Offset(0, 4),
                             ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(20.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Container(
-                                          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                                          decoration: BoxDecoration(
-                                            color: isBusiness ? kcPurpleBackground : kcTealBackground,
-                                            borderRadius: BorderRadius.circular(8),
-                                          ),
-                                          child: Text(
-                                            p['category'] as String,
-                                            style: TextStyle(
-                                              color: isBusiness ? kcPurpleIcon : kcTealIcon,
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 12,
-                                            ),
-                                          ),
+                          ],
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            ClipRRect(
+                              borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
+                              child: Stack(
+                                children: [
+                                  Image.asset(
+                                    p['image'] as String,
+                                    height: 160,
+                                    width: double.infinity,
+                                    fit: BoxFit.cover,
+                                    errorBuilder: (context, error, stackTrace) {
+                                      return Container(
+                                        height: 160,
+                                        color: kcOnboardingBlue,
+                                        child: const Center(
+                                          child: Icon(Icons.palette_outlined, size: 60, color: Colors.white),
                                         ),
-                                        if (isBusiness) ...[
-                                          const SizedBox(width: 8),
-                                          Container(
-                                            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                                            decoration: BoxDecoration(
-                                              color: Colors.amber.shade100,
-                                              borderRadius: BorderRadius.circular(8),
-                                            ),
-                                            child: const Row(
-                                              children: [
-                                                Icon(Icons.business, size: 12, color: Colors.amber),
-                                                SizedBox(width: 4),
-                                                Text(
-                                                  'Enterprise',
-                                                  style: TextStyle(
-                                                    fontSize: 11,
-                                                    fontWeight: FontWeight.bold,
-                                                    color: Colors.brown,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
+                                      );
+                                    },
+                                  ),
+                                  Positioned(
+                                    bottom: 8,
+                                    right: 12,
+                                    child: Container(
+                                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                                      decoration: BoxDecoration(
+                                        color: Colors.black.withValues(alpha: 0.65),
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                      child: const Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Icon(Icons.touch_app, color: Colors.white, size: 12),
+                                          SizedBox(width: 4),
+                                          Text(
+                                            'Tap to inspect',
+                                            style: TextStyle(color: Colors.white, fontSize: 11, fontWeight: FontWeight.bold),
                                           ),
                                         ],
-                                      ],
+                                      ),
                                     ),
-                                    InkWell(
-                                      borderRadius: BorderRadius.circular(12),
-                                      onTap: () => viewModel.toggleProjectLike(p['title'] as String),
-                                      child: Padding(
-                                        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
-                                        child: Row(
-                                          children: [
-                                            Icon(
-                                              isLiked ? Icons.favorite : Icons.favorite_border,
-                                              size: 18,
-                                              color: isLiked ? Colors.redAccent : Colors.grey,
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(20.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Container(
+                                            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                                            decoration: BoxDecoration(
+                                              color: isBusiness ? kcPurpleBackground : kcTealBackground,
+                                              borderRadius: BorderRadius.circular(8),
                                             ),
-                                            const SizedBox(width: 4),
-                                            Text(
-                                              '${p['likes']}',
+                                            child: Text(
+                                              p['category'] as String,
                                               style: TextStyle(
-                                                color: darkMode ? Colors.white70 : Colors.grey[700],
+                                                color: isBusiness ? kcPurpleIcon : kcTealIcon,
                                                 fontWeight: FontWeight.bold,
+                                                fontSize: 12,
+                                              ),
+                                            ),
+                                          ),
+                                          if (isBusiness) ...[
+                                            const SizedBox(width: 8),
+                                            Container(
+                                              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                                              decoration: BoxDecoration(
+                                                color: Colors.amber.shade100,
+                                                borderRadius: BorderRadius.circular(8),
+                                              ),
+                                              child: const Text(
+                                                'Enterprise',
+                                                style: TextStyle(
+                                                  fontSize: 11,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.brown,
+                                                ),
                                               ),
                                             ),
                                           ],
+                                        ],
+                                      ),
+                                      InkWell(
+                                        borderRadius: BorderRadius.circular(12),
+                                        onTap: () => viewModel.toggleProjectLike(p['title'] as String),
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
+                                          child: Row(
+                                            children: [
+                                              Icon(
+                                                isLiked ? Icons.favorite : Icons.favorite_border,
+                                                size: 18,
+                                                color: isLiked ? Colors.redAccent : Colors.grey,
+                                              ),
+                                              const SizedBox(width: 4),
+                                              Text(
+                                                '${p['likes']}',
+                                                style: TextStyle(
+                                                  color: darkMode ? Colors.white70 : Colors.grey[700],
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                       ),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 12),
+                                  Text(
+                                    p['title'] as String,
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                      color: primaryTextColor,
+                                      fontFamily: 'Google Sans',
                                     ),
-                                  ],
-                                ),
-                                const SizedBox(height: 12),
-                                Text(
-                                  p['title'] as String,
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                    color: primaryTextColor,
-                                    fontFamily: 'Google Sans',
                                   ),
-                                ),
-                                const SizedBox(height: 6),
-                                Text(
-                                  p['description'] as String,
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    color: secondaryTextColor,
-                                    height: 1.3,
-                                    fontFamily: 'Google Sans',
+                                  const SizedBox(height: 6),
+                                  Text(
+                                    p['description'] as String,
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: secondaryTextColor,
+                                      height: 1.3,
+                                      fontFamily: 'Google Sans',
+                                    ),
                                   ),
-                                ),
-                                const SizedBox(height: 12),
-                                Wrap(
-                                  spacing: 6,
-                                  children: (p['tags'] as List<String>).map((tag) {
-                                    return Chip(
-                                      label: Text(
-                                        '#$tag',
-                                        style: TextStyle(
-                                          fontSize: 11,
-                                          color: darkMode ? Colors.white70 : Colors.black87,
+                                  const SizedBox(height: 12),
+                                  Wrap(
+                                    spacing: 6,
+                                    children: (p['tags'] as List<String>).map((tag) {
+                                      return Chip(
+                                        label: Text(
+                                          '#$tag',
+                                          style: TextStyle(
+                                            fontSize: 11,
+                                            color: darkMode ? Colors.white70 : Colors.black87,
+                                          ),
                                         ),
-                                      ),
-                                      backgroundColor: bgColor,
-                                      visualDensity: VisualDensity.compact,
-                                    );
-                                  }).toList(),
-                                ),
-                              ],
+                                        backgroundColor: bgColor,
+                                        visualDensity: VisualDensity.compact,
+                                      );
+                                    }).toList(),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     );
                   },
