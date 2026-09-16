@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:project/app/app.locator.dart';
+import 'package:project/app.locator.dart';
 import 'package:project/services/preferences_service.dart';
 import 'package:stacked/stacked.dart';
 

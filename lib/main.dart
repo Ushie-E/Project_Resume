@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project/app/app.dart';
+import 'package:project/app.dart';
 import 'package:project/services/preferences_service.dart';
 import 'package:stacked_services/stacked_services.dart';
 

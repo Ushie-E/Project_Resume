@@ -1,5 +1,5 @@
-import 'package:project/app/app.locator.dart';
-import 'package:project/app/app.dialogs.dart';
+import 'package:project/app.locator.dart';
+import 'package:project/app.dialogs.dart';
 import 'package:project/models/resume_models.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';

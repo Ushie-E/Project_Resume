@@ -1,4 +1,4 @@
-import 'package:project/app/app_config.dart';
+import 'package:project/app_config.dart';
 import 'package:project/main.dart';
 
 void main() {

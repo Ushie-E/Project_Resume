@@ -1,5 +1,5 @@
-import 'package:project/app/app.locator.dart';
-import 'package:project/app/app.router.dart';
+import 'package:project/app.locator.dart';
+import 'package:project/app.router.dart';
 import 'package:project/services/preferences_service.dart';
 import 'package:project/services/supabase_service.dart';
 import 'package:stacked/stacked.dart';

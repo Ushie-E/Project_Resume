@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:project/app/app.locator.dart';
+import 'package:project/app.locator.dart';
 import 'package:project/services/preferences_service.dart';
 import 'package:project/ui/common/app_colors.dart';
 import 'package:stacked/stacked.dart';

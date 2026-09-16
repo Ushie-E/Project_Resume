@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:project/app/app_config.dart';
+import 'package:project/app_config.dart';
 import 'package:project/ui/common/app_colors.dart';
 import 'package:stacked/stacked.dart';
 

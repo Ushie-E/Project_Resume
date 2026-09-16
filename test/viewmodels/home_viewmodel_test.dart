@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:project/app/app.dialogs.dart';
-import 'package:project/app/app.locator.dart';
+import 'package:project/app.dialogs.dart';
+import 'package:project/app.locator.dart';
 import 'package:project/ui/views/home/home_viewmodel.dart';
 
 import '../helpers/test_helpers.dart';

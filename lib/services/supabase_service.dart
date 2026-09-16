@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:project/app/app_config.dart';
+import 'package:project/app_config.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class SupabaseService {

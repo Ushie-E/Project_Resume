@@ -61,17 +61,16 @@ The entrypoint system under `lib/` has been consolidated to eliminate clutter an
 In VS Code and modern IDEs with file nesting enabled:
 ```
 lib/
- ├── app/
- │    └── app.dart               <-- Unified App Barrel & Stacked Configuration
- │        ├── app.bottomsheets.dart
- │        ├── app.dialogs.dart
- │        ├── app.locator.dart
- │        ├── app.router.dart
- │        └── app_config.dart
- └── main.dart                   <-- Core App Engine & Default Bootstrap
-     ├── main_dev.dart           <-- Development Flavor (Debug logs enabled)
-     ├── main_staging.dart       <-- Staging Flavor (Pre-production testing)
-     └── main_prod.dart          <-- Production Flavor (Optimized release)
+ ├── app.dart                   <-- Unified App Barrel & Stacked Configuration
+ │   ├── app.bottomsheets.dart
+ │   ├── app.dialogs.dart
+ │   ├── app.locator.dart
+ │   ├── app.router.dart
+ │   └── app_config.dart
+ └── main.dart                  <-- Core App Engine & Default Bootstrap
+     ├── main_dev.dart          <-- Development Flavor (Debug logs enabled)
+     ├── main_staging.dart      <-- Staging Flavor (Pre-production testing)
+     └── main_prod.dart         <-- Production Flavor (Optimized release)
 ```
 
 ### File Nesting Configuration (`.vscode/settings.json`)
