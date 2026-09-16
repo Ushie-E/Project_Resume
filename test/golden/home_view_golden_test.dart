@@ -46,12 +46,13 @@ void main() {
   });
 
   setUpAll(() async {
-    AppConfig.initialize(
-      appName: 'Ushie Digital Resume (Test)',
-      apiBaseUrl: 'http://localhost:8080',
-      environment: EnvironmentType.dev,
-    );
     await loadAppFonts();
+    AppConfig.initialize(
+      appName: 'Ushie Digital Resume',
+      apiBaseUrl: 'https://ushie-digital-resume.vercel.app',
+      environment: EnvironmentType.dev,
+      enableLogging: false,
+    );
     goldenFileComparator = TolerantFileComparator(
       Uri.parse('test/golden/home_view_golden_test.dart'),
       0.05,
@@ -102,7 +103,8 @@ void main() {
 
     // Fill Step 2 Form to satisfy validation
     await tester.enterText(find.byType(TextFormField).at(0), 'Ushie Emmanuel');
-    await tester.enterText(find.byType(TextFormField).at(1), 'Flutter Mobile Engineer');
+    await tester.enterText(
+        find.byType(TextFormField).at(1), 'Flutter Mobile Engineer');
     await tester.pumpAndSettle();
 
     // Step 2 -> Step 3
@@ -148,20 +150,25 @@ void main() {
     when(prefs.selectedAvatar).thenReturn('images/spacea.png');
     when(prefs.fullName).thenReturn('Ushie Emmanuel');
     when(prefs.jobTitle).thenReturn('Lead Flutter & Mobile Architect');
-    when(prefs.bio).thenReturn('Crafting high-performance cross-platform applications with Flutter & Stacked.');
+    when(prefs.bio).thenReturn(
+        'Crafting high-performance cross-platform applications with Flutter & Stacked.');
     when(prefs.location).thenReturn('Lagos, Nigeria');
     when(prefs.contactEmail).thenReturn('ushie.code@gmail.com');
     when(prefs.contactPhone).thenReturn('+234 810 000 0000');
     when(prefs.githubUrl).thenReturn('https://github.com/Ushie-E');
-    when(prefs.linkedinUrl).thenReturn('https://linkedin.com/in/ushie-emmanuel');
-    when(prefs.websiteUrl).thenReturn('https://ushie-digital-resume.vercel.app');
-    when(prefs.skills).thenReturn(['Flutter', 'Dart', 'Stacked Architecture', 'Supabase']);
+    when(prefs.linkedinUrl)
+        .thenReturn('https://linkedin.com/in/ushie-emmanuel');
+    when(prefs.websiteUrl)
+        .thenReturn('https://ushie-digital-resume.vercel.app');
+    when(prefs.skills)
+        .thenReturn(['Flutter', 'Dart', 'Stacked Architecture', 'Supabase']);
     when(prefs.experiences).thenReturn([
       const ExperienceItem(
         company: 'Vertex Mobile Solutions',
         role: 'Lead Flutter Architect',
         period: '2023 - Present',
-        description: 'Architecting enterprise fintech and logistics apps with Stacked architecture, automated CI/CD, and 99.9% crash-free sessions.',
+        description:
+            'Architecting enterprise fintech and logistics apps with Stacked architecture, automated CI/CD, and 99.9% crash-free sessions.',
         highlights: [
           'Modularized multi-package Dart codebase reducing build times by 40%',
           'Established golden testing pipeline eliminating visual regression across Web & Mobile',
@@ -171,7 +178,8 @@ void main() {
         company: 'CloudPulse Tech',
         role: 'Senior Mobile Engineer',
         period: '2021 - 2023',
-        description: 'Spearheaded Flutter cross-platform migration, reducing code duplication by 45% and accelerating release cycles.',
+        description:
+            'Spearheaded Flutter cross-platform migration, reducing code duplication by 45% and accelerating release cycles.',
         highlights: [
           'Implemented cached network repositories reducing network data usage by 35%',
         ],
@@ -191,7 +199,8 @@ void main() {
         credentialUrl: 'https://coursera.org',
       ),
     ]);
-    when(prefs.hobbies).thenReturn(['Mobile Architecture', 'Open Source', 'Chess']);
+    when(prefs.hobbies)
+        .thenReturn(['Mobile Architecture', 'Open Source', 'Chess']);
 
     await tester.binding.setSurfaceSize(const Size(393, 852));
     tester.view.devicePixelRatio = 1.0;

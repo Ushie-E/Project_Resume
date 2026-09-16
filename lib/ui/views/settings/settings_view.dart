@@ -287,11 +287,10 @@ class SettingsView extends StackedView<SettingsViewModel> {
                 ),
               ),
               const SizedBox(height: 12),
-              Container(
-                decoration: BoxDecoration(
-                  color: cardBgColor,
-                  borderRadius: BorderRadius.circular(16),
-                ),
+              Material(
+                color: cardBgColor,
+                borderRadius: BorderRadius.circular(16),
+                clipBehavior: Clip.antiAlias,
                 child: Column(
                   children: [
                     ListTile(
@@ -324,11 +323,10 @@ class SettingsView extends StackedView<SettingsViewModel> {
                 ),
               ),
               const SizedBox(height: 12),
-              Container(
-                decoration: BoxDecoration(
-                  color: cardBgColor,
-                  borderRadius: BorderRadius.circular(16),
-                ),
+              Material(
+                color: cardBgColor,
+                borderRadius: BorderRadius.circular(16),
+                clipBehavior: Clip.antiAlias,
                 child: Column(
                   children: [
                     ListTile(
