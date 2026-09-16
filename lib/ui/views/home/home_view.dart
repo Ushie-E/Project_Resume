@@ -91,7 +91,7 @@ class HomeView extends StackedView<HomeViewModel> {
         elevation: 0,
         automaticallyImplyLeading: false,
         title: Text(
-          isBusiness ? 'Company Profile' : 'My Profile',
+          isBusiness ? 'Company Profile' : 'My Digital Resume',
           style: TextStyle(
             color: primaryTextColor,
             fontWeight: FontWeight.bold,
@@ -100,6 +100,11 @@ class HomeView extends StackedView<HomeViewModel> {
           ),
         ),
         actions: [
+          IconButton(
+            icon: const Icon(Icons.download_rounded, color: kcOnboardingBlue),
+            tooltip: 'Download Resume / CV',
+            onPressed: () => viewModel.showDownloadResumeModal(context),
+          ),
           IconButton(
             icon: const Icon(Icons.share_outlined, color: kcOnboardingBlue),
             tooltip: 'Share Portfolio Link',
@@ -173,6 +178,7 @@ class HomeView extends StackedView<HomeViewModel> {
                     const SizedBox(height: 16),
                     Text(
                       viewModel.fullName,
+                      textAlign: TextAlign.center,
                       style: const TextStyle(
                         color: Colors.white,
                         fontSize: 24,
@@ -183,30 +189,38 @@ class HomeView extends StackedView<HomeViewModel> {
                     const SizedBox(height: 4),
                     Text(
                       viewModel.jobTitle,
+                      textAlign: TextAlign.center,
                       style: const TextStyle(
                         color: Color(0xFF1BFFFF),
-                        fontSize: 16,
+                        fontSize: 15,
                         fontWeight: FontWeight.w600,
                         fontFamily: 'Google Sans',
                       ),
                     ),
                     const SizedBox(height: 12),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                    Wrap(
+                      alignment: WrapAlignment.center,
+                      crossAxisAlignment: WrapCrossAlignment.center,
+                      spacing: 12,
+                      runSpacing: 6,
                       children: [
-                        const Icon(Icons.location_on, color: Colors.white70, size: 16),
-                        const SizedBox(width: 4),
-                        Text(
-                          viewModel.location,
-                          style: const TextStyle(
-                            color: Colors.white70,
-                            fontSize: 14,
-                            fontFamily: 'Google Sans',
-                          ),
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            const Icon(Icons.location_on, color: Colors.white70, size: 16),
+                            const SizedBox(width: 4),
+                            Text(
+                              viewModel.location,
+                              style: const TextStyle(
+                                color: Colors.white70,
+                                fontSize: 13,
+                                fontFamily: 'Google Sans',
+                              ),
+                            ),
+                          ],
                         ),
-                        const SizedBox(width: 16),
                         Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
                           decoration: BoxDecoration(
                             color: Colors.white12,
                             borderRadius: BorderRadius.circular(12),
@@ -222,6 +236,55 @@ class HomeView extends StackedView<HomeViewModel> {
                           ),
                         ),
                       ],
+                    ),
+                  ],
+                ),
+              ),
+
+              const SizedBox(height: 16),
+
+              // Direct Contact Quick Icons Row
+              Container(
+                width: double.infinity,
+                padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+                decoration: BoxDecoration(
+                  color: cardBgColor,
+                  borderRadius: BorderRadius.circular(16),
+                  border: Border.all(color: borderColor),
+                ),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: _buildContactIconBtn(
+                        icon: Icons.email_outlined,
+                        label: 'Email',
+                        color: const Color(0xFF254EDB),
+                        onTap: () => viewModel.copyEmail(context),
+                      ),
+                    ),
+                    Expanded(
+                      child: _buildContactIconBtn(
+                        icon: Icons.phone_outlined,
+                        label: 'Phone',
+                        color: Colors.green,
+                        onTap: () => viewModel.copyPhone(context),
+                      ),
+                    ),
+                    Expanded(
+                      child: _buildContactIconBtn(
+                        icon: Icons.code,
+                        label: 'GitHub',
+                        color: Colors.purple,
+                        onTap: () => viewModel.copyGithub(context),
+                      ),
+                    ),
+                    Expanded(
+                      child: _buildContactIconBtn(
+                        icon: Icons.link,
+                        label: 'LinkedIn',
+                        color: Colors.blue,
+                        onTap: () => viewModel.copyLinkedin(context),
+                      ),
                     ),
                   ],
                 ),
@@ -246,30 +309,35 @@ class HomeView extends StackedView<HomeViewModel> {
                   ],
                 ),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    _buildStatItem(
-                      value: isBusiness ? '50+' : '5+ Yrs',
-                      label: isBusiness ? 'Global Clients' : 'Experience',
-                      icon: isBusiness ? Icons.business_outlined : Icons.timeline_outlined,
-                      color: const Color(0xFF3B82F6),
-                      isDark: isDark,
+                    Expanded(
+                      child: _buildStatItem(
+                        value: isBusiness ? '50+' : '5+ Yrs',
+                        label: isBusiness ? 'Global Clients' : 'Experience',
+                        icon: isBusiness ? Icons.business_outlined : Icons.timeline_outlined,
+                        color: const Color(0xFF3B82F6),
+                        isDark: isDark,
+                      ),
                     ),
                     Container(height: 36, width: 1, color: borderColor),
-                    _buildStatItem(
-                      value: isBusiness ? '99.99%' : '24+',
-                      label: isBusiness ? 'SLA Uptime' : 'Apps Built',
-                      icon: isBusiness ? Icons.cloud_done_outlined : Icons.rocket_launch_outlined,
-                      color: const Color(0xFF10B981),
-                      isDark: isDark,
+                    Expanded(
+                      child: _buildStatItem(
+                        value: isBusiness ? '99.99%' : '24+',
+                        label: isBusiness ? 'SLA Uptime' : 'Apps Built',
+                        icon: isBusiness ? Icons.cloud_done_outlined : Icons.rocket_launch_outlined,
+                        color: const Color(0xFF10B981),
+                        isDark: isDark,
+                      ),
                     ),
                     Container(height: 36, width: 1, color: borderColor),
-                    _buildStatItem(
-                      value: isBusiness ? '14' : '100%',
-                      label: isBusiness ? 'Products' : 'Quality Score',
-                      icon: isBusiness ? Icons.layers_outlined : Icons.verified_outlined,
-                      color: const Color(0xFF8B5CF6),
-                      isDark: isDark,
+                    Expanded(
+                      child: _buildStatItem(
+                        value: '${viewModel.certifications.length}',
+                        label: isBusiness ? 'Accreditations' : 'Certifications',
+                        icon: Icons.verified_outlined,
+                        color: const Color(0xFF8B5CF6),
+                        isDark: isDark,
+                      ),
                     ),
                   ],
                 ),
@@ -277,15 +345,16 @@ class HomeView extends StackedView<HomeViewModel> {
 
               const SizedBox(height: 16),
 
-              // Quick Action Bar: Get in Touch & Share
+              // Primary Action Buttons: Download CV & Contact
               Row(
                 children: [
                   Expanded(
                     flex: 3,
                     child: GestureDetector(
-                      onTap: () => viewModel.showContactModal(context),
+                      onTap: () => viewModel.showDownloadResumeModal(context),
                       child: Container(
                         height: 48,
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(24),
                           gradient: const LinearGradient(
@@ -301,18 +370,21 @@ class HomeView extends StackedView<HomeViewModel> {
                             ),
                           ],
                         ),
-                        child: const Row(
+                        child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(Icons.send_rounded, color: Colors.white, size: 18),
-                            SizedBox(width: 8),
-                            Text(
-                              'Get in Touch / Hire',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 14,
-                                fontFamily: 'Google Sans',
+                            const Icon(Icons.download_rounded, color: Colors.white, size: 16),
+                            const SizedBox(width: 6),
+                            Flexible(
+                              child: Text(
+                                isBusiness ? 'Export Profile' : 'Download CV',
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 13,
+                                  fontFamily: 'Google Sans',
+                                ),
+                                overflow: TextOverflow.ellipsis,
                               ),
                             ),
                           ],
@@ -324,7 +396,7 @@ class HomeView extends StackedView<HomeViewModel> {
                   Expanded(
                     flex: 2,
                     child: GestureDetector(
-                      onTap: () => viewModel.sharePortfolio(context),
+                      onTap: () => viewModel.showContactModal(context),
                       child: Container(
                         height: 48,
                         decoration: BoxDecoration(
@@ -335,10 +407,10 @@ class HomeView extends StackedView<HomeViewModel> {
                         child: const Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(Icons.share_outlined, color: kcOnboardingBlue, size: 18),
+                            Icon(Icons.send_rounded, color: kcOnboardingBlue, size: 16),
                             SizedBox(width: 6),
                             Text(
-                              'Share',
+                              'Contact',
                               style: TextStyle(
                                 color: kcOnboardingBlue,
                                 fontWeight: FontWeight.bold,
@@ -356,7 +428,7 @@ class HomeView extends StackedView<HomeViewModel> {
 
               const SizedBox(height: 20),
 
-              // Bio Card
+              // Bio / Executive Summary Card
               Container(
                 width: double.infinity,
                 padding: const EdgeInsets.all(20),
@@ -376,7 +448,7 @@ class HomeView extends StackedView<HomeViewModel> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      isBusiness ? 'Company Overview' : 'About Me',
+                      isBusiness ? 'Company Overview & Mission' : 'Executive Summary',
                       style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -398,11 +470,180 @@ class HomeView extends StackedView<HomeViewModel> {
                 ),
               ),
 
+              const SizedBox(height: 24),
+
+              // Work Experience Timeline
+              Text(
+                isBusiness ? 'Enterprise Client Deliveries' : 'Work Experience Timeline',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: primaryTextColor,
+                  fontFamily: 'Google Sans',
+                ),
+              ),
+              const SizedBox(height: 12),
+              ...viewModel.experiences.map((exp) {
+                return Container(
+                  margin: const EdgeInsets.only(bottom: 14),
+                  padding: const EdgeInsets.all(18),
+                  decoration: BoxDecoration(
+                    color: cardBgColor,
+                    borderRadius: BorderRadius.circular(16),
+                    border: Border.all(color: borderColor),
+                    boxShadow: [
+                      BoxShadow(
+                        color: isDark ? Colors.black38 : Colors.black.withValues(alpha: 0.04),
+                        blurRadius: 8,
+                        offset: const Offset(0, 2),
+                      ),
+                    ],
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: Text(
+                              exp.role,
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                                color: primaryTextColor,
+                                fontFamily: 'Google Sans',
+                              ),
+                            ),
+                          ),
+                          Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
+                            decoration: BoxDecoration(
+                              color: isDark ? const Color(0xFF0F172A) : kcTealBackground,
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Text(
+                              exp.period,
+                              style: const TextStyle(
+                                color: kcTealIcon,
+                                fontSize: 11,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        exp.company,
+                        style: const TextStyle(
+                          color: kcOnboardingBlue,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 13,
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        exp.description,
+                        style: TextStyle(
+                          color: secondaryTextColor,
+                          fontSize: 13,
+                          height: 1.35,
+                        ),
+                      ),
+                      if (exp.highlights.isNotEmpty) ...[
+                        const SizedBox(height: 8),
+                        ...exp.highlights.map((h) => Padding(
+                              padding: const EdgeInsets.only(bottom: 4.0),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const Text('• ', style: TextStyle(color: kcOnboardingBlue, fontWeight: FontWeight.bold)),
+                                  Expanded(
+                                    child: Text(
+                                      h,
+                                      style: TextStyle(
+                                        color: isDark ? Colors.white70 : Colors.grey[700],
+                                        fontSize: 12,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            )),
+                      ],
+                    ],
+                  ),
+                );
+              }),
+
+              const SizedBox(height: 20),
+
+              // Certifications & Education Section
+              Text(
+                isBusiness ? 'Accreditations & Industry Standards' : 'Certifications & Credentials',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: primaryTextColor,
+                  fontFamily: 'Google Sans',
+                ),
+              ),
+              const SizedBox(height: 12),
+              ...viewModel.certifications.map((cert) {
+                return Container(
+                  margin: const EdgeInsets.only(bottom: 10),
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                  decoration: BoxDecoration(
+                    color: cardBgColor,
+                    borderRadius: BorderRadius.circular(14),
+                    border: Border.all(color: borderColor),
+                  ),
+                  child: Row(
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          color: isDark ? const Color(0xFF0F172A) : kcPurpleBackground,
+                          shape: BoxShape.circle,
+                        ),
+                        child: const Icon(Icons.verified, size: 20, color: kcPurpleIcon),
+                      ),
+                      const SizedBox(width: 14),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              cert.title,
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14,
+                                color: primaryTextColor,
+                                fontFamily: 'Google Sans',
+                              ),
+                            ),
+                            const SizedBox(height: 2),
+                            Text(
+                              '${cert.issuer} • ${cert.year}',
+                              style: TextStyle(
+                                color: isDark ? Colors.white60 : Colors.grey[600],
+                                fontSize: 12,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              }),
+
               const SizedBox(height: 20),
 
               // Skills Section
               Text(
-                isBusiness ? 'Enterprise Capabilities' : 'Technical Expertise',
+                isBusiness ? 'Enterprise Capabilities' : 'Technical Expertise & Stack',
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
@@ -437,9 +678,9 @@ class HomeView extends StackedView<HomeViewModel> {
 
               const SizedBox(height: 20),
 
-              // Interests / Target Markets Section
+              // Hobbies / Core Services Section
               Text(
-                isBusiness ? 'Target Markets' : 'Curated Interests',
+                isBusiness ? 'Core Services & Offerings' : 'Hobbies & Creative Pursuits',
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
@@ -451,10 +692,11 @@ class HomeView extends StackedView<HomeViewModel> {
               Wrap(
                 spacing: 8,
                 runSpacing: 8,
-                children: viewModel.selectedInterests.map((interest) {
+                children: (viewModel.hobbies.isNotEmpty ? viewModel.hobbies : viewModel.selectedInterests)
+                    .map((item) {
                   return Chip(
                     avatar: const Icon(Icons.star, size: 16, color: kcPurpleIcon),
-                    label: Text(interest),
+                    label: Text(item),
                     labelStyle: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: isDark ? Colors.white : Colors.black87,
@@ -470,11 +712,12 @@ class HomeView extends StackedView<HomeViewModel> {
 
               const SizedBox(height: 32),
 
+              // Restart Onboarding Button (Overflow-safe)
               GestureDetector(
                 onTap: viewModel.restartOnboarding,
                 child: Container(
                   width: double.infinity,
-                  height: 52,
+                  padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 16),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(26),
                     border: Border.all(color: kcOnboardingBlue, width: 2),
@@ -482,24 +725,67 @@ class HomeView extends StackedView<HomeViewModel> {
                   ),
                   child: const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
                     children: [
                       Icon(Icons.refresh, color: kcOnboardingBlue),
                       SizedBox(width: 8),
-                      Text(
-                        'Restart Onboarding Setup',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: kcOnboardingBlue,
-                          fontFamily: 'Google Sans',
+                      Flexible(
+                        child: Text(
+                          'Restart Profile Wizard',
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                            color: kcOnboardingBlue,
+                            fontFamily: 'Google Sans',
+                          ),
+                          overflow: TextOverflow.ellipsis,
                         ),
                       ),
                     ],
                   ),
                 ),
               ),
+              const SizedBox(height: 20),
             ],
           ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildContactIconBtn({
+    required IconData icon,
+    required String label,
+    required Color color,
+    required VoidCallback onTap,
+  }) {
+    return InkWell(
+      borderRadius: BorderRadius.circular(10),
+      onTap: onTap,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: color.withValues(alpha: 0.1),
+                shape: BoxShape.circle,
+              ),
+              child: Icon(icon, size: 18, color: color),
+            ),
+            const SizedBox(height: 4),
+            Text(
+              label,
+              style: TextStyle(
+                fontSize: 11,
+                fontWeight: FontWeight.w600,
+                color: color,
+                fontFamily: 'Google Sans',
+              ),
+            ),
+          ],
         ),
       ),
     );
@@ -517,27 +803,36 @@ class HomeView extends StackedView<HomeViewModel> {
       children: [
         Row(
           mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(icon, color: color, size: 16),
+            Icon(icon, color: color, size: 14),
             const SizedBox(width: 4),
-            Text(
-              value,
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-                color: isDark ? Colors.white : const Color(0xFF0F172A),
-                fontFamily: 'Google Sans',
+            Flexible(
+              child: FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Text(
+                  value,
+                  style: TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                    color: isDark ? Colors.white : const Color(0xFF0F172A),
+                    fontFamily: 'Google Sans',
+                  ),
+                ),
               ),
             ),
           ],
         ),
         const SizedBox(height: 2),
-        Text(
-          label,
-          style: TextStyle(
-            fontSize: 11,
-            color: isDark ? Colors.white60 : Colors.grey[600],
-            fontFamily: 'Google Sans',
+        FittedBox(
+          fit: BoxFit.scaleDown,
+          child: Text(
+            label,
+            style: TextStyle(
+              fontSize: 11,
+              color: isDark ? Colors.white60 : Colors.grey[600],
+              fontFamily: 'Google Sans',
+            ),
           ),
         ),
       ],

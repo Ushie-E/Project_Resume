@@ -106,6 +106,15 @@ MockPreferencesService getAndRegisterPreferencesService() {
   when(service.darkMode).thenReturn(false);
   when(service.notificationsEnabled).thenReturn(true);
   when(service.analyticsEnabled).thenReturn(true);
+  when(service.contactEmail).thenReturn('ushie.code@gmail.com');
+  when(service.contactPhone).thenReturn('+234 810 000 0000');
+  when(service.githubUrl).thenReturn('https://github.com/Ushie-E');
+  when(service.linkedinUrl).thenReturn('https://linkedin.com/in/ushie-emmanuel');
+  when(service.websiteUrl).thenReturn('https://ushie-digital-resume.vercel.app');
+  when(service.experiences).thenReturn([]);
+  when(service.certifications).thenReturn([]);
+  when(service.hobbies).thenReturn([]);
+  when(service.isBusiness).thenReturn(false);
   when(service.likedProjects).thenReturn([]);
   locator.registerSingleton<PreferencesService>(service);
   return service;

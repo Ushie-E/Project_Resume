@@ -9,6 +9,7 @@ import 'dart:ui' as _i6;
 import 'package:flutter/material.dart' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i3;
+import 'package:project/models/resume_models.dart' as _i9;
 import 'package:project/services/preferences_service.dart' as _i8;
 import 'package:project/services/supabase_service.dart' as _i7;
 import 'package:stacked_services/stacked_services.dart' as _i2;
@@ -805,6 +806,13 @@ class MockPreferencesService extends _i1.Mock
       ) as String);
 
   @override
+  bool get isBusiness => (super.noSuchMethod(
+        Invocation.getter(#isBusiness),
+        returnValue: false,
+        returnValueForMissingStub: false,
+      ) as bool);
+
+  @override
   String get selectedAvatar => (super.noSuchMethod(
         Invocation.getter(#selectedAvatar),
         returnValue: _i3.dummyValue<String>(
@@ -870,6 +878,71 @@ class MockPreferencesService extends _i1.Mock
       ) as String);
 
   @override
+  String get contactEmail => (super.noSuchMethod(
+        Invocation.getter(#contactEmail),
+        returnValue: _i3.dummyValue<String>(
+          this,
+          Invocation.getter(#contactEmail),
+        ),
+        returnValueForMissingStub: _i3.dummyValue<String>(
+          this,
+          Invocation.getter(#contactEmail),
+        ),
+      ) as String);
+
+  @override
+  String get contactPhone => (super.noSuchMethod(
+        Invocation.getter(#contactPhone),
+        returnValue: _i3.dummyValue<String>(
+          this,
+          Invocation.getter(#contactPhone),
+        ),
+        returnValueForMissingStub: _i3.dummyValue<String>(
+          this,
+          Invocation.getter(#contactPhone),
+        ),
+      ) as String);
+
+  @override
+  String get githubUrl => (super.noSuchMethod(
+        Invocation.getter(#githubUrl),
+        returnValue: _i3.dummyValue<String>(
+          this,
+          Invocation.getter(#githubUrl),
+        ),
+        returnValueForMissingStub: _i3.dummyValue<String>(
+          this,
+          Invocation.getter(#githubUrl),
+        ),
+      ) as String);
+
+  @override
+  String get linkedinUrl => (super.noSuchMethod(
+        Invocation.getter(#linkedinUrl),
+        returnValue: _i3.dummyValue<String>(
+          this,
+          Invocation.getter(#linkedinUrl),
+        ),
+        returnValueForMissingStub: _i3.dummyValue<String>(
+          this,
+          Invocation.getter(#linkedinUrl),
+        ),
+      ) as String);
+
+  @override
+  String get websiteUrl => (super.noSuchMethod(
+        Invocation.getter(#websiteUrl),
+        returnValue: _i3.dummyValue<String>(
+          this,
+          Invocation.getter(#websiteUrl),
+        ),
+        returnValueForMissingStub: _i3.dummyValue<String>(
+          this,
+          Invocation.getter(#websiteUrl),
+        ),
+      ) as String);
+
+  @override
   List<String> get skills => (super.noSuchMethod(
         Invocation.getter(#skills),
         returnValue: <String>[],
@@ -882,6 +955,27 @@ class MockPreferencesService extends _i1.Mock
         returnValue: <String>[],
         returnValueForMissingStub: <String>[],
       ) as List<String>);
+
+  @override
+  List<String> get hobbies => (super.noSuchMethod(
+        Invocation.getter(#hobbies),
+        returnValue: <String>[],
+        returnValueForMissingStub: <String>[],
+      ) as List<String>);
+
+  @override
+  List<_i9.ExperienceItem> get experiences => (super.noSuchMethod(
+        Invocation.getter(#experiences),
+        returnValue: <_i9.ExperienceItem>[],
+        returnValueForMissingStub: <_i9.ExperienceItem>[],
+      ) as List<_i9.ExperienceItem>);
+
+  @override
+  List<_i9.CertificationItem> get certifications => (super.noSuchMethod(
+        Invocation.getter(#certifications),
+        returnValue: <_i9.CertificationItem>[],
+        returnValueForMissingStub: <_i9.CertificationItem>[],
+      ) as List<_i9.CertificationItem>);
 
   @override
   bool get darkMode => (super.noSuchMethod(
@@ -992,6 +1086,56 @@ class MockPreferencesService extends _i1.Mock
       ) as _i5.Future<void>);
 
   @override
+  _i5.Future<void> setContactEmail(String? value) => (super.noSuchMethod(
+        Invocation.method(
+          #setContactEmail,
+          [value],
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
+
+  @override
+  _i5.Future<void> setContactPhone(String? value) => (super.noSuchMethod(
+        Invocation.method(
+          #setContactPhone,
+          [value],
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
+
+  @override
+  _i5.Future<void> setGithubUrl(String? value) => (super.noSuchMethod(
+        Invocation.method(
+          #setGithubUrl,
+          [value],
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
+
+  @override
+  _i5.Future<void> setLinkedinUrl(String? value) => (super.noSuchMethod(
+        Invocation.method(
+          #setLinkedinUrl,
+          [value],
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
+
+  @override
+  _i5.Future<void> setWebsiteUrl(String? value) => (super.noSuchMethod(
+        Invocation.method(
+          #setWebsiteUrl,
+          [value],
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
+
+  @override
   _i5.Future<void> setSkills(List<String>? value) => (super.noSuchMethod(
         Invocation.method(
           #setSkills,
@@ -1006,6 +1150,38 @@ class MockPreferencesService extends _i1.Mock
         Invocation.method(
           #setInterests,
           [value],
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
+
+  @override
+  _i5.Future<void> setHobbies(List<String>? value) => (super.noSuchMethod(
+        Invocation.method(
+          #setHobbies,
+          [value],
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
+
+  @override
+  _i5.Future<void> setExperiences(List<_i9.ExperienceItem>? items) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #setExperiences,
+          [items],
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
+
+  @override
+  _i5.Future<void> setCertifications(List<_i9.CertificationItem>? items) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #setCertifications,
+          [items],
         ),
         returnValue: _i5.Future<void>.value(),
         returnValueForMissingStub: _i5.Future<void>.value(),
@@ -1061,6 +1237,14 @@ class MockPreferencesService extends _i1.Mock
     required String? location,
     required List<String>? skills,
     required List<String>? interests,
+    String? contactEmail,
+    String? contactPhone,
+    String? githubUrl,
+    String? linkedinUrl,
+    String? websiteUrl,
+    List<_i9.ExperienceItem>? experiences,
+    List<_i9.CertificationItem>? certifications,
+    List<String>? hobbies,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -1075,11 +1259,39 @@ class MockPreferencesService extends _i1.Mock
             #location: location,
             #skills: skills,
             #interests: interests,
+            #contactEmail: contactEmail,
+            #contactPhone: contactPhone,
+            #githubUrl: githubUrl,
+            #linkedinUrl: linkedinUrl,
+            #websiteUrl: websiteUrl,
+            #experiences: experiences,
+            #certifications: certifications,
+            #hobbies: hobbies,
           },
         ),
         returnValue: _i5.Future<void>.value(),
         returnValueForMissingStub: _i5.Future<void>.value(),
       ) as _i5.Future<void>);
+
+  @override
+  _i5.Future<void> switchPersona(String? newPlan) => (super.noSuchMethod(
+        Invocation.method(
+          #switchPersona,
+          [newPlan],
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
+
+  @override
+  Map<String, dynamic> exportProfileMap() => (super.noSuchMethod(
+        Invocation.method(
+          #exportProfileMap,
+          [],
+        ),
+        returnValue: <String, dynamic>{},
+        returnValueForMissingStub: <String, dynamic>{},
+      ) as Map<String, dynamic>);
 
   @override
   _i5.Future<void> clear() => (super.noSuchMethod(
