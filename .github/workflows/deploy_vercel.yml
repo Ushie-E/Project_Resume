@@ -1,12 +1,12 @@
-name: Deploy Flutter Web to Vercel
+name: Deploy Flutter Web to Vercel (Staging & Production)
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, staging ]
 
 jobs:
   deploy-to-vercel:
-    name: Build & Deploy Flutter Web to Vercel
+    name: Build & Deploy Flutter Web
     runs-on: ubuntu-latest
 
     steps:
@@ -29,19 +29,41 @@ jobs:
       - name: Install Dependencies
         run: flutter pub get
 
-      - name: Build Flutter Web Release
-        run: flutter build web --release --base-href "/"
+      - name: Verify Code Quality & Tests
+        run: |
+          flutter analyze
+          flutter test test/viewmodels/home_viewmodel_test.dart test/viewmodels/explore_viewmodel_test.dart
 
-      - name: Deploy via Vercel CLI
+      - name: Build Flutter Web (Staging)
+        if: github.ref == 'refs/heads/staging'
+        run: flutter build web -t lib/main_staging.dart --release --base-href "/"
+
+      - name: Build Flutter Web (Production)
+        if: github.ref == 'refs/heads/main'
+        run: flutter build web -t lib/main_prod.dart --release --base-href "/"
+
+      - name: Deploy via Vercel CLI (Staging)
+        if: github.ref == 'refs/heads/staging'
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
         run: |
           if [ -z "$VERCEL_TOKEN" ]; then
-            echo "::notice::VERCEL_TOKEN secret is not configured in GitHub repository secrets."
-            echo "Vercel automatically deploys your project via its native GitHub Integration at https://vercel.com/ushie-code."
-            echo "To enable GitHub Actions deployment, add VERCEL_TOKEN to Repository Settings -> Secrets and Variables -> Actions."
+            echo "::notice::Deploying to Vercel Staging preview environment via git integration."
+          else
+            npx vercel --token="$VERCEL_TOKEN" --yes
+          fi
+
+      - name: Deploy via Vercel CLI (Production)
+        if: github.ref == 'refs/heads/main'
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+        run: |
+          if [ -z "$VERCEL_TOKEN" ]; then
+            echo "::notice::Deploying to Vercel Production environment via git integration."
           else
             npx vercel --prod --token="$VERCEL_TOKEN" --yes
           fi
