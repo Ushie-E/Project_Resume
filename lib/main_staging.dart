@@ -3,10 +3,8 @@ import 'package:project/main_common.dart';
 
 void main() {
   AppConfig.initialize(
-    appName: 'Ushie Digital Resume (Staging)',
-    apiBaseUrl: 'https://staging-ushie-digital-resume.vercel.app',
-    supabaseUrl: 'https://qoioeymizjtlfoqmeaut.supabase.co',
-    supabaseAnonKey: 'sb_publishable_kGq5l-ubr1nZvVKsdQf7JQ_ad352yf6',
+    appName: 'Resume (Staging)',
+    apiBaseUrl: 'https://staging-api.example.com',
     environment: EnvironmentType.staging,
     enableLogging: true,
   );
