@@ -2,6 +2,12 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "Project (Default)",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main.dart"
+    },
+    {
       "name": "Project (Dev / Editing)",
       "request": "launch",
       "type": "dart",

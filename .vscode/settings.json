@@ -1,7 +1,13 @@
 {
-    "cSpell.words": [
-        "ADARIKU",
-        "adarikushie",
-        "USHIE"
-    ]
+  "cSpell.words": [
+    "ADARIKU",
+    "adarikushie",
+    "USHIE"
+  ],
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.expand": false,
+  "explorer.fileNesting.patterns": {
+    "main.dart": "main_*.dart",
+    "pubspec.yaml": "pubspec.lock, pubspec_overrides.yaml, .packages, .flutter-plugins*"
+  }
 }

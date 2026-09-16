@@ -4,113 +4,180 @@
 [![Architecture](https://img.shields.io/badge/Architecture-Stacked%20MVVM-42A5F5)](https://stacked.filledstacks.com)
 [![Backend](https://img.shields.io/badge/Backend-Supabase%202.17.2-3ECF8E?logo=supabase)](https://supabase.com)
 [![Hosting](https://img.shields.io/badge/Hosting-Vercel-000000?logo=vercel)](https://ushie-digital-resume.vercel.app/#/home-view)
-[![Hosting](https://img.shields.io/badge/Hosting-Vercel-000000?logo=vercel)](https://ushie-digital-resume.vercel.app)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-**Ushie Digital Resume** is cross-platform mobile application and interactive digital and an all-in-one personal developer resume, executive consultancy showcase, and enterprise digital studio platform built with **Flutter**, **Stacked Architecture MVVM**, and **Google Sans Design System**//**Supabase**.
+**Ushie Digital Resume** is an enterprise-grade, cross-platform digital resume, executive consultancy showcase, and portfolio platform built with **Flutter**, the **Stacked MVVM Architecture**, **Google Sans Design System**, and **Supabase**.
+
+It supports a full **Dual-Persona System** (`Personal Developer` vs. `Business Enterprise`) with interactive project showcases, real-time architecture inspection modals, printable A4 resume dialogs, Markdown/JSON CV downloads, and multi-flavor continuous delivery (`dev`, `staging`, `production`).
 
 ---
-A premium, built using **Flutter**, **Stacked  (MVVM)**, and **.
 
-## 📱 Primary UI Design & Visual Asset Directory Preview
+## 📱 Visual Showcase & Golden Snapshot Gallery
 
-Below is the primary visual asset directory preview image provided for the application:
+Below are the pixel-perfect visual snapshots captured directly by the automated golden test suite:
 
+### Executive Dashboard Preview
 <p align="center">
-<img width="492" height="923" alt="image" src="https://github.com/user-attachments/assets/d8d0990a-bd51-4a8e-bbd8-4e0e3aae23c2" />
+  <img src="images/view_dashboard.png" width="420" alt="Executive Resume Dashboard" style="border-radius: 18px; box-shadow: 0 8px 24px rgba(0,0,0,0.25);" />
 </p>
+
 ---
 
-## 🖼️ Application View & Screen Showcase Table
+### Core Application Views & Workflows
 
 <table width="100%">
   <tr>
     <td align="center" width="50%">
-      <img width="498" height="523" alt="image" src="https://github.com/user-attachments/assets/4fec4182-6737-4c36-a033-0a1d83a38cac" />
+      <img src="images/view_step1.png" width="380" alt="Onboarding Step 1 - Plan Selection" style="border-radius: 14px;" /><br/><br/>
       <b>View 1: Onboarding Plan Selection (<code>OnboardingView</code>)</b><br/>
-      <sub>Personal vs. Business setup, 1-Tap Login trigger, and floating paste tooltip.</sub><br/><br/>
-      <img width="485" height="882" alt="image" src="https://github.com/user-attachments/assets/a31a344a-14bc-423e-981a-1f8ee46c7f34" />
-      <b>Screen 1: Spatial Serenity & Profile Hero</b><br/>
-      <sub>Primary background asset and initial profile hero card.</sub>
+      <sub>Interactive dual-track choice between Personal Developer and Business Studio plans with 3D avatar carousel and 1-tap login sheet.</sub>
     </td>
     <td align="center" width="50%">
-     <img width="484" height="880" alt="image" src="https://github.com/user-attachments/assets/5d302246-c122-43e8-a2cb-84b5e502cab1" />
+      <img src="images/view_step4.png" width="380" alt="Onboarding Step 4 - Interests & Markets" style="border-radius: 14px;" /><br/><br/>
       <b>View 2: Target Markets & Interests (<code>OnboardingView</code>)</b><br/>
-      <sub>Curated interests grid for personal developers & target market selection for firms.</sub><br/><br/>
-       <img width="499" height="880" alt="image" src="https://github.com/user-attachments/assets/61504e6c-9199-49d8-8c0d-541c4b6b7f51" />
-      <b>Screen 2: Organic Rhythm & Business Setup</b><br/>
-      <sub>Background layering component for onboarding focus areas.</sub>
+      <sub>Specialized interest tags for developers (Mobile, Cloud, AI) and enterprise target sectors for consultancies.</sub>
     </td>
   </tr>
   <tr>
     <td align="center" width="50%">
-     <img width="487" height="872" alt="image" src="https://github.com/user-attachments/assets/513fd250-f00a-4eda-b0cd-d8d4bae379b0" />
-      <b>View 3: Explore Showcase (<code>ExploreView</code>)</b><br/>
-      <sub>Search query bar, horizontal category filter chips, and project cards.</sub><br/><br/>
-      <img src="images/spaced.png" alt="Screen 3: Structural Clarity & Finalization" width="340" style="border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" /><br/>
-      <b>Screen 3: Structural Clarity & Finalization</b><br/>
-      <sub>Header image component for the final review phase.</sub>
+      <img src="images/view_explore.png" width="380" alt="Explore View - Project Catalog" style="border-radius: 14px;" /><br/><br/>
+      <b>View 3: Project Showcase (<code>ExploreView</code>)</b><br/>
+      <sub>Categorized portfolio items, category chips, live interactive heart counters, and architecture detail modals.</sub>
     </td>
     <td align="center" width="50%">
-      <img width="487" height="872" alt="image" src="https://github.com/user-attachments/assets/6b435500-ebc1-46b8-bf43-8e74c8e0e1f2" />
-      <b>View 4: Main Profile Dashboard (<code>HomeView</code>)</b><br/>
-      <sub>User avatar, skills summary, interest chips, and bottom navigation bar.</sub><br/><br/>
-      <img src="images/spacee.png" alt="Screen 4: Multi-Tab Dashboard & Explore View" width="340" style="border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" /><br/>
-      <b>Screen 4: Multi-Tab Dashboard</b><br/>
-      <sub>My Profile, Explore Showcase, category filtering, and Settings preferences.</sub>
+      <img src="images/view_dashboard.png" width="380" alt="Home Dashboard" style="border-radius: 14px;" /><br/><br/>
+      <b>View 4: Executive Resume Dashboard (<code>HomeView</code>)</b><br/>
+      <sub>Dual-persona header, Quick Contact action buttons, Experience timeline, Certifications, and A4/Markdown export.</sub>
     </td>
   </tr>
 </table>
 
 ---
 
-## 🌐 Live Web Application & Routes
+## 🏗️ Clean Entrypoint Architecture & IDE File Nesting
 
-- **Live Web App (Home View Direct Route)**: [`https://ushie-digital-resume.vercel.app/#/home-view`](https://ushie-digital-resume.vercel.app/#/home-view)
+The entrypoint system under `lib/` has been consolidated to eliminate clutter and provide clear multi-environment flavor targeting. `lib/main_common.dart` has been removed in favor of a centralized bootstrap engine in `lib/main.dart`.
+
+In VS Code and modern IDEs with file nesting enabled:
+```
+lib/
+ └── main.dart                   <-- Core App Engine & Default Bootstrap
+     ├── main_dev.dart           <-- Development Flavor (Debug logs enabled)
+     ├── main_staging.dart       <-- Staging Flavor (Pre-production testing)
+     └── main_prod.dart          <-- Production Flavor (Optimized release)
+```
+
+### File Nesting Configuration (`.vscode/settings.json`)
+File nesting is pre-configured in `.vscode/settings.json` so that flavor files nest neatly under `main.dart`, and `pubspec.lock` nests neatly under `pubspec.yaml`:
+```json
+{
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.expand": false,
+  "explorer.fileNesting.patterns": {
+    "main.dart": "main_*.dart",
+    "pubspec.yaml": "pubspec.lock, pubspec_overrides.yaml, .packages, .flutter-plugins*"
+  }
+}
+```
+
+### How Bootstrapping Works
+1. **`lib/main.dart`**: Declares `bootstrapApp(AppConfig config)`, initializes dependency injection via `setupLocator()`, configures dialog and bottomsheet UI, loads cached user preferences from `PreferencesService`, and mounts `MainApp`.
+2. **`lib/main_dev.dart`**: Configures dev endpoints and calls `bootstrapApp(AppConfig.instance)`.
+3. **`lib/main_staging.dart`**: Configures staging endpoints and calls `bootstrapApp(AppConfig.instance)`.
+4. **`lib/main_prod.dart`**: Configures production endpoints and calls `bootstrapApp(AppConfig.instance)`.
+
+---
+
+## 🔍 Complete View & Page Breakdown
+
+### 1. `StartupView` (Splash & Initialization)
+- **Path**: `lib/ui/views/startup/startup_view.dart`
+- **Purpose**: Displays the launch screen with animated branding, initializes asynchronous singletons (`PreferencesService`, `NavigationService`), verifies connection to Supabase backend, and presents an environment flavor badge (`DEV`, `STAGING`, `PRODUCTION`).
+- **Routing**: Automatically routes to `HomeView` if onboarding is complete, or `OnboardingView` for fresh installs.
+
+### 2. `OnboardingView` (5-Step Setup Wizard)
+- **Path**: `lib/ui/views/onboarding/onboarding_view.dart`
+- **Step 1 (Plan Selection)**: Choose between **Personal Developer Plan** (freelancer, architect, engineer) or **Business Enterprise Plan** (digital agency, studio, consultancy). Features a selectable 3D avatar gallery and 1-tap Account Login bottom sheet.
+- **Step 2 (Profile / Firm Form)**: Collects full name, executive title, biography, contact email, phone, location, GitHub profile, LinkedIn URL, and portfolio site URL.
+- **Step 3 (Skills & Competencies Matrix)**: Multi-select interactive pills (Flutter, Dart, Stacked MVVM, Supabase, Cloud Architecture, DevOps, UI/UX).
+- **Step 4 (Interests & Target Sectors)**: Specialized focus tags for personal developers and target business verticals (FinTech, HealthTech, Enterprise SaaS, AI/ML).
+- **Step 5 (Visual Review & Finalization)**: Summary preview card, visual compliance score indicator, and one-tap completion trigger.
+
+### 3. `HomeView` (Executive Resume Dashboard)
+- **Path**: `lib/ui/views/home/home_view.dart`
+- **Dual-Persona Profile Header**: Displays user avatar, full name, professional title, location badge, and executive summary bio.
+- **Direct Contact Quick Actions**: One-click action buttons to launch Email (`mailto:`), Phone (`tel:`), GitHub (`url_launcher`), LinkedIn, and Portfolio Web.
+- **Career Timeline / Work Experience**: Reverse-chronological experience list with company name, role, dates, description, and bulleted achievements.
+- **Certifications Showcase**: Verified certificates with issuer tags, issue year, and credential verification links.
+- **Skills Matrix & Hobbies**: Visual competency tags and personal interest chips.
+- **Resume Export & Download**:
+  - **A4 Printable Preview Dialog**: Full-screen modal simulating an A4 printed curriculum vitae.
+  - **Markdown Export**: One-tap export to download the complete resume as a formatted `.md` file.
+
+### 4. `ExploreView` (Interactive Project Showcase)
+- **Path**: `lib/ui/views/explore/explore_view.dart`
+- **Live Search & Filter**: Real-time search query filtering and horizontal category chips (`All`, `Mobile`, `Web`, `Architecture`, `Enterprise`).
+- **Showcase Project Cards**: Banner images, title, category badge, description, metric counters (e.g. *99.9% Crash-free*, *100k+ Users*), and tech stack pills.
+- **Interactive Heart Counter**: Tap to like projects with real-time UI count increments.
+- **Architecture Inspection Modal**: Tap "View Architecture" to open a bottom sheet showing system design, state management approach, backend integrations, and test coverage metrics.
+
+### 5. `SettingsView` (Preferences & Flavor Diagnostics)
+- **Path**: `lib/ui/views/settings/settings_view.dart`
+- **Persona Quick Switcher**: 1-click toggle between Personal and Business profiles.
+- **Display Preferences**: Dark Mode theme toggle.
+- **System Controls**: Push notification preferences and crash telemetry opt-in.
+- **Data Management**: Export local profile data as JSON for backup or migration.
+- **Environment Diagnostics**: Active flavor banner displaying current environment (`dev`, `staging`, `production`), API base URL, and build version.
+
+---
+
+## 🌐 Live Deployments & URLs
+
+- **Live Web App (Direct Route)**: [`https://ushie-digital-resume.vercel.app/#/home-view`](https://ushie-digital-resume.vercel.app/#/home-view)
 - **Live Production Domain**: [`https://ushie-digital-resume.vercel.app`](https://ushie-digital-resume.vercel.app)
-- **Active Vercel App Deployment**: [`https://project-resume-p54ikq6pi-ushie-code.vercel.app`](https://project-resume-p54ikq6pi-ushie-code.vercel.app)
-- **Free GitHub Pages Web App**: `https://YOUR_GITHUB_USERNAME.github.io/Project_Resume/`
-- **Live Supabase Database**: `https://qoioeymizjtlfoqmeaut.supabase.co` (`eu-west-1`)
+- **Staging Web App**: [`https://staging-ushie-digital-resume.vercel.app`](https://staging-ushie-digital-resume.vercel.app)
+- **Live Supabase Endpoint**: `https://qoioeymizjtlfoqmeaut.supabase.co` (`eu-west-1`)
 
 ---
 
-## 🔍 Detailed Application Views & Feature Breakdown
+## 🛠️ Build & Flavor Execution Commands
 
-| View Name | Primary Function | Features & User Interactions |
-| :--- | :--- | :--- |
-| **`StartupView`** | Boot & Splash | Initializing locator services, verifying local cache, and connecting Supabase SDK. |
-| **`OnboardingView` (Step 1)** | Welcome & Plan Choice | Interactive choice between Personal Developer Plan and Business Enterprise Plan. Features empty demo avatar selection, spatial 3D avatars, and 1-tap Account Login Sheet. |
-| **`OnboardingView` (Step 2)** | Profile / Firm Form | Personal: Full Name, Professional Title, Bio, Location.<br/>Business: Company Name, Industry Sector, Team Size, HQ Location, Overview. |
-| **`OnboardingView` (Step 3)** | Skills Matrix | Technical skills selection (Flutter, Dart, Stacked, APIs) vs. Enterprise Capabilities (Custom Software, Cloud Architecture, UI/UX Strategy, SLA 24/7). |
-| **`OnboardingView` (Step 4)** | Interests & Markets | Personal interest chips vs. Target Industry Sectors (Enterprise Tech, Architecture & Real Estate, FinTech, Healthcare). |
-| **`OnboardingView` (Step 5)** | Review & Directory | Personal summary review card vs. **Ushie Digital Visual Directory** (`SCREEN_14`, `SCREEN_2`, `SCREEN_10`, `SCREEN_9`), visual compliance indicator (75%), and asset export actions. |
-| **`ExploreView`** | Project Catalog | Search query bar, horizontal category filter chips (`All`, `Architecture`, `Mobile`, `UI/UX`, `DevOps`), project like counters, and tag badges. |
-| **`HomeView`** | Main Dashboard | Executive gradient banner, dynamic title (`My Profile` vs. `Company Profile`), interactive skills grid, interest badges, and edit setup trigger. |
-| **`SettingsView`** | Preferences & Flavors | Dark Mode toggle, Push Notifications toggle, Telemetry toggle, and Build Flavor Environment detection (`Dev` / `Staging` / `Prod`). |
-
----
-
-## 🚀 Live Web & Simulator Preview (Appetize)
-
-Test **Ushie Digital Resume** live in your browser:
-
-👉 **[Launch Appetize Interactive Live Simulator](https://appetize.io/app/demo-ushie-digital-resume)**
-
----
-
-## 🛠️ Build & Flavor Configurations
-
-- **Dev Environment**: `flutter run -t lib/main_dev.dart --flavor dev`
-- **Prod Environment**: `flutter run -t lib/main_prod.dart --flavor prod`
-
----
-
-## 🧪 Quality Assurance & Test Verification
+Run the application targeting specific flavors:
 
 ```bash
-# Run Static Code Analysis
+# 1. Default (Dev configuration)
+flutter run -t lib/main.dart
+
+# 2. Development Flavor
+flutter run -t lib/main_dev.dart --flavor dev
+
+# 3. Staging Flavor
+flutter run -t lib/main_staging.dart --flavor staging
+
+# 4. Production Flavor
+flutter run -t lib/main_prod.dart --flavor prod
+```
+
+---
+
+## 🧪 Quality Gate & Automated Testing
+
+All unit tests and golden visual tests are verified before deployment:
+
+```bash
+# Analyze static code quality (0 issues required)
 flutter analyze
 
-# Run Automated Test Suite & Goldens
+# Execute full automated test suite & golden snapshots
 flutter test
 ```
+
+### Verified Test Suite
+- `OnboardingView - Step 1 Plan Selection` (Golden) — **PASSED**
+- `OnboardingView - Step 4 Interest Selection` (Golden) — **PASSED**
+- `ExploreView - Project Showcase` (Golden) — **PASSED**
+- `HomeView - Executive Resume Dashboard` (Golden) — **PASSED**
+- `ExploreViewModelTest` (Unit Tests) — **PASSED**
+- `HomeViewModelTest` (Unit Tests) — **PASSED**
+- `NoticeSheetModelTest` (Unit Tests) — **PASSED**
+- `InfoAlertDialogModelTest` (Unit Tests) — **PASSED**
