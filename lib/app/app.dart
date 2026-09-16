@@ -11,6 +11,12 @@ import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
 // @stacked-import
 
+export 'app.bottomsheets.dart';
+export 'app.dialogs.dart';
+export 'app.locator.dart';
+export 'app.router.dart';
+export 'app_config.dart';
+
 @StackedApp(
   routes: [
     MaterialRoute(page: HomeView),

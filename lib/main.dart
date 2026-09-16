@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project/app/app.bottomsheets.dart';
-import 'package:project/app/app.dialogs.dart';
-import 'package:project/app/app.locator.dart';
-import 'package:project/app/app.router.dart';
-import 'package:project/app/app_config.dart';
+import 'package:project/app/app.dart';
 import 'package:project/services/preferences_service.dart';
 import 'package:stacked_services/stacked_services.dart';
 

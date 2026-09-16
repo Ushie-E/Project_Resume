@@ -8,6 +8,7 @@
   "explorer.fileNesting.expand": false,
   "explorer.fileNesting.patterns": {
     "main.dart": "main_*.dart",
+    "app.dart": "app.*.dart, app_*.dart",
     "pubspec.yaml": "pubspec.lock, pubspec_overrides.yaml, .packages, .flutter-plugins*"
   }
 }
