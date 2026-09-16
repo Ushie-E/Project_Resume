@@ -6,6 +6,9 @@ import 'package:golden_toolkit/golden_toolkit.dart';
 import 'package:project/app/app.locator.dart';
 import 'package:project/ui/views/explore/explore_view.dart';
 import 'package:project/ui/views/home/home_view.dart';
+import 'package:project/ui/views/onboarding/onboarding_view.dart';
+
+import '../helpers/test_helpers.dart';
 
 class TolerantFileComparator extends LocalFileComparator {
   final double maxDiffPercent;
@@ -29,44 +32,56 @@ class TolerantFileComparator extends LocalFileComparator {
 void main() {
   final bool isCI = Platform.environment.containsKey('CI');
 
-  setUpAll(() {
-    setupLocator();
+  setUp(() {
+    registerServices();
+  });
+
+  tearDown(() {
+    locator.reset();
+  });
+
+  setUpAll(() async {
+    await loadAppFonts();
     goldenFileComparator = TolerantFileComparator(
       Uri.parse('test/golden/home_view_golden_test.dart'),
       0.05,
     );
   });
 
-  tearDownAll(() => locator.reset());
-
-  testGoldens('HomeView - Step 1 Plan Selection', (tester) async {
-    await loadAppFonts();
-
+  testGoldens('OnboardingView - Step 1 Plan Selection', (tester) async {
     await tester.binding.setSurfaceSize(const Size(393, 852));
     tester.view.devicePixelRatio = 1.0;
 
     await tester.pumpWidget(
-      const MediaQuery(
-        data: MediaQueryData(size: Size(393, 852), devicePixelRatio: 1.0),
-        child: MaterialApp(debugShowCheckedModeBanner: false, home: HomeView()),
+      MediaQuery(
+        data: const MediaQueryData(size: Size(393, 852), devicePixelRatio: 1.0),
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(fontFamily: 'Google Sans'),
+          home: const OnboardingView(),
+        ),
       ),
     );
+    await tester.pumpAndSettle();
 
     await screenMatchesGolden(tester, 'home_view_step1');
   }, skip: isCI);
 
-  testGoldens('HomeView - Step 4 Interest Selection', (tester) async {
-    await loadAppFonts();
-
+  testGoldens('OnboardingView - Step 4 Interest Selection', (tester) async {
     await tester.binding.setSurfaceSize(const Size(393, 852));
     tester.view.devicePixelRatio = 1.0;
 
     await tester.pumpWidget(
-      const MediaQuery(
-        data: MediaQueryData(size: Size(393, 852), devicePixelRatio: 1.0),
-        child: MaterialApp(debugShowCheckedModeBanner: false, home: HomeView()),
+      MediaQuery(
+        data: const MediaQueryData(size: Size(393, 852), devicePixelRatio: 1.0),
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(fontFamily: 'Google Sans'),
+          home: const OnboardingView(),
+        ),
       ),
     );
+    await tester.pumpAndSettle();
 
     // Step 1 -> Step 2
     final getStartedFinder = find.text('Get Started');
@@ -98,18 +113,40 @@ void main() {
   }, skip: isCI);
 
   testGoldens('ExploreView - Project Showcase', (tester) async {
-    await loadAppFonts();
-
     await tester.binding.setSurfaceSize(const Size(393, 852));
     tester.view.devicePixelRatio = 1.0;
 
     await tester.pumpWidget(
-      const MediaQuery(
-        data: MediaQueryData(size: Size(393, 852), devicePixelRatio: 1.0),
-        child: MaterialApp(debugShowCheckedModeBanner: false, home: ExploreView()),
+      MediaQuery(
+        data: const MediaQueryData(size: Size(393, 852), devicePixelRatio: 1.0),
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(fontFamily: 'Google Sans'),
+          home: const ExploreView(),
+        ),
       ),
     );
+    await tester.pumpAndSettle();
 
     await screenMatchesGolden(tester, 'explore_view_showcase');
+  }, skip: isCI);
+
+  testGoldens('HomeView - Executive Resume Dashboard', (tester) async {
+    await tester.binding.setSurfaceSize(const Size(393, 852));
+    tester.view.devicePixelRatio = 1.0;
+
+    await tester.pumpWidget(
+      MediaQuery(
+        data: const MediaQueryData(size: Size(393, 852), devicePixelRatio: 1.0),
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(fontFamily: 'Google Sans'),
+          home: const HomeView(),
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    await screenMatchesGolden(tester, 'home_view_dashboard');
   }, skip: isCI);
 }
