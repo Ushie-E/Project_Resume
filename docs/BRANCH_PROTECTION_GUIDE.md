@@ -92,22 +92,31 @@ git config core.hooksPath .githooks
 
 ## 🔄 Standard Development Workflow
 
+> ⚠️ **Branch Creation Protocol**: Before creating or switching to any new branch for a new task, the developer / AI assistant must **ask or tell the user first** to confirm the branch name and scope.
+
 ```bash
-# 1. Start from latest main
+# 1. Ask / confirm branch name with user (e.g. feature/my-new-feature)
+
+# 2. Start from latest main
 git checkout main
 git pull origin main
 
-# 2. Create your isolated feature or fix branch
+# 3. Create your isolated feature or fix branch
 git checkout -b feature/my-new-feature
 
-# 3. Work on changes, run analysis and tests
+# 4. Work on changes, run analysis and tests
 flutter analyze
 flutter test
 
-# 4. Commit and push your branch
+# 5. Commit and push your branch (deploys to Preview environment)
 git add .
 git commit -m "feat(ui): add new portfolio capability"
 git push -u origin feature/my-new-feature
 
-# 5. Open PR on GitHub to merge into main
+# 6. Open PR on GitHub to merge into main (merging deploys to Staging)
+# 7. Verify on Staging, then promote to Production via GitHub Actions
 ```
+
+> 📖 **Related Guide**:
+> See the complete multi-tier deployment documentation in [BRANCH_AND_DEPLOYMENT_LIFECYCLE.md](BRANCH_AND_DEPLOYMENT_LIFECYCLE.md).
+
