@@ -12,7 +12,10 @@ import 'package:project/ui/views/home/home_view.dart';
 import 'package:project/ui/views/onboarding/onboarding_view.dart';
 
 import '../helpers/test_helpers.dart';
+<<<<<<< Updated upstream
 import '../helpers/test_helpers.mocks.dart';
+=======
+>>>>>>> Stashed changes
 
 class TolerantFileComparator extends LocalFileComparator {
   final double maxDiffPercent;
@@ -117,6 +120,7 @@ void main() {
   }, skip: isCI);
 
   testGoldens('ExploreView - Project Showcase', (tester) async {
+<<<<<<< Updated upstream
     await tester.binding.setSurfaceSize(const Size(393, 852));
     tester.view.devicePixelRatio = 1.0;
 
@@ -187,6 +191,31 @@ void main() {
     ]);
     when(prefs.hobbies).thenReturn(['Mobile Architecture', 'Open Source', 'Chess']);
 
+=======
+>>>>>>> Stashed changes
+    await tester.binding.setSurfaceSize(const Size(393, 852));
+    tester.view.devicePixelRatio = 1.0;
+
+    await tester.pumpWidget(
+      MediaQuery(
+        data: const MediaQueryData(size: Size(393, 852), devicePixelRatio: 1.0),
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(fontFamily: 'Google Sans'),
+<<<<<<< Updated upstream
+          home: const HomeView(),
+=======
+          home: const ExploreView(),
+>>>>>>> Stashed changes
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    await screenMatchesGolden(tester, 'home_view_dashboard');
+  }, skip: isCI);
+
+  testGoldens('HomeView - Executive Resume Dashboard', (tester) async {
     await tester.binding.setSurfaceSize(const Size(393, 852));
     tester.view.devicePixelRatio = 1.0;
 
