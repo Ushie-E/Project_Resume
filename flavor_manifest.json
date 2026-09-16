@@ -11,9 +11,9 @@
   "current_release": {
     "active_flavor": "dev",
     "version": "1.0.0+1",
-    "updated_at": "2026-09-16T16:55:16.977540Z",
+    "updated_at": "2026-09-16T21:52:00.000000Z",
     "updated_by": "Ushie Emmanuel",
-    "reason_for_update": "Engineered dual-persona digital resume & portfolio (Personal vs Business) with executive work history timeline, certifications, skills matrix, direct contact actions, printable/downloadable CV in A4 preview & Markdown, and interactive project showcase with architecture modals."
+    "reason_for_update": "Consolidated bootstrap architecture into main.dart, removed main_common.dart, and streamlined flavor entrypoints (main_dev.dart, main_staging.dart, main_prod.dart)."
   },
   "flavors": {
     "dev": {
@@ -54,6 +54,6 @@
     "flutter_analyze_passed": true,
     "unit_tests_passed": true,
     "development_verified": true,
-    "last_verification_timestamp": "2026-09-16T16:55:16.977540Z"
+    "last_verification_timestamp": "2026-09-16T21:52:00.000000Z"
   }
 }

@@ -1,5 +1,5 @@
 import 'package:project/app/app_config.dart';
-import 'package:project/main_common.dart';
+import 'package:project/main.dart';
 
 void main() {
   AppConfig.initialize(
@@ -10,5 +10,5 @@ void main() {
     environment: EnvironmentType.dev,
     enableLogging: true,
   );
-  mainCommon(AppConfig.instance);
+  bootstrapApp(AppConfig.instance);
 }
