@@ -225,12 +225,36 @@ File nesting is pre-configured in `.vscode/settings.json` so that flavor files n
 
 ---
 
-## 🌐 Live Deployments & URLs
+## 🌐 Multi-Tier Deployment Lifecycle & Environments
 
-- **Live Web App (Direct Route)**: [`https://ushie-digital-resume.vercel.app/#/home-view`](https://ushie-digital-resume.vercel.app/#/home-view)
-- **Live Production Domain**: [`https://ushie-digital-resume.vercel.app`](https://ushie-digital-resume.vercel.app)
-- **Staging Web App**: [`https://staging-ushie-digital-resume.vercel.app`](https://staging-ushie-digital-resume.vercel.app)
+The project enforces a strict 3-tier deployment lifecycle visible directly on GitHub:
+
+```
+[Feature / Chore Branch] ──(Push/PR)──> 🧪 PREVIEW Deployment (Dev Flavor)
+                                               │
+                                       (PR Review + CI Gates)
+                                               ▼
+['main' Baseline Branch] ──(Merge)────> 🏗️ STAGING Deployment (Staging Flavor)
+                                               │
+                                       (QA Verification + Sign-off)
+                                               ▼
+[Promote to Production]  ──(Dispatch)─> 🌟 PRODUCTION Release (Final Phase)
+```
+
+1. **🧪 Preview Environment (Any Branch / PR)**:
+   - Every feature, fix, or task branch automatically builds and deploys to an ephemeral Vercel preview with the `dev` flavor (`lib/main_dev.dart`).
+2. **🏗️ Staging Environment (`main` Branch)**:
+   - **`main` is the Staging baseline.** Pull requests merged into `main` automatically build and deploy to [`https://staging-ushie-digital-resume.vercel.app`](https://staging-ushie-digital-resume.vercel.app) with the `staging` flavor (`lib/main_staging.dart`).
+3. **🌟 Production Environment (Final Phase Promotion)**:
+   - **Production is the absolute last phase of anything.** Code is never deployed to production automatically. Releases are promoted only from `main` via the GitHub Actions **Promote to Production** workflow or official release tags (`v*.*.*`), protected by GitHub Environment manual approval gates.
+
+- **Live Production URL**: [`https://ushie-digital-resume.vercel.app`](https://ushie-digital-resume.vercel.app)
+- **Live Staging URL**: [`https://staging-ushie-digital-resume.vercel.app`](https://staging-ushie-digital-resume.vercel.app)
 - **Live Supabase Endpoint**: `https://qoioeymizjtlfoqmeaut.supabase.co` (`eu-west-1`)
+
+> 📖 **Full Architectural Guides**:
+> - [Branching & Multi-Tier Deployment Lifecycle Guide](docs/BRANCH_AND_DEPLOYMENT_LIFECYCLE.md)
+> - [GitHub Branch Protection & Ruleset Setup Guide](docs/BRANCH_PROTECTION_GUIDE.md)
 
 ---
 

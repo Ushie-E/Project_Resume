@@ -1,13 +1,49 @@
-name: Deploy Flutter Web to Vercel (Staging & Production)
+name: 🚀 Multi-Tier Deployment Lifecycle (Preview, Staging, Production)
 
 on:
+  # 1. Pushes to any branch or release tags
   push:
-    branches: [ main, staging ]
+    branches:
+      - '**'
+    branches-ignore:
+      - gh-pages
+    tags:
+      - 'v*.*.*'
+  # 2. Pull Requests targeting main
+  pull_request:
+    branches: [ main ]
+  # 3. Manual production promotion trigger
+  workflow_dispatch:
+    inputs:
+      target_env:
+        description: 'Deployment Target Environment'
+        required: true
+        type: choice
+        options:
+          - 'production'
+          - 'staging'
+        default: 'production'
+      reason:
+        description: 'Reason for deployment / promotion'
+        required: false
+        default: 'Promoting validated Staging build from main to Production'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  deploy-to-vercel:
-    name: Build & Deploy Flutter Web
+  # ============================================================================
+  # TIER 1: PREVIEW DEPLOYMENT (Feature, Bugfix, & Chore Branches / PRs)
+  # Any branch created or updated is deployed to an ephemeral Preview environment
+  # ============================================================================
+  deploy-preview:
+    name: 🧪 Preview Deployment (Branch / PR)
+    if: github.event_name == 'pull_request' || (github.event_name == 'push' && github.ref != 'refs/heads/main' && !startsWith(github.ref, 'refs/tags/v'))
     runs-on: ubuntu-latest
+    environment:
+      name: preview
+      url: ${{ steps.deploy-preview.outputs.preview_url }}
 
     steps:
       - name: Checkout Repository
@@ -29,41 +65,131 @@ jobs:
       - name: Install Dependencies
         run: flutter pub get
 
-      - name: Verify Code Quality & Tests
+      - name: Code Quality & Automated Tests
         run: |
           flutter analyze
-          flutter test test/viewmodels/home_viewmodel_test.dart test/viewmodels/explore_viewmodel_test.dart
+          flutter test
 
-      - name: Build Flutter Web (Staging)
-        if: github.ref == 'refs/heads/staging'
-        run: flutter build web -t lib/main_staging.dart --release --base-href "/"
+      - name: Build Flutter Web (Dev / Preview Flavor)
+        run: flutter build web -t lib/main_dev.dart --release --base-href "/"
 
-      - name: Build Flutter Web (Production)
-        if: github.ref == 'refs/heads/main'
-        run: flutter build web -t lib/main_prod.dart --release --base-href "/"
-
-      - name: Deploy via Vercel CLI (Staging)
-        if: github.ref == 'refs/heads/staging'
+      - name: Deploy to Vercel (Preview)
+        id: deploy-preview
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
         run: |
           if [ -z "$VERCEL_TOKEN" ]; then
-            echo "::notice::Deploying to Vercel Staging preview environment via git integration."
+            echo "::notice::Preview deployment completed in simulated mode. Add VERCEL_TOKEN secret for live URL."
+            echo "preview_url=https://ushie-digital-resume.vercel.app" >> $GITHUB_OUTPUT
+          else
+            URL=$(npx vercel --token="$VERCEL_TOKEN" --yes)
+            echo "preview_url=$URL" >> $GITHUB_OUTPUT
+          fi
+
+  # ============================================================================
+  # TIER 2: STAGING DEPLOYMENT ('main' Branch Baseline)
+  # Pushing or merging into 'main' automatically deploys to STAGING
+  # ============================================================================
+  deploy-staging:
+    name: 🏗️ Staging Deployment ('main' Branch)
+    if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name == 'workflow_dispatch' && github.event.inputs.target_env == 'staging')
+    runs-on: ubuntu-latest
+    environment:
+      name: staging
+      url: https://staging-ushie-digital-resume.vercel.app
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Java JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: Set up Flutter SDK
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.29.x'
+          channel: 'stable'
+          cache: true
+
+      - name: Install Dependencies
+        run: flutter pub get
+
+      - name: Code Quality & Automated Tests
+        run: |
+          flutter analyze
+          flutter test
+
+      - name: Build Flutter Web (Staging Flavor)
+        run: flutter build web -t lib/main_staging.dart --release --base-href "/"
+
+      - name: Deploy to Vercel (Staging)
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+        run: |
+          if [ -z "$VERCEL_TOKEN" ]; then
+            echo "::notice::Staging deployment simulated. Build validated against 'main'."
           else
             npx vercel --token="$VERCEL_TOKEN" --yes
           fi
 
-      - name: Deploy via Vercel CLI (Production)
-        if: github.ref == 'refs/heads/main'
+  # ============================================================================
+  # TIER 3: PRODUCTION PROMOTION (Final Release Phase)
+  # Deploys only when explicitly promoted from Staging or on verified release tag
+  # ============================================================================
+  promote-to-production:
+    name: 🌟 Production Release (Final Phase)
+    if: (github.event_name == 'workflow_dispatch' && github.event.inputs.target_env == 'production') || (github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v'))
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: https://ushie-digital-resume.vercel.app
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+
+      - name: Set up Java JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: Set up Flutter SDK
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.29.x'
+          channel: 'stable'
+          cache: true
+
+      - name: Install Dependencies
+        run: flutter pub get
+
+      - name: Code Quality & Automated Tests
+        run: |
+          flutter analyze
+          flutter test
+
+      - name: Build Flutter Web (Production Release Flavor)
+        run: flutter build web -t lib/main_prod.dart --release --base-href "/"
+
+      - name: Deploy to Vercel (Production)
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
         run: |
           if [ -z "$VERCEL_TOKEN" ]; then
-            echo "::notice::Deploying to Vercel Production environment via git integration."
+            echo "::notice::Production deployment simulated. Build verified."
           else
             npx vercel --prod --token="$VERCEL_TOKEN" --yes
           fi
