@@ -14,8 +14,12 @@ class StartupViewModel extends BaseViewModel {
   Future runStartupLogic() async {
     await _preferencesService.init();
     await _supabaseService.initSupabase();
-    await Future.delayed(const Duration(seconds: 1));
+    await Future.delayed(const Duration(milliseconds: 1500));
 
-    _navigationService.replaceWithHomeView();
+    if (_preferencesService.isOnboardingComplete) {
+      _navigationService.replaceWithHomeView();
+    } else {
+      _navigationService.replaceWithOnboardingView();
+    }
   }
 }

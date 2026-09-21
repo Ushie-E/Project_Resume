@@ -41,7 +41,7 @@ class PreferencesService {
   }
 
   bool get isOnboardingComplete =>
-      _prefs?.getBool(_keyIsOnboardingComplete) ?? true;
+      _prefs?.getBool(_keyIsOnboardingComplete) ?? false;
   Future<void> setOnboardingComplete(bool value) async {
     await _prefs?.setBool(_keyIsOnboardingComplete, value);
   }
