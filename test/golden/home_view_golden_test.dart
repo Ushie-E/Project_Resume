@@ -125,6 +125,59 @@ void main() {
     await screenMatchesGolden(tester, 'home_view_step4');
   }, skip: isCI);
 
+  testGoldens('OnboardingView - Step 4 Target Industry Sectors (Business)', (tester) async {
+    await tester.binding.setSurfaceSize(const Size(393, 852));
+    tester.view.devicePixelRatio = 1.0;
+
+    await tester.pumpWidget(
+      MediaQuery(
+        data: const MediaQueryData(size: Size(393, 852), devicePixelRatio: 1.0),
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(fontFamily: 'Google Sans'),
+          home: const OnboardingView(),
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    // Select Business Plan
+    final businessPlanFinder = find.text('Business');
+    await tester.ensureVisible(businessPlanFinder);
+    await tester.pumpAndSettle();
+    await tester.tap(businessPlanFinder);
+    await tester.pumpAndSettle();
+
+    // Step 1 -> Step 2
+    final startCompanyFinder = find.text('Start Company Setup');
+    await tester.ensureVisible(startCompanyFinder);
+    await tester.pumpAndSettle();
+    await tester.tap(startCompanyFinder);
+    await tester.pumpAndSettle();
+
+    // Fill Step 2 Form to satisfy validation
+    await tester.enterText(find.byType(TextFormField).at(0), 'Ushie Tech Labs & Studio');
+    await tester.enterText(
+        find.byType(TextFormField).at(1), 'Enterprise Mobile & AI Solutions');
+    await tester.pumpAndSettle();
+
+    // Step 2 -> Step 3
+    final step3Finder = find.text('Continue to Step 3');
+    await tester.ensureVisible(step3Finder);
+    await tester.pumpAndSettle();
+    await tester.tap(step3Finder);
+    await tester.pumpAndSettle();
+
+    // Step 3 -> Step 4
+    final step4Finder = find.text('Continue to Step 4');
+    await tester.ensureVisible(step4Finder);
+    await tester.pumpAndSettle();
+    await tester.tap(step4Finder);
+    await tester.pumpAndSettle();
+
+    await screenMatchesGolden(tester, 'home_view_step4_business');
+  }, skip: isCI);
+
   testGoldens('ExploreView - Project Showcase', (tester) async {
     await tester.binding.setSurfaceSize(const Size(393, 852));
     tester.view.devicePixelRatio = 1.0;

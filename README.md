@@ -3,7 +3,7 @@
 [![Flutter Version](https://img.shields.io/badge/Flutter-3.29.x-02569B?logo=flutter)](https://flutter.dev)
 [![Architecture](https://img.shields.io/badge/Architecture-Stacked%20MVVM-42A5F5)](https://stacked.filledstacks.com)
 [![Backend](https://img.shields.io/badge/Backend-Supabase%202.17.2-3ECF8E?logo=supabase)](https://supabase.com)
-[![Hosting](https://img.shields.io/badge/Hosting-Vercel-000000?logo=vercel)](https://ushie-digital-resume.vercel.app/#/home-view)
+[![Hosting](https://img.shields.io/badge/Hosting-Vercel-000000?logo=vercel)](https://ushie-digital-resume.vercel.app)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 **Ushie Digital Resume** is an enterprise-grade, cross-platform digital resume, executive consultancy showcase, and portfolio platform built with **Flutter**, the **Stacked MVVM Architecture**, **Google Sans Design System**, and **Supabase**.
@@ -84,26 +84,26 @@ The Settings view provides instant 1-click persona switching, real-time dark mod
 <table width="100%">
   <tr>
     <td align="center" width="50%">
-      <img src="images/view_step1.png" width="380" alt="Onboarding Step 1 - Plan Selection" style="border-radius: 14px;" /><br/><br/>
+      <img src="images/view_step1.png" width="380" alt="Onboarding Step 1 - Plan Selection" style="border-radius: 14px; box-shadow: 0 4px 14px rgba(0,0,0,0.12);" /><br/><br/>
       <b>Onboarding Step 1: Plan Selection</b><br/>
       <sub>Interactive dual-track choice between Personal Developer and Business Studio plans with 3D avatar carousel and 1-tap login sheet.</sub>
     </td>
     <td align="center" width="50%">
-      <img src="images/view_step4.png" width="380" alt="Onboarding Step 4 - Interests & Markets" style="border-radius: 14px;" /><br/><br/>
-      <b>Onboarding Step 4: Markets & Focus</b><br/>
-      <sub>Specialized interest tags for developers (Mobile, Cloud, AI) and enterprise target verticals for digital consultancies.</sub>
+      <img src="images/view_explore.png" width="380" alt="Explore View - Project Catalog" style="border-radius: 14px; box-shadow: 0 4px 14px rgba(0,0,0,0.12);" /><br/><br/>
+      <b>Interactive Project Showcase (<code>ExploreView</code>)</b><br/>
+      <sub>Categorized portfolio items, horizontal category chips, live interactive heart counters, and architecture inspection bottom sheets.</sub>
     </td>
   </tr>
   <tr>
     <td align="center" width="50%">
-      <img src="images/view_explore.png" width="380" alt="Explore View - Project Catalog" style="border-radius: 14px;" /><br/><br/>
-      <b>Interactive Project Showcase (<code>ExploreView</code>)</b><br/>
-      <sub>Categorized portfolio items, horizontal category chips, live interactive heart counters, and architecture inspection bottom sheets.</sub>
+      <img src="images/view_step4.png" width="380" alt="Onboarding Step 4 - Personal Interests (Compact Cards)" style="border-radius: 14px; box-shadow: 0 4px 14px rgba(0,0,0,0.12);" /><br/><br/>
+      <b>Onboarding Step 4: Personal Interests (Compact Cards)</b><br/>
+      <sub>Streamlined, compact category tiles (aspect ratio 1.85) featuring individual pursuits (Tech, Design, Travel, Music) with balanced vertical rhythm.</sub>
     </td>
     <td align="center" width="50%">
-      <img src="images/app_preview.png" width="380" alt="App Preview Asset" style="border-radius: 14px;" /><br/><br/>
-      <b>Primary Architecture Showcase</b><br/>
-      <sub>Production baseline verified through comprehensive automated golden rendering pipeline.</sub>
+      <img src="images/view_step4_business.png" width="380" alt="Onboarding Step 4 - Business Target Sectors (Compact Cards)" style="border-radius: 14px; box-shadow: 0 4px 14px rgba(0,0,0,0.12);" /><br/><br/>
+      <b>Onboarding Step 4: Target Sectors (Compact Cards)</b><br/>
+      <sub>Compact enterprise cards for digital consultancies (Enterprise Tech, FinTech, Healthcare, Real Estate) fitting cleanly within the viewport.</sub>
     </td>
   </tr>
 </table>
@@ -290,9 +290,10 @@ flutter analyze
 flutter test
 ```
 
-### Verified Test Suite (10 Golden Snapshots + 12 Unit Tests)
+### Verified Test Suite (11 Golden Snapshots + 12 Unit Tests)
 - `OnboardingView - Step 1 Plan Selection` (Golden) — **PASSED**
 - `OnboardingView - Step 4 Interest Selection` (Golden) — **PASSED**
+- `OnboardingView - Step 4 Target Industry Sectors (Business)` (Golden) — **PASSED**
 - `ExploreView - Project Showcase` (Golden) — **PASSED**
 - `HomeView - Personal Developer Dashboard (Light Mode)` (Golden) — **PASSED**
 - `HomeView - Personal Developer Dashboard (Dark Mode)` (Golden) — **PASSED**

@@ -16,7 +16,7 @@ class HomeViewModel extends BaseViewModel implements Initialisable {
   int _currentStep = 1;
   int get currentStep => _currentStep;
 
-  bool _isOnboardingComplete = true;
+  bool _isOnboardingComplete = false;
   bool get isOnboardingComplete => _isOnboardingComplete;
 
   // Bottom Navigation Tab Index: 0 = Explore, 1 = My Profile, 2 = Settings

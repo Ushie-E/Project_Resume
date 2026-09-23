@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:project/app.locator.dart';
+import 'package:project/app.router.dart';
+import 'package:project/services/preferences_service.dart';
 import 'package:project/ui/common/app_colors.dart';
 import 'package:project/ui/common/responsive_layout.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked_services/stacked_services.dart';
 
 import 'onboarding_viewmodel.dart';
 import 'widgets/step1_plan_selection.dart';
@@ -19,7 +23,33 @@ class OnboardingView extends StackedView<OnboardingViewModel> {
   });
 
   OnboardingCompleteCallback get _safeOnboardingComplete =>
-      onOnboardingComplete ?? (_) {};
+      onOnboardingComplete ??
+      (vm) {
+        final prefs = locator<PreferencesService>();
+        prefs.saveProfile(
+          plan: vm.selectedPlan,
+          avatar: vm.selectedAvatar,
+          name: vm.isBusinessPlan ? vm.displayCompanyName : vm.displayName,
+          title: vm.isBusinessPlan ? vm.displayCompanySector : vm.displayJobTitle,
+          bio: vm.isBusinessPlan ? vm.companyOverview : vm.bio,
+          location: vm.isBusinessPlan ? vm.companyLocation : vm.location,
+          skills: vm.isBusinessPlan
+              ? vm.selectedBusinessCapabilities.toList()
+              : vm.selectedPersonalSkills.toList(),
+          interests: vm.isBusinessPlan
+              ? vm.selectedTargetMarkets.toList()
+              : vm.selectedPersonalInterests.toList(),
+          contactEmail: vm.contactEmail,
+          contactPhone: vm.contactPhone,
+          githubUrl: vm.githubUrl,
+          linkedinUrl: vm.linkedinUrl,
+          websiteUrl: vm.websiteUrl,
+          experiences: vm.experiences,
+          certifications: vm.certifications,
+          hobbies: vm.hobbies,
+        );
+        locator<NavigationService>().replaceWithHomeView();
+      };
 
   @override
   Widget builder(BuildContext context, OnboardingViewModel viewModel, Widget? child) {

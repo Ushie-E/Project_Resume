@@ -174,9 +174,9 @@ class Step4InterestsMarkets extends StatelessWidget {
                 crossAxisCount: 2,
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
-                crossAxisSpacing: 12,
-                mainAxisSpacing: 12,
-                childAspectRatio: 1.25,
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 10,
+                childAspectRatio: 1.85,
                 children: categories.map((cat) {
                   final String title = cat['title'] as String;
                   final IconData icon = cat['icon'] as IconData;
@@ -195,18 +195,18 @@ class Step4InterestsMarkets extends StatelessWidget {
                       duration: const Duration(milliseconds: 150),
                       decoration: BoxDecoration(
                         color: isSelected ? kcOnboardingBlue : kcOnboardingUnselectedCard,
-                        borderRadius: BorderRadius.circular(16),
+                        borderRadius: BorderRadius.circular(14),
                         boxShadow: isSelected
                             ? [
                                 BoxShadow(
                                   color: kcOnboardingBlue.withValues(alpha: 0.25),
-                                  blurRadius: 8,
-                                  offset: const Offset(0, 4),
+                                  blurRadius: 6,
+                                  offset: const Offset(0, 3),
                                 )
                               ]
                             : null,
                       ),
-                      padding: const EdgeInsets.all(12),
+                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
                       child: Stack(
                         children: [
                           if (isSelected)
@@ -216,7 +216,7 @@ class Step4InterestsMarkets extends StatelessWidget {
                               child: Icon(
                                 Icons.check_circle,
                                 color: Colors.white,
-                                size: 18,
+                                size: 16,
                               ),
                             ),
                           Column(
@@ -224,7 +224,7 @@ class Step4InterestsMarkets extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Container(
-                                padding: const EdgeInsets.all(6),
+                                padding: const EdgeInsets.all(5),
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                   color: isSelected
@@ -234,17 +234,20 @@ class Step4InterestsMarkets extends StatelessWidget {
                                 child: Icon(
                                   icon,
                                   color: isSelected ? Colors.white : kcTealIcon,
-                                  size: 20,
+                                  size: 18,
                                 ),
                               ),
-                              const SizedBox(height: 8),
+                              const SizedBox(height: 6),
                               Text(
                                 title,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
-                                  fontSize: 13,
+                                  fontSize: 12.5,
                                   fontWeight: FontWeight.bold,
                                   color: isSelected ? Colors.white : kcOnboardingCardText,
                                   fontFamily: 'Google Sans',
+                                  height: 1.15,
                                 ),
                               ),
                             ],
