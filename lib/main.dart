@@ -28,6 +28,7 @@ class MainApp extends StatelessWidget {
           themeMode: isDark ? ThemeMode.dark : ThemeMode.light,
           theme: ThemeData(
             brightness: Brightness.light,
+            splashFactory: InkRipple.splashFactory,
             fontFamily: 'Google Sans',
             colorScheme: ColorScheme.fromSeed(
               seedColor: const Color(0xFF3562D7),
@@ -36,6 +37,7 @@ class MainApp extends StatelessWidget {
           ),
           darkTheme: ThemeData(
             brightness: Brightness.dark,
+            splashFactory: InkRipple.splashFactory,
             scaffoldBackgroundColor: const Color(0xFF0F172A),
             fontFamily: 'Google Sans',
             colorScheme: ColorScheme.fromSeed(
