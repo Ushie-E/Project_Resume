@@ -1,7 +1,7 @@
-// ignore: avoid_web_libraries_in_flutter
-import 'dart:html' as html;
 import 'dart:convert';
+import 'dart:js_interop';
 import 'package:flutter/foundation.dart';
+import 'package:web/web.dart' as web;
 
 Future<bool> downloadFile({
   required String filename,
@@ -9,15 +9,19 @@ Future<bool> downloadFile({
 }) async {
   try {
     final bytes = utf8.encode(content);
-    final blob = html.Blob([bytes], 'text/plain;charset=utf-8');
-    final url = html.Url.createObjectUrlFromBlob(blob);
-    final anchor = html.AnchorElement(href: url)
+    final blob = web.Blob(
+      [bytes.toJS].toJS,
+      web.BlobPropertyBag(type: 'text/plain;charset=utf-8'),
+    );
+    final url = web.URL.createObjectURL(blob);
+    final anchor = web.HTMLAnchorElement()
+      ..href = url
       ..setAttribute('download', filename)
       ..style.display = 'none';
-    html.document.body?.children.add(anchor);
+    web.document.body?.appendChild(anchor);
     anchor.click();
-    html.document.body?.children.remove(anchor);
-    html.Url.revokeObjectUrl(url);
+    anchor.remove();
+    web.URL.revokeObjectURL(url);
     return true;
   } catch (e) {
     if (kDebugMode) {
